@@ -1,4 +1,5 @@
 
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
@@ -38,6 +39,36 @@
     --radius: 0.5rem;
   }
 
+  .dark {
+    --background: 220 20% 10%;
+    --foreground: 220 10% 98%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 220 10% 98%;
+
+    --popover: 220 20% 12%;
+    --popover-foreground: 220 10% 98%;
+
+    --primary: 45 100% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 214 51% 23%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 10% 70%;
+
+    --accent: 204 70% 36%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 45 100% 48%;
+  }
+
   * {
     @apply border-border;
   }
@@ -54,6 +85,7 @@
 
 @layer components {
   .hero-section {
+    @apply dark:bg-blend-overlay;
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/public/lovable-uploads/e3fd6b91-d6bc-45ef-8ccf-7fd7292b928d.png');
     background-size: cover;
     background-position: center;
@@ -67,7 +99,7 @@
   }
   
   .floating-card {
-    @apply bg-white rounded-lg shadow-lg p-6 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl;
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl;
   }
   
   .btn-primary {
@@ -86,3 +118,4 @@
     @apply bg-mea-gold/10 text-mea-gold;
   }
 }
+
