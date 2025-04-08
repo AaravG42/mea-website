@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -73,73 +72,73 @@ const newsletters = [
 
 const Editorial = () => {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-8 sm:py-12">
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle className="text-3xl">Editorial</CardTitle>
+          <CardTitle className="text-2xl sm:text-3xl">Editorial</CardTitle>
           <CardDescription>
             Explore our blog posts and newsletters
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-3 sm:px-6">
           <Tabs defaultValue="blog">
-            <TabsList className="grid w-full grid-cols-2 mb-8">
+            <TabsList className="grid w-full grid-cols-2 mb-6 sm:mb-8">
               <TabsTrigger value="blog">Blog Posts</TabsTrigger>
               <TabsTrigger value="newsletters">Newsletters</TabsTrigger>
             </TabsList>
             
             <TabsContent value="blog">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {blogPosts.map((post) => (
                   <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                    <div className="h-48 overflow-hidden">
+                    <div className="h-40 sm:h-48 overflow-hidden">
                       <img 
                         src={post.image} 
                         alt={post.title} 
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <CardContent className="p-6">
-                      <div className="flex items-center mb-2">
+                    <CardContent className="p-4 sm:p-6">
+                      <div className="flex flex-wrap items-center mb-2">
                         <span className="text-xs font-medium bg-mea-gold/10 text-mea-gold px-2 py-1 rounded-full">{post.category}</span>
                         <span className="mx-2 text-gray-400">•</span>
                         <span className="text-xs text-gray-500">{post.readTime}</span>
                       </div>
-                      <h3 className="text-xl font-semibold mb-2 line-clamp-2">{post.title}</h3>
-                      <p className="text-gray-600 mb-4 line-clamp-2">{post.excerpt}</p>
-                      <div className="flex items-center justify-between">
+                      <h3 className="text-lg sm:text-xl font-semibold mb-2 line-clamp-2">{post.title}</h3>
+                      <p className="text-gray-600 mb-4 line-clamp-2 text-sm sm:text-base">{post.excerpt}</p>
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                         <div>
                           <div className="font-medium text-sm">{post.author}</div>
                           <div className="text-xs text-gray-500">{post.date}</div>
                         </div>
-                        <Button variant="outline" size="sm">Read More</Button>
+                        <Button variant="outline" size="sm" className="self-end sm:self-auto">Read More</Button>
                       </div>
                     </CardContent>
                   </Card>
                 ))}
               </div>
-              <div className="text-center mt-8">
+              <div className="text-center mt-6 sm:mt-8">
                 <Button>View All Posts</Button>
               </div>
             </TabsContent>
             
             <TabsContent value="newsletters">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {newsletters.map((newsletter) => (
                   <Card key={newsletter.id} className="hover:shadow-md transition-shadow duration-300">
-                    <CardContent className="p-6">
-                      <div className="flex items-center text-mea-gold mb-4">
-                        <Calendar className="h-5 w-5 mr-2" />
-                        <span className="text-sm">{newsletter.date}</span>
+                    <CardContent className="p-4 sm:p-6">
+                      <div className="flex items-center text-mea-gold mb-3 sm:mb-4">
+                        <Calendar className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                        <span className="text-xs sm:text-sm">{newsletter.date}</span>
                       </div>
-                      <h3 className="text-lg font-semibold mb-2">{newsletter.title}</h3>
-                      <p className="text-gray-600 mb-4 text-sm">{newsletter.description}</p>
+                      <h3 className="text-base sm:text-lg font-semibold mb-2">{newsletter.title}</h3>
+                      <p className="text-gray-600 mb-4 text-xs sm:text-sm">{newsletter.description}</p>
                       <Button variant="outline" className="w-full" size="sm">Download PDF</Button>
                     </CardContent>
                   </Card>
                 ))}
               </div>
-              <div className="text-center mt-8">
+              <div className="text-center mt-6 sm:mt-8">
                 <Button>View All Newsletters</Button>
               </div>
             </TabsContent>
@@ -152,105 +151,3 @@ const Editorial = () => {
 };
 
 export default Editorial;
-
-
-// import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/card";
-// import { Button } from "@/components/ui/button";
-// import { Calendar, ExternalLink } from "lucide-react";
-// import ChatbotInterface from "@/components/ChatbotInterface";
-
-// // Sample blog posts
-// // ... existing blog posts array ...
-
-// // Sample newsletters
-// const newsletters = [
-//   {
-//     id: 1,
-//     title: "MEA Monthly Digest - April 2023",
-//     date: "April 30, 2023",
-//     description: "Recap of events, research highlights, and department news from April 2023.",
-//     flipbookUrl: "https://meacouncil.onrender.com/freshmenbooklet.html#page/1"
-//   },
-//   {
-//     id: 2,
-//     title: "MEA Monthly Digest - March 2023",
-//     date: "March 31, 2023",
-//     description: "Recap of events, research highlights, and department news from March 2023.",
-//     flipbookUrl: "https://meacouncil.onrender.com/freshmenbooklet.html#page/1"
-//   },
-//   {
-//     id: 3,
-//     title: "MEA Monthly Digest - February 2023",
-//     date: "February 28, 2023",
-//     description: "Recap of events, research highlights, and department news from February 2023.",
-//     flipbookUrl: "https://meacouncil.onrender.com/freshmenbooklet.html#page/1"
-//   }
-// ];
-
-// const Editorial = () => {
-//   return (
-//     <div className="container mx-auto px-4 py-12">
-//       <Card className="mb-8">
-//         <CardHeader>
-//           <CardTitle className="text-3xl">Editorial</CardTitle>
-//           <CardDescription>
-//             Explore our blog posts and newsletters
-//           </CardDescription>
-//         </CardHeader>
-//         <CardContent>
-//           <Tabs defaultValue="blog">
-//             <TabsList className="grid w-full grid-cols-2 mb-8">
-//               <TabsTrigger value="blog">Blog Posts</TabsTrigger>
-//               <TabsTrigger value="newsletters">Newsletters</TabsTrigger>
-//             </TabsList>
-            
-//             <TabsContent value="blog">
-//               {/* ... existing blog posts content ... */}
-//             </TabsContent>
-            
-//             <TabsContent value="newsletters">
-//               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-//                 {newsletters.map((newsletter) => (
-//                   <Card key={newsletter.id} className="hover:shadow-md transition-shadow duration-300">
-//                     <CardContent className="p-6">
-//                       <div className="flex items-center text-mea-gold mb-4">
-//                         <Calendar className="h-5 w-5 mr-2" />
-//                         <span className="text-sm">{newsletter.date}</span>
-//                       </div>
-//                       <h3 className="text-lg font-semibold mb-2">{newsletter.title}</h3>
-//                       <p className="text-gray-600 mb-4 text-sm">{newsletter.description}</p>
-//                       <Button 
-//                         variant="outline" 
-//                         className="w-full flex items-center justify-center gap-2" 
-//                         size="sm"
-//                         onClick={() => window.open(newsletter.flipbookUrl, '_blank')}
-//                       >
-//                         <span>Open Flipbook</span>
-//                         <ExternalLink className="h-4 w-4" />
-//                       </Button>
-//                     </CardContent>
-//                   </Card>
-//                 ))}
-//               </div>
-//               <div className="mt-12">
-//                 <h3 className="text-xl font-semibold mb-6">Featured Flipbook</h3>
-//                 <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border shadow-lg">
-//                   <iframe 
-//                     src="https://meacouncil.onrender.com/freshmenbooklet.html#page/1" 
-//                     className="w-full h-full" 
-//                     title="MEA Freshmen Booklet"
-//                     allowFullScreen
-//                   ></iframe>
-//                 </div>
-//               </div>
-//             </TabsContent>
-//           </Tabs>
-//         </CardContent>
-//       </Card>
-//       <ChatbotInterface />
-//     </div>
-//   );
-// };
-
-// export default Editorial;

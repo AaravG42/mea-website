@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -71,12 +70,12 @@ const Timetable = () => {
 
   return (
     <Card className="w-full">
-      <CardHeader>
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <CardTitle>Academic Timetable</CardTitle>
-          <div className="flex items-center gap-2">
+      <CardHeader className="px-3 sm:px-6 pb-2 sm:pb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4">
+          <CardTitle className="text-xl sm:text-2xl">Academic Timetable</CardTitle>
+          <div className="flex items-center gap-2 mt-2 sm:mt-0">
             <Select value={semester} onValueChange={setSemester}>
-              <SelectTrigger className="w-32">
+              <SelectTrigger className="w-28 sm:w-32 text-sm">
                 <SelectValue placeholder="Semester" />
               </SelectTrigger>
               <SelectContent>
@@ -88,77 +87,82 @@ const Timetable = () => {
           </div>
         </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-3 sm:px-6">
         <Tabs value={view} onValueChange={setView}>
-          <TabsList className="mb-4">
+          <TabsList className="mb-4 w-full grid grid-cols-2">
             <TabsTrigger value="timetable">Timetable</TabsTrigger>
             <TabsTrigger value="calendar">Calendar</TabsTrigger>
           </TabsList>
           
           <TabsContent value="timetable">
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr>
-                    <th className="border p-2 bg-gray-100 dark:bg-gray-800">Time</th>
-                    {weekdays.map(day => (
-                      <th key={day} className={`border p-2 ${day === currentDay ? 'bg-mea-gold/20' : 'bg-gray-100 dark:bg-gray-800'}`}>
-                        {day}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {timeSlots.map(slot => (
-                    <tr key={slot}>
-                      <td className="border p-2 bg-gray-50 dark:bg-gray-700 font-medium text-sm">{slot}</td>
-                      {weekdays.map(day => {
-                        const courseSlot = getTimetableForDay(day).find((item: any) => item.slot === slot);
-                        return (
-                          <td key={`${day}-${slot}`} className={`border p-2 text-center ${day === currentDay ? 'bg-mea-gold/10 dark:bg-mea-gold/5' : 'dark:bg-gray-900'}`}>
-                            {courseSlot ? (
-                              <div>
-                                <div className="font-medium">{courseSlot.course}</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400">{courseSlot.room}</div>
-                              </div>
-                            ) : null}
-                          </td>
-                        );
-                      })}
+            <div className="overflow-x-auto -mx-3 px-3 pb-3 max-w-[calc(100vw-2rem)] sm:max-w-none">
+              <div className="min-w-[650px]">
+                <table className="w-full border-collapse text-sm sm:text-base">
+                  <thead>
+                    <tr>
+                      <th className="border p-1 sm:p-2 bg-gray-100 dark:bg-gray-800 text-xs sm:text-sm">Time</th>
+                      {weekdays.map(day => (
+                        <th key={day} className={`border p-1 sm:p-2 ${day === currentDay ? 'bg-mea-gold/20' : 'bg-gray-100 dark:bg-gray-800'} text-xs sm:text-sm`}>
+                          {day}
+                        </th>
+                      ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {timeSlots.map(slot => (
+                      <tr key={slot}>
+                        <td className="border p-1 sm:p-2 bg-gray-50 dark:bg-gray-700 font-medium text-xs sm:text-sm whitespace-nowrap">{slot}</td>
+                        {weekdays.map(day => {
+                          const courseSlot = getTimetableForDay(day).find((item: any) => item.slot === slot);
+                          return (
+                            <td key={`${day}-${slot}`} className={`border p-1 sm:p-2 text-center ${day === currentDay ? 'bg-mea-gold/10 dark:bg-mea-gold/5' : 'dark:bg-gray-900'}`}>
+                              {courseSlot ? (
+                                <div>
+                                  <div className="font-medium text-xs sm:text-sm">{courseSlot.course}</div>
+                                  <div className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">{courseSlot.room}</div>
+                                </div>
+                              ) : null}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="mt-2 text-xs text-gray-500 italic sm:hidden">
+                Swipe horizontally to see the complete timetable
+              </div>
             </div>
           </TabsContent>
           
           <TabsContent value="calendar">
             <div className="flex flex-col md:flex-row gap-4">
-              <div className="md:w-1/2">
+              <div className="md:w-1/2 mx-auto max-w-[350px] md:max-w-none">
                 <Calendar
                   mode="single"
                   selected={date}
                   onSelect={setDate}
-                  className="rounded-md border border-input dark:border-gray-700 p-3"
+                  className="rounded-md border border-input dark:border-gray-700 p-2 sm:p-3"
                 />
               </div>
-              <div className="md:w-1/2">
-                <div className="rounded-md border border-input dark:border-gray-700 p-4">
-                  <h3 className="font-medium text-lg mb-2">
+              <div className="md:w-1/2 mt-4 md:mt-0">
+                <div className="rounded-md border border-input dark:border-gray-700 p-3 sm:p-4">
+                  <h3 className="font-medium text-base sm:text-lg mb-2">
                     {date ? date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'Select a date'}
                   </h3>
                   <div className="space-y-2">
                     {getTimetableForDay(currentDay).map((item: any, index: number) => (
                       <div key={index} className="p-2 bg-mea-lightgray dark:bg-gray-800 rounded">
-                        <div className="flex justify-between items-center">
-                          <span className="font-medium">{item.course}</span>
-                          <span className="text-sm text-gray-500 dark:text-gray-400">{item.slot}</span>
+                        <div className="flex justify-between items-center flex-wrap gap-1">
+                          <span className="font-medium text-sm sm:text-base">{item.course}</span>
+                          <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{item.slot}</span>
                         </div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">{item.room}</div>
+                        <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{item.room}</div>
                       </div>
                     ))}
                     {getTimetableForDay(currentDay).length === 0 && (
-                      <p className="text-gray-500 dark:text-gray-400 italic">No classes scheduled for this day.</p>
+                      <p className="text-gray-500 dark:text-gray-400 italic text-sm sm:text-base">No classes scheduled for this day.</p>
                     )}
                   </div>
                 </div>

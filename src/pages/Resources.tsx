@@ -1,4 +1,3 @@
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Timetable from "@/components/resources/Timetable";
@@ -8,20 +7,20 @@ import ChatbotInterface from "@/components/ChatbotInterface";
 
 const Resources = () => {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-8 sm:py-12">
       <Card className="mb-8">
-        <CardHeader>
-          <CardTitle className="text-3xl">Resources</CardTitle>
+        <CardHeader className="px-3 sm:px-6">
+          <CardTitle className="text-2xl sm:text-3xl">Resources</CardTitle>
           <CardDescription>
             Access academic timetables, lab information, and useful documents
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-3 sm:px-6">
           <Tabs defaultValue="timetable">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="timetable">Academic Timetable</TabsTrigger>
-              <TabsTrigger value="labs">Labs Information</TabsTrigger>
-              <TabsTrigger value="documents">Useful Documents</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-3 mb-6 sm:mb-8 text-xs sm:text-sm">
+              <TabsTrigger value="timetable">Timetable</TabsTrigger>
+              <TabsTrigger value="labs">Labs Info</TabsTrigger>
+              <TabsTrigger value="documents">Documents</TabsTrigger>
             </TabsList>
             
             <TabsContent value="timetable">

@@ -1,7 +1,6 @@
-
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { MenuIcon, X, MessageCircle } from 'lucide-react';
+import { MenuIcon, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import MEALogo from '@/components/MEALogo';
 import { DarkModeToggle } from './DarkModeToggle';
@@ -19,7 +18,6 @@ const Navbar = () => {
     { name: 'Gallery', path: '/gallery' },
     { name: 'Resources', path: '/resources' },
     { name: 'DAMP', path: '/damp' },
-    { name: 'Chatbot', path: '/chatbot' },
   ];
 
   return (

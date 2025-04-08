@@ -1,9 +1,9 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Search, FileText } from "lucide-react";
+import { Search, FileText, ChevronLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 import ChatbotInterface from "@/components/ChatbotInterface";
 
 // Updated documentation data based on the image
@@ -98,6 +98,22 @@ const Docs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeDoc, setActiveDoc] = useState<any>(null);
   const [activeCategory, setActiveCategory] = useState("rulebooks");
+  const [showSidebar, setShowSidebar] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if on mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+      if (window.innerWidth >= 1024) {
+        setShowSidebar(true);
+      }
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Filter docs based on search term
   const filteredDocs = (docsData as any)[activeCategory].filter((doc: any) => 
@@ -106,36 +122,57 @@ const Docs = () => {
   );
 
   // Select the first doc by default if none is selected
-  if (!activeDoc && filteredDocs.length > 0) {
-    setActiveDoc(filteredDocs[0]);
-  }
+  useEffect(() => {
+    if (!activeDoc && filteredDocs.length > 0) {
+      setActiveDoc(filteredDocs[0]);
+    }
+  }, [activeCategory, filteredDocs]);
 
   // Handle category change
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
     setActiveDoc(null);
+    if (isMobile) {
+      setShowSidebar(true);
+    }
   };
 
   // Handle doc selection
   const handleDocSelect = (doc: any) => {
     setActiveDoc(doc);
+    // On mobile, when a document is selected, hide the sidebar to focus on content
+    if (isMobile) {
+      setShowSidebar(false);
+    }
+  };
+
+  // Format PDF URL for embedding
+  const getEmbedUrl = (url: string) => {
+    if (url.includes('drive.google.com/file/d/')) {
+      // Extract the file ID and convert to embed URL
+      const fileId = url.match(/\/d\/([^\/]+)/);
+      if (fileId && fileId[1]) {
+        return `https://drive.google.com/file/d/${fileId[1]}/preview`;
+      }
+    }
+    return url;
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-8 sm:py-12">
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle className="text-3xl">Documentation</CardTitle>
+          <CardTitle className="text-2xl sm:text-3xl">Documentation</CardTitle>
           <CardDescription>
             Access rulebooks, guidelines, and miscellaneous documents
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-3 sm:px-6">
           <Tabs value={activeCategory} onValueChange={handleCategoryChange}>
-            <TabsList className="grid w-full grid-cols-3 mb-8">
+            <TabsList className="grid w-full grid-cols-3 mb-6 sm:mb-8 text-xs sm:text-sm">
               <TabsTrigger value="rulebooks">Rulebooks</TabsTrigger>
               <TabsTrigger value="guidelines">Guidelines</TabsTrigger>
-              <TabsTrigger value="miscellaneous">Miscellaneous</TabsTrigger>
+              <TabsTrigger value="miscellaneous">Misc</TabsTrigger>
             </TabsList>
             
             <div className="mb-6">
@@ -150,71 +187,95 @@ const Docs = () => {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            <div className="lg:grid lg:grid-cols-4 lg:gap-6">
+              {/* Mobile View: Toggle Button to show sidebar */}
+              {isMobile && !showSidebar && (
+                <div className="mb-4">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={() => setShowSidebar(true)} 
+                    className="flex items-center text-sm gap-1 w-full"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                    Back to Document List
+                  </Button>
+                </div>
+              )}
+              
               {/* Sidebar */}
-              <div className="lg:col-span-1 border rounded-lg p-4 dark:border-gray-700">
-                <h3 className="font-medium mb-4">Table of Contents</h3>
-                <ul className="space-y-2">
-                  {filteredDocs.map((doc: any) => (
-                    <li key={doc.id}>
-                      <button
-                        onClick={() => handleDocSelect(doc)}
-                        className={`text-left w-full px-3 py-2 rounded-md ${
-                          activeDoc?.id === doc.id 
-                            ? 'bg-mea-gold/10 text-mea-gold font-medium' 
-                            : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
-                        }`}
-                      >
-                        {doc.title}
-                      </button>
-                    </li>
-                  ))}
-                  
-                  {filteredDocs.length === 0 && (
-                    <li className="text-gray-500 dark:text-gray-400 italic px-3 py-2">
+              {(!isMobile || showSidebar) && (
+                <div className={`lg:col-span-1 border rounded-lg p-3 sm:p-4 dark:border-gray-700 mb-4 lg:mb-0 ${isMobile && activeDoc ? 'animate-in fade-in-0 zoom-in-95' : ''}`}>
+                  <h3 className="font-medium mb-3 text-sm sm:text-base">Table of Contents</h3>
+                  {filteredDocs.length > 0 ? (
+                    <ul className="space-y-1 sm:space-y-2">
+                      {filteredDocs.map((doc: any) => (
+                        <li key={doc.id}>
+                          <button
+                            onClick={() => handleDocSelect(doc)}
+                            className={`text-left w-full px-2 sm:px-3 py-1.5 sm:py-2 rounded-md text-sm ${
+                              activeDoc?.id === doc.id 
+                                ? 'bg-mea-gold/10 text-mea-gold font-medium' 
+                                : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
+                            }`}
+                          >
+                            {doc.title}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <div className="text-gray-500 dark:text-gray-400 italic px-3 py-2 text-sm">
                       No documents match your search
-                    </li>
+                    </div>
                   )}
-                </ul>
-              </div>
+                </div>
+              )}
               
               {/* Document Content - PDF Embed */}
-              <div className="lg:col-span-3">
-                {activeDoc ? (
-                  <div className="p-6 border rounded-lg h-full dark:border-gray-700">
-                    <div className="flex items-center mb-4">
-                      <FileText className="text-mea-gold h-6 w-6 mr-2" />
-                      <h2 className="text-2xl font-semibold">{activeDoc.title}</h2>
-                    </div>
-                    
-                    <p className="text-gray-700 dark:text-gray-300 mb-6">{activeDoc.content}</p>
-                    
-                    {activeDoc.pdfUrl !== "#" ? (
-                      <div className="w-full h-[600px] border rounded">
-                        <iframe 
-                          src={activeDoc.pdfUrl} 
-                          width="100%" 
-                          height="100%" 
-                          allow="autoplay"
-                          className="border-0"
-                        ></iframe>
+              {(!isMobile || (isMobile && !showSidebar && activeDoc)) && (
+                <div className={`lg:col-span-3 ${isMobile && !showSidebar ? 'animate-in fade-in-0 zoom-in-95' : ''}`}>
+                  {activeDoc ? (
+                    <div className="p-3 sm:p-6 border rounded-lg h-full dark:border-gray-700">
+                      <div className="flex items-center mb-3 sm:mb-4">
+                        <FileText className="text-mea-gold h-5 w-5 sm:h-6 sm:w-6 mr-2 flex-shrink-0" />
+                        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">{activeDoc.title}</h2>
                       </div>
-                    ) : (
-                      <div className="w-full h-[500px] border rounded bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
-                        <div className="text-center p-4">
-                          <FileText className="h-10 w-10 mx-auto mb-4 text-mea-gold/60" />
-                          <p className="text-gray-500 dark:text-gray-400">PDF Document would be embedded here</p>
-                          <p className="text-sm text-gray-400 dark:text-gray-500 mt-2">{activeDoc.title}</p>
+                      
+                      <p className="text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">{activeDoc.content}</p>
+                      
+                      {activeDoc.pdfUrl !== "#" ? (
+                        <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] border rounded overflow-hidden">
+                          <iframe 
+                            src={getEmbedUrl(activeDoc.pdfUrl)} 
+                            width="100%" 
+                            height="100%" 
+                            allow="autoplay"
+                            className="border-0"
+                            loading="lazy"
+                            title={activeDoc.title}
+                          ></iframe>
                         </div>
+                      ) : (
+                        <div className="w-full h-[250px] sm:h-[350px] md:h-[450px] border rounded bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
+                          <div className="text-center p-4">
+                            <FileText className="h-8 w-8 sm:h-10 sm:w-10 mx-auto mb-3 sm:mb-4 text-mea-gold/60" />
+                            <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base">Document preview not available</p>
+                            <p className="text-xs sm:text-sm text-gray-400 dark:text-gray-500 mt-1 sm:mt-2">{activeDoc.title}</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center h-48 sm:h-64 border rounded-lg dark:border-gray-700">
+                      <div className="text-center">
+                        <FileText className="h-8 w-8 mx-auto mb-3 text-gray-300" />
+                        <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base">Select a document to view its content</p>
                       </div>
-                    )}
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center h-64 border rounded-lg dark:border-gray-700">
-                    <p className="text-gray-500 dark:text-gray-400">Select a document to view its content</p>
-                  </div>
-                )}
-              </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </Tabs>
         </CardContent>

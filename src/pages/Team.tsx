@@ -1,9 +1,10 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Linkedin, Mail, UserRound } from "lucide-react";
+import { Linkedin, Mail, UserRound, Instagram } from "lucide-react";
 import ChatbotInterface from "@/components/ChatbotInterface";
 import { useState } from "react";
-
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 // Combined team data
 // const teamData = [
 //   {
@@ -271,62 +272,141 @@ const teamData = [
   }
 ]
 
-
 const TeamMemberCard = ({ member }: { member: any }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
+  
+  const handleFlip = () => {
+    setIsFlipped(!isFlipped);
+  };
   
   return (
-    <Card 
-      className={`transition-all duration-300 transform ${isHovered ? 'scale-105 shadow-xl' : 'hover:-translate-y-1 hover:shadow-lg'} cursor-pointer relative overflow-hidden`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <div 
+      className="h-[400px] w-full perspective-1000" 
+      onClick={handleFlip}
     >
-      <CardContent className={`p-6 transition-all duration-300 ${isHovered ? 'pb-24' : ''}`}>
-        <div className="flex flex-col items-center text-center">
-          <div className={`${isHovered ? 'w-24 h-24' : 'w-32 h-32'} rounded-full overflow-hidden mb-4 border-2 transition-all duration-300 ${isHovered ? 'border-mea-gold' : 'border-transparent hover:border-mea-gold'}`}>
-            <Avatar className="w-full h-full">
-              <AvatarImage src={member.image} alt={member.name} className="object-cover" />
-              <AvatarFallback>
-                <UserRound className="w-12 h-12 text-muted-foreground" />
-              </AvatarFallback>
-            </Avatar>
-          </div>
-          <h3 className="text-lg font-semibold">{member.name}</h3>
-          <p className="text-mea-gold font-medium text-sm mb-1">{member.position}</p>
-          <p className="text-gray-500 dark:text-gray-400 text-sm mb-3">
-            {member.department || member.year}
-          </p>
-          
-          <div className="flex space-x-3">
-            <a 
-              href={`mailto:${member.email}`} 
-              className="text-gray-500 dark:text-gray-400 hover:text-mea-gold transition-colors"
-              aria-label={`Email ${member.name}`}
-            >
-              <Mail size={18} />
-            </a>
-            <a 
-              href={member.linkedin} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-gray-500 dark:text-gray-400 hover:text-mea-gold transition-colors"
-              aria-label={`${member.name}'s LinkedIn profile`}
-            >
-              <Linkedin size={18} />
-            </a>
-          </div>
-        </div>
+      <div 
+        className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${
+          isFlipped ? 'rotate-y-180' : ''
+        }`}
+      >
+        {/* Front of Card */}
+        <Card className="absolute w-full h-full backface-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+          <CardContent className="p-6 flex flex-col items-center justify-center h-full">
+            <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-2 border-transparent hover:border-mea-gold transition-all duration-300">
+              <Avatar className="w-full h-full">
+                <AvatarImage src={member.image} alt={member.name} className="object-cover" />
+                <AvatarFallback>
+                  <UserRound className="w-12 h-12 text-muted-foreground" />
+                </AvatarFallback>
+              </Avatar>
+            </div>
+            <h3 className="text-lg font-semibold">{member.name}</h3>
+            <p className="text-mea-gold font-medium text-sm mb-1">{member.position}</p>
+            <p className="text-gray-500 dark:text-gray-400 text-sm mb-3">
+              {member.department || member.year}
+            </p>
+            
+            <div className="flex space-x-3 mt-2">
+              {member.email && (
+                <a 
+                  href={`mailto:${member.email}`}
+                  className="text-gray-500 dark:text-gray-400 hover:text-mea-gold transition-colors"
+                  aria-label={`Email ${member.name}`}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Mail size={18} />
+                </a>
+              )}
+              {member.linkedin && (
+                <a 
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 dark:text-gray-400 hover:text-mea-gold transition-colors"
+                  aria-label={`${member.name}'s LinkedIn profile`}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Linkedin size={18} />
+                </a>
+              )}
+              {member.instagram && (
+                <a 
+                  href={member.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 dark:text-gray-400 hover:text-mea-gold transition-colors"
+                  aria-label={`${member.name}'s Instagram profile`}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Instagram size={18} />
+                </a>
+              )}
+            </div>
+            
+            <div className="absolute bottom-4 text-center w-full">
+              <span className="text-xs font-medium text-mea-gold inline-flex items-center">
+                Click to view bio
+              </span>
+            </div>
+          </CardContent>
+        </Card>
         
-        {/* Bio section that appears on hover */}
-        <div 
-          className={`absolute left-0 right-0 bottom-0 bg-gradient-to-t from-mea-gold/10 to-transparent p-4 transition-all duration-300 transform ${isHovered ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}
-        >
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            {member.bio || "No bio available."}
-          </p>
-        </div>
-      </CardContent>
-    </Card>
+        {/* Back of Card */}
+        <Card className="absolute w-full h-full backface-hidden rotate-y-180 cursor-pointer overflow-hidden">
+          <CardContent className="p-6 h-full flex flex-col">
+            <div className="mb-2 flex flex-col items-center">
+              <h3 className="text-lg font-bold">{member.name}</h3>
+              <p className="text-mea-gold font-medium text-sm">{member.position}</p>
+            </div>
+            
+            <div className="flex-grow overflow-auto custom-scrollbar my-4">
+              <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap leading-relaxed">
+                {member.bio || "No bio available."}
+              </p>
+            </div>
+            
+            <div className="mt-auto pt-2 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex justify-center gap-4">
+                {member.email && (
+                  <a 
+                    href={`mailto:${member.email}`}
+                    className="text-gray-500 hover:text-mea-gold transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Mail size={18} />
+                  </a>
+                )}
+                {member.linkedin && (
+                  <a 
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-mea-gold transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Linkedin size={18} />
+                  </a>
+                )}
+                {member.instagram && (
+                  <a 
+                    href={member.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-mea-gold transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Instagram size={18} />
+                  </a>
+                )}
+              </div>
+              <div className="text-xs text-center text-gray-500 mt-2">
+                {member.email}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
   );
 };
 

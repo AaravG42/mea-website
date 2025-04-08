@@ -1,10 +1,9 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, ExternalLink } from "lucide-react";
+import { Search, ExternalLink, MapPin, User, Phone, Wrench } from "lucide-react";
 
 // Sample labs data
 const labsData = [
@@ -82,9 +81,57 @@ const labsData = [
   }
 ];
 
+const LabCard = ({ lab }: { lab: any }) => {
+  return (
+    <Card className="mb-4 overflow-hidden">
+      <CardContent className="p-4">
+        <h3 className="font-medium text-lg mb-3">{lab.name}</h3>
+        <div className="space-y-2 text-sm">
+          <div className="flex items-start gap-2">
+            <MapPin className="h-4 w-4 mt-0.5 text-gray-500 flex-shrink-0" />
+            <span>{lab.location}</span>
+          </div>
+          <div className="flex items-start gap-2">
+            <User className="h-4 w-4 mt-0.5 text-gray-500 flex-shrink-0" />
+            <span>{lab.inCharge}</span>
+          </div>
+          <div className="flex items-start gap-2">
+            <Wrench className="h-4 w-4 mt-0.5 text-gray-500 flex-shrink-0" />
+            <span>{lab.equipment}</span>
+          </div>
+          <div className="flex items-start gap-2">
+            <Phone className="h-4 w-4 mt-0.5 text-gray-500 flex-shrink-0" />
+            <span>{lab.contact}</span>
+          </div>
+        </div>
+        <div className="mt-3 text-right">
+          <Button variant="ghost" size="sm" asChild>
+            <a href={lab.website} target="_blank" rel="noopener noreferrer">
+              <ExternalLink className="h-4 w-4 mr-1" />
+              View Details
+            </a>
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
 const LabsList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'ascending' | 'descending' } | null>(null);
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  // Check for mobile view on component mount and window resize
+  useEffect(() => {
+    const checkMobileView = () => {
+      setIsMobileView(window.innerWidth < 768);
+    };
+    
+    checkMobileView();
+    window.addEventListener('resize', checkMobileView);
+    return () => window.removeEventListener('resize', checkMobileView);
+  }, []);
 
   // Filter labs based on search term
   const filteredLabs = labsData.filter(lab => 
@@ -119,10 +166,10 @@ const LabsList = () => {
 
   return (
     <Card className="w-full">
-      <CardHeader>
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <CardTitle>Mechanical Engineering Labs</CardTitle>
-          <div className="relative w-full sm:w-64">
+      <CardHeader className="px-3 sm:px-6 pb-2 sm:pb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4">
+          <CardTitle className="text-xl sm:text-2xl">Mechanical Engineering Labs</CardTitle>
+          <div className="relative w-full sm:w-64 mt-2 sm:mt-0">
             <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
             <Input
               placeholder="Search labs..."
@@ -133,8 +180,22 @@ const LabsList = () => {
           </div>
         </div>
       </CardHeader>
-      <CardContent>
-        <div className="overflow-x-auto">
+      <CardContent className="px-3 sm:px-6">
+        {/* Mobile View - Card Layout */}
+        <div className="md:hidden">
+          {sortedLabs.length > 0 ? (
+            sortedLabs.map(lab => (
+              <LabCard key={lab.id} lab={lab} />
+            ))
+          ) : (
+            <div className="text-center py-6 text-sm text-gray-500">
+              No labs match your search criteria
+            </div>
+          )}
+        </div>
+
+        {/* Desktop View - Table Layout */}
+        <div className="hidden md:block overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow>
@@ -156,8 +217,8 @@ const LabsList = () => {
                     <span className="ml-1">{sortConfig.direction === 'ascending' ? '↑' : '↓'}</span>
                   )}
                 </TableHead>
-                <TableHead className="hidden md:table-cell">Equipment</TableHead>
-                <TableHead className="hidden md:table-cell">Contact</TableHead>
+                <TableHead>Equipment</TableHead>
+                <TableHead>Contact</TableHead>
                 <TableHead className="text-right">Details</TableHead>
               </TableRow>
             </TableHeader>
@@ -167,8 +228,8 @@ const LabsList = () => {
                   <TableCell className="font-medium">{lab.name}</TableCell>
                   <TableCell>{lab.location}</TableCell>
                   <TableCell>{lab.inCharge}</TableCell>
-                  <TableCell className="hidden md:table-cell">{lab.equipment}</TableCell>
-                  <TableCell className="hidden md:table-cell">{lab.contact}</TableCell>
+                  <TableCell>{lab.equipment}</TableCell>
+                  <TableCell>{lab.contact}</TableCell>
                   <TableCell className="text-right">
                     <Button variant="ghost" size="sm" asChild>
                       <a href={lab.website} target="_blank" rel="noopener noreferrer">
