@@ -1,9 +1,8 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Linkedin, Mail, UserRound } from "lucide-react";
 import ChatbotInterface from "@/components/ChatbotInterface";
+import { useState } from "react";
 
 // Combined team data
 const teamData = [
@@ -103,92 +102,60 @@ const teamData = [
 ];
 
 const TeamMemberCard = ({ member }: { member: any }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
   return (
-    <HoverCard>
-      <HoverCardTrigger asChild>
-        <Card className="hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">
-          <CardContent className="p-6">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-2 border-transparent hover:border-mea-gold transition-colors duration-300">
-                <Avatar className="w-full h-full">
-                  <AvatarImage src={member.image} alt={member.name} className="object-cover" />
-                  <AvatarFallback>
-                    <UserRound className="w-12 h-12 text-muted-foreground" />
-                  </AvatarFallback>
-                </Avatar>
-              </div>
-              <h3 className="text-lg font-semibold">{member.name}</h3>
-              <p className="text-mea-gold font-medium text-sm mb-1">{member.position}</p>
-              <p className="text-gray-500 dark:text-gray-400 text-sm mb-3">
-                {member.department || member.year}
-              </p>
-              
-              <div className="flex space-x-3">
-                <a 
-                  href={`mailto:${member.email}`} 
-                  className="text-gray-500 dark:text-gray-400 hover:text-mea-gold transition-colors"
-                  aria-label={`Email ${member.name}`}
-                >
-                  <Mail size={18} />
-                </a>
-                <a 
-                  href={member.linkedin} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-gray-500 dark:text-gray-400 hover:text-mea-gold transition-colors"
-                  aria-label={`${member.name}'s LinkedIn profile`}
-                >
-                  <Linkedin size={18} />
-                </a>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </HoverCardTrigger>
-      <HoverCardContent className="w-80 p-0 shadow-lg animate-in fade-in zoom-in-95 duration-200">
-        <div className="p-4 bg-gradient-to-b from-mea-gold/10 to-transparent rounded-t-md">
-          <div className="flex items-center gap-3">
-            <Avatar className="w-12 h-12 border-2 border-mea-gold">
-              <AvatarImage src={member.image} />
+    <Card 
+      className={`transition-all duration-300 transform ${isHovered ? 'scale-105 shadow-xl' : 'hover:-translate-y-1 hover:shadow-lg'} cursor-pointer relative overflow-hidden`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <CardContent className={`p-6 transition-all duration-300 ${isHovered ? 'pb-24' : ''}`}>
+        <div className="flex flex-col items-center text-center">
+          <div className={`${isHovered ? 'w-24 h-24' : 'w-32 h-32'} rounded-full overflow-hidden mb-4 border-2 transition-all duration-300 ${isHovered ? 'border-mea-gold' : 'border-transparent hover:border-mea-gold'}`}>
+            <Avatar className="w-full h-full">
+              <AvatarImage src={member.image} alt={member.name} className="object-cover" />
               <AvatarFallback>
-                <UserRound className="w-6 h-6 text-muted-foreground" />
+                <UserRound className="w-12 h-12 text-muted-foreground" />
               </AvatarFallback>
             </Avatar>
-            <div>
-              <h4 className="font-bold text-foreground">{member.name}</h4>
-              <p className="text-mea-gold text-sm">{member.position}</p>
-            </div>
           </div>
-        </div>
-        <div className="p-4">
-          <p className="text-muted-foreground text-sm leading-relaxed">{member.bio || "No bio available."}</p>
+          <h3 className="text-lg font-semibold">{member.name}</h3>
+          <p className="text-mea-gold font-medium text-sm mb-1">{member.position}</p>
+          <p className="text-gray-500 dark:text-gray-400 text-sm mb-3">
+            {member.department || member.year}
+          </p>
           
-          <div className="mt-4 pt-3 border-t flex items-center justify-between">
-            <div className="text-sm text-muted-foreground">
-              {member.department || member.year}
-            </div>
-            <div className="flex space-x-2">
-              <a 
-                href={`mailto:${member.email}`} 
-                className="text-muted-foreground hover:text-mea-gold transition-colors"
-                aria-label={`Email ${member.name}`}
-              >
-                <Mail size={16} />
-              </a>
-              <a 
-                href={member.linkedin} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-muted-foreground hover:text-mea-gold transition-colors"
-                aria-label={`${member.name}'s LinkedIn profile`}
-              >
-                <Linkedin size={16} />
-              </a>
-            </div>
+          <div className="flex space-x-3">
+            <a 
+              href={`mailto:${member.email}`} 
+              className="text-gray-500 dark:text-gray-400 hover:text-mea-gold transition-colors"
+              aria-label={`Email ${member.name}`}
+            >
+              <Mail size={18} />
+            </a>
+            <a 
+              href={member.linkedin} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-gray-500 dark:text-gray-400 hover:text-mea-gold transition-colors"
+              aria-label={`${member.name}'s LinkedIn profile`}
+            >
+              <Linkedin size={18} />
+            </a>
           </div>
         </div>
-      </HoverCardContent>
-    </HoverCard>
+        
+        {/* Bio section that appears on hover */}
+        <div 
+          className={`absolute left-0 right-0 bottom-0 bg-gradient-to-t from-mea-gold/10 to-transparent p-4 transition-all duration-300 transform ${isHovered ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}
+        >
+          <p className="text-muted-foreground text-sm leading-relaxed">
+            {member.bio || "No bio available."}
+          </p>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
