@@ -53,20 +53,20 @@ const blogPosts = [
 const newsletters = [
   {
     id: 1,
-    title: "MEA Monthly Digest - April 2023",
-    date: "April 30, 2023",
-    description: "Recap of events, research highlights, and department news from April 2023."
+    title: "Mechanical Department Newsletter",
+    date: "January 30, 2025",
+    description: "Recap of events, research highlights, and department news from 2024-25."
   },
   {
     id: 2,
-    title: "MEA Monthly Digest - March 2023",
-    date: "March 31, 2023",
-    description: "Recap of events, research highlights, and department news from March 2023."
+    title: "Freshmen Introductory Booklet 24-25",
+    date: "August 20, 2024",
+    description: "Anything and everything a UG freshmen needs to get started in the Insti."
   },
   {
     id: 3,
-    title: "MEA Monthly Digest - February 2023",
-    date: "February 28, 2023",
+    title: "Mechanical Department Handbook",
+    date: "August 20, 2024",
     description: "Recap of events, research highlights, and department news from February 2023."
   }
 ];
@@ -152,3 +152,105 @@ const Editorial = () => {
 };
 
 export default Editorial;
+
+
+// import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/card";
+// import { Button } from "@/components/ui/button";
+// import { Calendar, ExternalLink } from "lucide-react";
+// import ChatbotInterface from "@/components/ChatbotInterface";
+
+// // Sample blog posts
+// // ... existing blog posts array ...
+
+// // Sample newsletters
+// const newsletters = [
+//   {
+//     id: 1,
+//     title: "MEA Monthly Digest - April 2023",
+//     date: "April 30, 2023",
+//     description: "Recap of events, research highlights, and department news from April 2023.",
+//     flipbookUrl: "https://meacouncil.onrender.com/freshmenbooklet.html#page/1"
+//   },
+//   {
+//     id: 2,
+//     title: "MEA Monthly Digest - March 2023",
+//     date: "March 31, 2023",
+//     description: "Recap of events, research highlights, and department news from March 2023.",
+//     flipbookUrl: "https://meacouncil.onrender.com/freshmenbooklet.html#page/1"
+//   },
+//   {
+//     id: 3,
+//     title: "MEA Monthly Digest - February 2023",
+//     date: "February 28, 2023",
+//     description: "Recap of events, research highlights, and department news from February 2023.",
+//     flipbookUrl: "https://meacouncil.onrender.com/freshmenbooklet.html#page/1"
+//   }
+// ];
+
+// const Editorial = () => {
+//   return (
+//     <div className="container mx-auto px-4 py-12">
+//       <Card className="mb-8">
+//         <CardHeader>
+//           <CardTitle className="text-3xl">Editorial</CardTitle>
+//           <CardDescription>
+//             Explore our blog posts and newsletters
+//           </CardDescription>
+//         </CardHeader>
+//         <CardContent>
+//           <Tabs defaultValue="blog">
+//             <TabsList className="grid w-full grid-cols-2 mb-8">
+//               <TabsTrigger value="blog">Blog Posts</TabsTrigger>
+//               <TabsTrigger value="newsletters">Newsletters</TabsTrigger>
+//             </TabsList>
+            
+//             <TabsContent value="blog">
+//               {/* ... existing blog posts content ... */}
+//             </TabsContent>
+            
+//             <TabsContent value="newsletters">
+//               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+//                 {newsletters.map((newsletter) => (
+//                   <Card key={newsletter.id} className="hover:shadow-md transition-shadow duration-300">
+//                     <CardContent className="p-6">
+//                       <div className="flex items-center text-mea-gold mb-4">
+//                         <Calendar className="h-5 w-5 mr-2" />
+//                         <span className="text-sm">{newsletter.date}</span>
+//                       </div>
+//                       <h3 className="text-lg font-semibold mb-2">{newsletter.title}</h3>
+//                       <p className="text-gray-600 mb-4 text-sm">{newsletter.description}</p>
+//                       <Button 
+//                         variant="outline" 
+//                         className="w-full flex items-center justify-center gap-2" 
+//                         size="sm"
+//                         onClick={() => window.open(newsletter.flipbookUrl, '_blank')}
+//                       >
+//                         <span>Open Flipbook</span>
+//                         <ExternalLink className="h-4 w-4" />
+//                       </Button>
+//                     </CardContent>
+//                   </Card>
+//                 ))}
+//               </div>
+//               <div className="mt-12">
+//                 <h3 className="text-xl font-semibold mb-6">Featured Flipbook</h3>
+//                 <div className="w-full aspect-[4/3] rounded-lg overflow-hidden border shadow-lg">
+//                   <iframe 
+//                     src="https://meacouncil.onrender.com/freshmenbooklet.html#page/1" 
+//                     className="w-full h-full" 
+//                     title="MEA Freshmen Booklet"
+//                     allowFullScreen
+//                   ></iframe>
+//                 </div>
+//               </div>
+//             </TabsContent>
+//           </Tabs>
+//         </CardContent>
+//       </Card>
+//       <ChatbotInterface />
+//     </div>
+//   );
+// };
+
+// export default Editorial;

@@ -1,16 +1,15 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <section className="hero-section text-white py-24 md:py-36">
+    <section className="hero-section py-24 md:py-36">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto text-center animate-fade-in">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+        <div className="max-w-3xl mx-auto text-center animate-fade-in bg-black/70 p-8 rounded-lg">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
             Welcome to the Mechanical Engineering Association
           </h1>
-          <h2 className="text-xl md:text-3xl font-medium mb-8">
+          <h2 className="text-xl md:text-3xl font-medium mb-8 text-white">
             IIT Bombay
           </h2>
           <p className="text-lg mb-10 text-gray-200 max-w-2xl mx-auto">

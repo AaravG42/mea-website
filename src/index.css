@@ -86,7 +86,7 @@
 @layer components {
   .hero-section {
     @apply dark:bg-blend-overlay;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/public/lovable-uploads/e3fd6b91-d6bc-45ef-8ccf-7fd7292b928d.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/public/lovable-uploads/manufacturing1.jpg');
     background-size: cover;
     background-position: center;
   }

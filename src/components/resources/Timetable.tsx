@@ -80,9 +80,9 @@ const Timetable = () => {
                 <SelectValue placeholder="Semester" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="semester3">3rd Sem</SelectItem>
-                <SelectItem value="semester5">5th Sem</SelectItem>
-                <SelectItem value="semester7">7th Sem</SelectItem>
+                <SelectItem value="semester3">1st Sem</SelectItem>
+                <SelectItem value="semester5">2nd Sem</SelectItem>
+                <SelectItem value="semester7">3rd Sem</SelectItem>
               </SelectContent>
             </Select>
           </div>

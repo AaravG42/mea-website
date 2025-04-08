@@ -7,56 +7,56 @@ const galleryImages = [
   {
     id: 1,
     category: "chess",
-    src: "/public/lovable-uploads/6b115935-67fc-4138-8a82-cf42108c1d16.png",
+    src: "/public/lovable-uploads/chess2.webp",
     alt: "Chess Tournament",
     description: "Annual chess tournament organized by MEA"
   },
   {
     id: 2,
     category: "trip",
-    src: "/public/lovable-uploads/5f363352-0705-487a-baed-4c046690236b.png",
+    src: "/public/lovable-uploads/deptrip.jpg",
     alt: "Department Trip",
     description: "Mechanical Department trip to nearby hills"
   },
   {
     id: 3,
     category: "sports",
-    src: "/public/lovable-uploads/e3fd6b91-d6bc-45ef-8ccf-7fd7292b928d.png",
+    src: "/public/lovable-uploads/chess.webp",
     alt: "Sports Event",
     description: "Inter-department sports competition"
   },
   {
     id: 4,
     category: "workshop",
-    src: "/public/lovable-uploads/f4aa4742-2202-46f3-9eec-cefb01abd89b.png",
+    src: "/public/lovable-uploads/cadclash.png",
     alt: "Technical Workshop",
     description: "CAD modeling workshop for students"
   },
   {
     id: 5,
     category: "chess",
-    src: "/public/lovable-uploads/6b115935-67fc-4138-8a82-cf42108c1d16.png",
+    src: "/public/lovable-uploads/chess1.webp",
     alt: "Chess Tournament Winners",
     description: "Winners of the annual chess tournament"
   },
   {
     id: 6,
     category: "trip",
-    src: "/public/lovable-uploads/5f363352-0705-487a-baed-4c046690236b.png",
+    src: "/public/lovable-uploads/grpphoto.jpg",
     alt: "Group Photo",
     description: "Group photo at the department trip"
   },
   {
     id: 7,
     category: "sports",
-    src: "/public/lovable-uploads/e3fd6b91-d6bc-45ef-8ccf-7fd7292b928d.png",
+    src: "/public/lovable-uploads/football2.webp",
     alt: "Football Match",
     description: "Inter-department football match"
   },
   {
     id: 8,
     category: "workshop",
-    src: "/public/lovable-uploads/f4aa4742-2202-46f3-9eec-cefb01abd89b.png",
+    src: "/public/lovable-uploads/cadclash.png",
     alt: "Robotics Workshop",
     description: "Robotics workshop for mechanical students"
   }

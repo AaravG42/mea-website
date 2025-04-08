@@ -19,19 +19,19 @@ const docsData = {
       id: 2,
       title: "UG Rulebook",
       content: "The Undergraduate Rulebook contains guidelines, policies, and procedures for undergraduate students in the Mechanical Engineering Department.",
-      pdfUrl: "#"
+      pdfUrl: "https://drive.google.com/file/d/1_5xQfWwkKnz_GDfCewDOCwlx-KdD8ixN/view?usp=drive_link"
     },
     {
       id: 3,
       title: "Masters Rulebook",
       content: "The Masters Rulebook provides information on programs, requirements, and procedures for master's degree students in Mechanical Engineering.",
-      pdfUrl: "#"
+      pdfUrl: "https://drive.google.com/file/d/1Ysv1q5w6SNGOHnm6z_J58zmAteAY72ca/view?usp=drive_link"
     },
     {
       id: 4,
       title: "PhD Rulebook",
       content: "The PhD Rulebook outlines the requirements, procedures, and guidelines for doctoral students in the Mechanical Engineering Department.",
-      pdfUrl: "#"
+      pdfUrl: "https://drive.google.com/file/d/1rvmoje3AYXyh9E2qXI2k0h20p466OVNT/view?usp=drive_link"
     }
   ],
   guidelines: [
@@ -45,19 +45,19 @@ const docsData = {
       id: 6,
       title: "UGAC Booklets",
       content: "UGAC (Undergraduate Academic Committee) booklets containing information on undergraduate academic matters.",
-      pdfUrl: "#"
+      pdfUrl: "https://lnk.bio/CareerCell"
     },
     {
       id: 7,
       title: "Univ Intern Booklet",
       content: "The University Internship Booklet provides information on internship opportunities, procedures, and requirements for students.",
-      pdfUrl: "#"
+      pdfUrl: "https://drive.google.com/file/d/1ga1ZHs3ZL6QnZiFKWMnyVjoCAXCVqFlB/view?usp=drive_link"
     },
     {
       id: 8,
       title: "Internship Guide 101",
       content: "A comprehensive guide to help students navigate the internship process from application to completion.",
-      pdfUrl: "#"
+      pdfUrl: "https://drive.google.com/file/d/1_5H-I7K1BbgDCbBxZbBe14G87rKAdN4j/view?usp=drive_link"
     }
   ],
   miscellaneous: [
