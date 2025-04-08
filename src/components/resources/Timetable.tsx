@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -99,9 +100,9 @@ const Timetable = () => {
               <table className="w-full border-collapse">
                 <thead>
                   <tr>
-                    <th className="border p-2 bg-gray-100">Time</th>
+                    <th className="border p-2 bg-gray-100 dark:bg-gray-800">Time</th>
                     {weekdays.map(day => (
-                      <th key={day} className={`border p-2 ${day === currentDay ? 'bg-mea-gold/20' : 'bg-gray-100'}`}>
+                      <th key={day} className={`border p-2 ${day === currentDay ? 'bg-mea-gold/20' : 'bg-gray-100 dark:bg-gray-800'}`}>
                         {day}
                       </th>
                     ))}
@@ -110,15 +111,15 @@ const Timetable = () => {
                 <tbody>
                   {timeSlots.map(slot => (
                     <tr key={slot}>
-                      <td className="border p-2 bg-gray-50 font-medium text-sm">{slot}</td>
+                      <td className="border p-2 bg-gray-50 dark:bg-gray-700 font-medium text-sm">{slot}</td>
                       {weekdays.map(day => {
                         const courseSlot = getTimetableForDay(day).find((item: any) => item.slot === slot);
                         return (
-                          <td key={`${day}-${slot}`} className={`border p-2 text-center ${day === currentDay ? 'bg-mea-gold/10' : ''}`}>
+                          <td key={`${day}-${slot}`} className={`border p-2 text-center ${day === currentDay ? 'bg-mea-gold/10 dark:bg-mea-gold/5' : 'dark:bg-gray-900'}`}>
                             {courseSlot ? (
                               <div>
                                 <div className="font-medium">{courseSlot.course}</div>
-                                <div className="text-xs text-gray-500">{courseSlot.room}</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400">{courseSlot.room}</div>
                               </div>
                             ) : null}
                           </td>
@@ -138,26 +139,26 @@ const Timetable = () => {
                   mode="single"
                   selected={date}
                   onSelect={setDate}
-                  className="rounded-md border"
+                  className="rounded-md border pointer-events-auto"
                 />
               </div>
               <div className="md:w-1/2">
-                <div className="rounded-md border p-4">
+                <div className="rounded-md border p-4 dark:border-gray-700">
                   <h3 className="font-medium text-lg mb-2">
                     {date ? date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'Select a date'}
                   </h3>
                   <div className="space-y-2">
                     {getTimetableForDay(currentDay).map((item: any, index: number) => (
-                      <div key={index} className="p-2 bg-mea-lightgray rounded">
+                      <div key={index} className="p-2 bg-mea-lightgray dark:bg-gray-800 rounded">
                         <div className="flex justify-between items-center">
                           <span className="font-medium">{item.course}</span>
-                          <span className="text-sm text-gray-500">{item.slot}</span>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">{item.slot}</span>
                         </div>
-                        <div className="text-sm text-gray-500">{item.room}</div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">{item.room}</div>
                       </div>
                     ))}
                     {getTimetableForDay(currentDay).length === 0 && (
-                      <p className="text-gray-500 italic">No classes scheduled for this day.</p>
+                      <p className="text-gray-500 dark:text-gray-400 italic">No classes scheduled for this day.</p>
                     )}
                   </div>
                 </div>

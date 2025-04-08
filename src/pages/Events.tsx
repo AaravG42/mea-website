@@ -212,7 +212,7 @@ const Events = () => {
                   ))
                 ) : (
                   <div className="col-span-3 text-center py-10">
-                    <p className="text-gray-500">No events found for the selected date.</p>
+                    <p className="text-gray-500 dark:text-gray-400">No events found for the selected date.</p>
                   </div>
                 )}
               </div>
@@ -236,7 +236,7 @@ const Events = () => {
                   ))
                 ) : (
                   <div className="col-span-3 text-center py-10">
-                    <p className="text-gray-500">No events found for the selected date.</p>
+                    <p className="text-gray-500 dark:text-gray-400">No events found for the selected date.</p>
                   </div>
                 )}
               </div>
@@ -257,13 +257,14 @@ const Events = () => {
                         }}
                         modifiersStyles={{
                           event: { 
-                            fontWeight: 'bold',
                             backgroundColor: 'rgba(245, 158, 11, 0.1)', 
-                            borderBottom: '2px solid #F5B200'
+                            borderBottom: '2px solid #F5B200',
+                            color: 'var(--foreground)',
+                            fontWeight: 'bold'
                           }
                         }}
                       />
-                      <div className="mt-4 text-xs text-gray-500">
+                      <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
                         <div className="flex items-center mb-1">
                           <div className="w-3 h-3 bg-mea-gold/20 border-b-2 border-mea-gold rounded-sm mr-2"></div>
                           <span>Events scheduled</span>
@@ -295,14 +296,14 @@ const Events = () => {
                         <div className="space-y-4">
                           {[...filteredUpcomingEvents, ...filteredPastEvents].length > 0 ? (
                             [...filteredUpcomingEvents, ...filteredPastEvents].map((event: any) => (
-                              <div key={event.id} className="flex flex-col md:flex-row gap-4 p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                              <div key={event.id} className="flex flex-col md:flex-row gap-4 p-4 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                                 <div className="md:w-1/4">
                                   <img src={event.image} alt={event.title} className="rounded-md w-full h-32 object-cover" />
                                 </div>
                                 <div className="md:w-3/4">
                                   <h3 className="text-lg font-semibold">{event.title}</h3>
-                                  <p className="text-sm text-gray-600 mb-2">{event.description}</p>
-                                  <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-500">
+                                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{event.description}</p>
+                                  <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
                                     <div className="flex items-center">
                                       <Clock size={14} className="mr-1" />
                                       <span>{event.time}</span>
@@ -321,13 +322,13 @@ const Events = () => {
                             ))
                           ) : (
                             <div className="text-center py-10">
-                              <p className="text-gray-500">No events scheduled for this date.</p>
+                              <p className="text-gray-500 dark:text-gray-400">No events scheduled for this date.</p>
                             </div>
                           )}
                         </div>
                       ) : (
                         <div className="text-center py-10">
-                          <p className="text-gray-500">Select a date to view events for that day.</p>
+                          <p className="text-gray-500 dark:text-gray-400">Select a date to view events for that day.</p>
                         </div>
                       )}
                     </CardContent>

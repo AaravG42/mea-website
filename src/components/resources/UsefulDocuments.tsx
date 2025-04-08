@@ -170,13 +170,13 @@ const UsefulDocuments = () => {
             <TabsContent key={category} value={category}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {(documents as any)[category].map((doc: any) => (
-                  <div key={doc.id} className="flex items-center justify-between p-4 rounded-lg border hover:bg-gray-50 transition-colors">
+                  <div key={doc.id} className="flex items-center justify-between p-4 rounded-lg border dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                     <div className="flex items-center">
                       {renderIcon(doc.type)}
                       <div className="ml-3">
-                        <h4 className="font-medium text-gray-900">{doc.title}</h4>
-                        <div className="flex items-center text-xs text-gray-500 mt-1">
-                          <span className="rounded bg-gray-200 px-2 py-0.5">{doc.type}</span>
+                        <h4 className="font-medium text-gray-900 dark:text-gray-100">{doc.title}</h4>
+                        <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 mt-1">
+                          <span className="rounded bg-gray-200 dark:bg-gray-700 px-2 py-0.5">{doc.type}</span>
                           <span className="mx-2">•</span>
                           <span>{doc.size}</span>
                           <span className="mx-2">•</span>
