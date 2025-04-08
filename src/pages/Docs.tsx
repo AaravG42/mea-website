@@ -13,7 +13,7 @@ const docsData = {
       id: 1,
       title: "Department Constitution",
       content: "The Department Constitution outlines the governance structure, roles, and responsibilities within the Mechanical Engineering Department.",
-      pdfUrl: "#"
+      pdfUrl: "https://drive.google.com/file/d/1Zx7aC9RrW5fsqRwObe40cp3YY7f-_b0b/preview"
     },
     {
       id: 2,
@@ -152,7 +152,7 @@ const Docs = () => {
             
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
               {/* Sidebar */}
-              <div className="lg:col-span-1 border rounded-lg p-4">
+              <div className="lg:col-span-1 border rounded-lg p-4 dark:border-gray-700">
                 <h3 className="font-medium mb-4">Table of Contents</h3>
                 <ul className="space-y-2">
                   {filteredDocs.map((doc: any) => (
@@ -181,7 +181,7 @@ const Docs = () => {
               {/* Document Content - PDF Embed */}
               <div className="lg:col-span-3">
                 {activeDoc ? (
-                  <div className="p-6 border rounded-lg h-full">
+                  <div className="p-6 border rounded-lg h-full dark:border-gray-700">
                     <div className="flex items-center mb-4">
                       <FileText className="text-mea-gold h-6 w-6 mr-2" />
                       <h2 className="text-2xl font-semibold">{activeDoc.title}</h2>
@@ -189,21 +189,28 @@ const Docs = () => {
                     
                     <p className="text-gray-700 dark:text-gray-300 mb-6">{activeDoc.content}</p>
                     
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 mb-6 text-center">
-                      <p className="text-sm text-gray-500 dark:text-gray-400">PDF document preview:</p>
-                    </div>
-                    
-                    <div className="w-full h-[500px] border rounded bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
-                      {/* This would be replaced with an actual PDF embed in production */}
-                      <div className="text-center p-4">
-                        <FileText className="h-10 w-10 mx-auto mb-4 text-mea-gold/60" />
-                        <p className="text-gray-500 dark:text-gray-400">PDF Document would be embedded here</p>
-                        <p className="text-sm text-gray-400 dark:text-gray-500 mt-2">{activeDoc.title}</p>
+                    {activeDoc.pdfUrl !== "#" ? (
+                      <div className="w-full h-[600px] border rounded">
+                        <iframe 
+                          src={activeDoc.pdfUrl} 
+                          width="100%" 
+                          height="100%" 
+                          allow="autoplay"
+                          className="border-0"
+                        ></iframe>
                       </div>
-                    </div>
+                    ) : (
+                      <div className="w-full h-[500px] border rounded bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
+                        <div className="text-center p-4">
+                          <FileText className="h-10 w-10 mx-auto mb-4 text-mea-gold/60" />
+                          <p className="text-gray-500 dark:text-gray-400">PDF Document would be embedded here</p>
+                          <p className="text-sm text-gray-400 dark:text-gray-500 mt-2">{activeDoc.title}</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ) : (
-                  <div className="flex items-center justify-center h-64 border rounded-lg">
+                  <div className="flex items-center justify-center h-64 border rounded-lg dark:border-gray-700">
                     <p className="text-gray-500 dark:text-gray-400">Select a document to view its content</p>
                   </div>
                 )}

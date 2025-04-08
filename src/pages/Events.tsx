@@ -251,7 +251,7 @@ const Events = () => {
                         mode="single"
                         selected={selectedDate}
                         onSelect={setSelectedDate}
-                        className="rounded-md border p-3 pointer-events-auto"
+                        className="rounded-md border border-input dark:border-gray-700 p-3"
                         modifiers={{
                           event: (date) => isDateWithEvent(date),
                         }}

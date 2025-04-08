@@ -139,11 +139,11 @@ const Timetable = () => {
                   mode="single"
                   selected={date}
                   onSelect={setDate}
-                  className="rounded-md border pointer-events-auto"
+                  className="rounded-md border border-input dark:border-gray-700 p-3"
                 />
               </div>
               <div className="md:w-1/2">
-                <div className="rounded-md border p-4 dark:border-gray-700">
+                <div className="rounded-md border border-input dark:border-gray-700 p-4">
                   <h3 className="font-medium text-lg mb-2">
                     {date ? date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'Select a date'}
                   </h3>
