@@ -6,70 +6,135 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import ChatbotInterface from "@/components/ChatbotInterface";
 
-// Sample documentation data
+// Updated documentation data based on the image
 const docsData = {
-  academics: [
+  rulebooks: [
     {
       id: 1,
-      title: "BTech Curriculum",
-      content: "The BTech program in Mechanical Engineering at IIT Bombay is a four-year program with eight semesters. The curriculum is designed to provide a strong foundation in mechanical engineering principles and practical skills.",
+      title: "Department Constitution",
+      content: "The Department Constitution outlines the governance structure, roles, and responsibilities within the Mechanical Engineering Department.",
       sections: [
-        { id: "core", title: "Core Courses", content: "These are mandatory courses that cover fundamental mechanical engineering concepts." },
-        { id: "electives", title: "Elective Courses", content: "Students can choose from a range of specialized elective courses based on their interests." },
-        { id: "labs", title: "Laboratory Courses", content: "Hands-on laboratory courses provide practical experience and reinforce theoretical concepts." },
-        { id: "projects", title: "Projects", content: "Students undertake major and minor projects to apply their knowledge to real-world problems." }
+        { id: "governance", title: "Governance Structure", content: "Details about the department's governance structure and hierarchy." },
+        { id: "roles", title: "Roles and Responsibilities", content: "Detailed descriptions of roles and responsibilities of various positions in the department." },
+        { id: "amendments", title: "Amendment Process", content: "Procedures for amending the department constitution." }
       ]
     },
     {
       id: 2,
-      title: "MTech Curriculum",
-      content: "The MTech program in Mechanical Engineering is a two-year program with four semesters. It offers specializations in several areas of mechanical engineering.",
+      title: "UG Rulebook",
+      content: "The Undergraduate Rulebook contains guidelines, policies, and procedures for undergraduate students in the Mechanical Engineering Department.",
       sections: [
-        { id: "specializations", title: "Specializations", content: "Students can specialize in areas such as thermal engineering, manufacturing, robotics, etc." },
-        { id: "coursework", title: "Coursework", content: "The first year primarily consists of coursework in the chosen specialization." },
-        { id: "thesis", title: "Thesis", content: "The second year is dedicated to thesis research in the chosen specialization area." }
+        { id: "admission", title: "Admission Criteria", content: "Requirements and procedures for undergraduate admission." },
+        { id: "curriculum", title: "Curriculum Structure", content: "Overview of the undergraduate curriculum and credit requirements." },
+        { id: "evaluation", title: "Evaluation System", content: "Details about the examination and grading system for undergraduate students." }
       ]
-    }
-  ],
-  facilities: [
+    },
     {
       id: 3,
-      title: "Research Laboratories",
-      content: "The Mechanical Engineering Department at IIT Bombay is equipped with state-of-the-art research laboratories that support cutting-edge research in various areas of mechanical engineering.",
+      title: "Masters Rulebook",
+      content: "The Masters Rulebook provides information on programs, requirements, and procedures for master's degree students in Mechanical Engineering.",
       sections: [
-        { id: "thermal", title: "Thermal Engineering Labs", content: "These labs are equipped for research in heat transfer, thermodynamics, and fluid mechanics." },
-        { id: "manufacturing", title: "Manufacturing Labs", content: "These labs have advanced manufacturing equipment including CNC machines and 3D printers." },
-        { id: "robotics", title: "Robotics and Automation Labs", content: "These labs are equipped for research in robotics, control systems, and automation." }
+        { id: "programs", title: "Masters Programs", content: "Overview of different master's programs offered by the department." },
+        { id: "requirements", title: "Degree Requirements", content: "Requirements for completing a master's degree in Mechanical Engineering." },
+        { id: "thesis", title: "Thesis Guidelines", content: "Guidelines for preparing and submitting a master's thesis." }
       ]
     },
     {
       id: 4,
-      title: "Computing Facilities",
-      content: "The department provides high-performance computing facilities for computational research and education.",
+      title: "PhD Rulebook",
+      content: "The PhD Rulebook outlines the requirements, procedures, and guidelines for doctoral students in the Mechanical Engineering Department.",
       sections: [
-        { id: "hpc", title: "High-Performance Computing Cluster", content: "A dedicated cluster for computationally intensive simulations and analyses." },
-        { id: "software", title: "Engineering Software", content: "Access to a wide range of engineering software for design, analysis, and simulation." }
+        { id: "admission-phd", title: "Admission Requirements", content: "Requirements and procedures for PhD admission." },
+        { id: "qualifying", title: "Qualifying Examination", content: "Information about the PhD qualifying examination process." },
+        { id: "dissertation", title: "Dissertation Guidelines", content: "Guidelines for preparing and defending a doctoral dissertation." }
       ]
     }
   ],
-  policies: [
+  guidelines: [
     {
       id: 5,
-      title: "Academic Policies",
-      content: "These policies govern academic matters such as course registration, examinations, and grading.",
+      title: "Project-based Course Guidelines",
+      content: "These guidelines provide information on how project-based courses are structured and evaluated in the Mechanical Engineering Department.",
       sections: [
-        { id: "registration", title: "Course Registration", content: "Policies regarding course registration, add/drop, and withdrawal." },
-        { id: "exams", title: "Examinations", content: "Rules and regulations for midterm and end-term examinations." },
-        { id: "grading", title: "Grading System", content: "Information about the grading system and calculation of CPI/SPI." }
+        { id: "structure", title: "Course Structure", content: "Structure and organization of project-based courses." },
+        { id: "evaluation-project", title: "Evaluation Criteria", content: "Criteria for evaluating student performance in project-based courses." },
+        { id: "deliverables", title: "Expected Deliverables", content: "Required deliverables for project-based courses." }
       ]
     },
     {
       id: 6,
-      title: "Department Policies",
-      content: "These are specific policies of the Mechanical Engineering Department.",
+      title: "UGAC Booklets",
+      content: "UGAC (Undergraduate Academic Committee) booklets containing information on undergraduate academic matters.",
       sections: [
-        { id: "labs-access", title: "Laboratory Access", content: "Policies regarding access to department laboratories and equipment." },
-        { id: "safety", title: "Safety Guidelines", content: "Safety guidelines to be followed in laboratories and workshops." }
+        { id: "policies", title: "Academic Policies", content: "Policies governing undergraduate academic matters." },
+        { id: "procedures", title: "Procedures", content: "Procedures for various academic processes for undergraduate students." }
+      ]
+    },
+    {
+      id: 7,
+      title: "Univ Intern Booklet",
+      content: "The University Internship Booklet provides information on internship opportunities, procedures, and requirements for students.",
+      sections: [
+        { id: "opportunities", title: "Internship Opportunities", content: "Information about various internship opportunities available to students." },
+        { id: "process", title: "Application Process", content: "Process for applying for internships through the university." },
+        { id: "credit", title: "Internship for Credit", content: "Information about earning academic credit for internships." }
+      ]
+    },
+    {
+      id: 8,
+      title: "Internship Guide 101",
+      content: "A comprehensive guide to help students navigate the internship process from application to completion.",
+      sections: [
+        { id: "preparation", title: "Preparation", content: "How to prepare for applying to internships." },
+        { id: "application", title: "Application Tips", content: "Tips for successful internship applications." },
+        { id: "performance", title: "On-the-job Performance", content: "Guidelines for professional conduct and performance during internships." }
+      ]
+    }
+  ],
+  miscellaneous: [
+    {
+      id: 9,
+      title: "Core Resume Repository",
+      content: "A collection of resume templates and examples for students in the Mechanical Engineering Department.",
+      sections: [
+        { id: "templates", title: "Resume Templates", content: "Templates for creating effective resumes." },
+        { id: "examples", title: "Sample Resumes", content: "Example resumes from successful students and alumni." }
+      ]
+    },
+    {
+      id: 10,
+      title: "DCAMP Previous Year Resume Repos",
+      content: "Repository of resumes from previous years' DCAMP (Department Campus Placement) activities.",
+      sections: [
+        { id: "industry-wise", title: "Industry-wise Resumes", content: "Resumes categorized by industry sectors." },
+        { id: "success-stories", title: "Success Stories", content: "Success stories and placement highlights from previous years." }
+      ]
+    },
+    {
+      id: 11,
+      title: "ISCP Handbook",
+      content: "The Institute Student Companion Program (ISCP) handbook provides guidance for student mentors and mentees.",
+      sections: [
+        { id: "mentor", title: "Mentor Guidelines", content: "Guidelines for student mentors in the ISCP program." },
+        { id: "mentee", title: "Mentee Resources", content: "Resources and support available for mentees." }
+      ]
+    },
+    {
+      id: 12,
+      title: "Student Application Form",
+      content: "Application forms for various student programs, scholarships, and activities in the department.",
+      sections: [
+        { id: "scholarships", title: "Scholarship Applications", content: "Forms for applying to departmental scholarships." },
+        { id: "programs", title: "Program Applications", content: "Forms for special programs and activities." }
+      ]
+    },
+    {
+      id: 13,
+      title: "Retagging norms",
+      content: "Guidelines for the retagging process for courses and academic records.",
+      sections: [
+        { id: "process", title: "Retagging Process", content: "Step-by-step guide to the retagging process." },
+        { id: "criteria", title: "Eligibility Criteria", content: "Criteria for retagging courses in academic records." }
       ]
     }
   ]
@@ -79,7 +144,7 @@ const Docs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeDoc, setActiveDoc] = useState<any>(null);
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  const [activeCategory, setActiveCategory] = useState("academics");
+  const [activeCategory, setActiveCategory] = useState("rulebooks");
 
   // Filter docs based on search term
   const filteredDocs = (docsData as any)[activeCategory].filter((doc: any) => 
@@ -122,15 +187,15 @@ const Docs = () => {
         <CardHeader>
           <CardTitle className="text-3xl">Documentation</CardTitle>
           <CardDescription>
-            Explore academic guidelines, facilities, and policies
+            Access rulebooks, guidelines, and miscellaneous documents
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs value={activeCategory} onValueChange={handleCategoryChange}>
             <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="academics">Academics</TabsTrigger>
-              <TabsTrigger value="facilities">Facilities</TabsTrigger>
-              <TabsTrigger value="policies">Policies</TabsTrigger>
+              <TabsTrigger value="rulebooks">Rulebooks</TabsTrigger>
+              <TabsTrigger value="guidelines">Guidelines</TabsTrigger>
+              <TabsTrigger value="miscellaneous">Miscellaneous</TabsTrigger>
             </TabsList>
             
             <div className="mb-6">
@@ -157,7 +222,7 @@ const Docs = () => {
                         className={`text-left w-full px-3 py-2 rounded-md ${
                           activeDoc?.id === doc.id 
                             ? 'bg-mea-gold/10 text-mea-gold font-medium' 
-                            : 'text-gray-700 hover:bg-gray-100'
+                            : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
                         }`}
                       >
                         {doc.title}
@@ -172,7 +237,7 @@ const Docs = () => {
                                 className={`text-left w-full px-3 py-1 rounded-md text-sm ${
                                   activeSection === section.id 
                                     ? 'text-mea-gold font-medium' 
-                                    : 'text-gray-600 hover:text-mea-gold'
+                                    : 'text-gray-600 hover:text-mea-gold dark:text-gray-400 dark:hover:text-mea-gold'
                                 }`}
                               >
                                 {section.title}
@@ -185,7 +250,7 @@ const Docs = () => {
                   ))}
                   
                   {filteredDocs.length === 0 && (
-                    <li className="text-gray-500 italic px-3 py-2">
+                    <li className="text-gray-500 dark:text-gray-400 italic px-3 py-2">
                       No documents match your search
                     </li>
                   )}
@@ -197,7 +262,7 @@ const Docs = () => {
                 {activeDoc ? (
                   <div className="p-6 border rounded-lg">
                     <h2 className="text-2xl font-semibold mb-4">{activeDoc.title}</h2>
-                    <p className="text-gray-700 mb-6">{activeDoc.content}</p>
+                    <p className="text-gray-700 dark:text-gray-300 mb-6">{activeDoc.content}</p>
                     
                     {activeDoc.sections.map((section: any) => (
                       <div 
@@ -206,13 +271,13 @@ const Docs = () => {
                         className={`mb-6 ${activeSection === section.id ? 'bg-mea-gold/5 p-4 rounded-lg' : ''}`}
                       >
                         <h3 className="text-xl font-medium mb-2">{section.title}</h3>
-                        <p className="text-gray-700">{section.content}</p>
+                        <p className="text-gray-700 dark:text-gray-300">{section.content}</p>
                       </div>
                     ))}
                   </div>
                 ) : (
                   <div className="flex items-center justify-center h-64 border rounded-lg">
-                    <p className="text-gray-500">Select a document to view its content</p>
+                    <p className="text-gray-500 dark:text-gray-400">Select a document to view its content</p>
                   </div>
                 )}
               </div>

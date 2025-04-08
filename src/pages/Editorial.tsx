@@ -49,60 +49,6 @@ const blogPosts = [
   }
 ];
 
-// Sample publications
-const publications = [
-  {
-    id: 1,
-    title: "Advances in Computational Fluid Dynamics for Aerospace Applications",
-    authors: "Kumar A., Patel S., Sharma R.",
-    journal: "Journal of Aerospace Engineering",
-    year: 2023,
-    volume: "45(3)",
-    pages: "321-335",
-    doi: "10.1234/jae.2023.45.3.321"
-  },
-  {
-    id: 2,
-    title: "Hybrid Nanomaterials for Enhanced Thermal Conductivity in Heat Exchangers",
-    authors: "Desai M., Singh V., Kapoor N.",
-    journal: "International Journal of Heat and Mass Transfer",
-    year: 2023,
-    volume: "187",
-    pages: "123-142",
-    doi: "10.1234/ijhmt.2023.187.123"
-  },
-  {
-    id: 3,
-    title: "Machine Learning Approaches for Predicting Material Fatigue in Automotive Components",
-    authors: "Mehta S., Gupta R., Sharma A.",
-    journal: "Materials Science and Engineering: A",
-    year: 2022,
-    volume: "842",
-    pages: "142-156",
-    doi: "10.1234/msea.2022.842.142"
-  },
-  {
-    id: 4,
-    title: "Sustainable Design Practices in Mechanical Engineering Education",
-    authors: "Patel P., Kumar R., Singh V.",
-    journal: "Journal of Engineering Education",
-    year: 2022,
-    volume: "111(2)",
-    pages: "287-301",
-    doi: "10.1234/jee.2022.111.2.287"
-  },
-  {
-    id: 5,
-    title: "Optimization of Additive Manufacturing Parameters for Functional Metal Parts",
-    authors: "Kapoor N., Desai M., Gupta R.",
-    journal: "Additive Manufacturing",
-    year: 2022,
-    volume: "58",
-    pages: "102-118",
-    doi: "10.1234/am.2022.58.102"
-  }
-];
-
 // Sample newsletters
 const newsletters = [
   {
@@ -132,14 +78,13 @@ const Editorial = () => {
         <CardHeader>
           <CardTitle className="text-3xl">Editorial</CardTitle>
           <CardDescription>
-            Explore our blog posts, publications, and newsletters
+            Explore our blog posts and newsletters
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="blog">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
+            <TabsList className="grid w-full grid-cols-2 mb-8">
               <TabsTrigger value="blog">Blog Posts</TabsTrigger>
-              <TabsTrigger value="publications">Publications</TabsTrigger>
               <TabsTrigger value="newsletters">Newsletters</TabsTrigger>
             </TabsList>
             
@@ -175,29 +120,6 @@ const Editorial = () => {
               </div>
               <div className="text-center mt-8">
                 <Button>View All Posts</Button>
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="publications">
-              <div className="space-y-6">
-                {publications.map((pub) => (
-                  <Card key={pub.id} className="hover:shadow-md transition-shadow duration-300">
-                    <CardContent className="p-6">
-                      <h3 className="text-lg font-semibold mb-2">{pub.title}</h3>
-                      <p className="text-gray-600 mb-2">{pub.authors}</p>
-                      <div className="text-sm text-gray-500 space-y-1">
-                        <p><span className="font-medium">Journal:</span> {pub.journal}</p>
-                        <p><span className="font-medium">Year:</span> {pub.year}</p>
-                        <p><span className="font-medium">Volume:</span> {pub.volume}</p>
-                        <p><span className="font-medium">Pages:</span> {pub.pages}</p>
-                        <p><span className="font-medium">DOI:</span> <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" className="text-mea-gold hover:underline">{pub.doi}</a></p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-              <div className="text-center mt-8">
-                <Button>View All Publications</Button>
               </div>
             </TabsContent>
             

@@ -2,17 +2,19 @@
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, Users, MapPin, Clock } from "lucide-react";
+import { Users, MapPin, Clock, CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
 import ChatbotInterface from "@/components/ChatbotInterface";
 
-// Sample events data
+// Sample events data with dates
 const eventsData = {
   upcoming: [
     {
       id: 1,
       title: "Technical Workshop: Advanced CAD Modeling",
-      date: "May 20, 2023",
+      date: new Date(2023, 4, 20), // May 20, 2023
       time: "14:00 - 17:00",
       location: "ME Building, Room 201",
       attendees: 0,
@@ -23,7 +25,7 @@ const eventsData = {
     {
       id: 2,
       title: "Annual Mechanical Day Celebration",
-      date: "June 10, 2023",
+      date: new Date(2023, 5, 10), // June 10, 2023
       time: "10:00 - 18:00",
       location: "ME Department Lawn",
       attendees: 0,
@@ -34,7 +36,7 @@ const eventsData = {
     {
       id: 3,
       title: "Industrial Visit: Tata Motors",
-      date: "July 15, 2023",
+      date: new Date(2023, 6, 15), // July 15, 2023
       time: "08:00 - 18:00",
       location: "Tata Motors, Pune",
       attendees: 0,
@@ -47,7 +49,7 @@ const eventsData = {
     {
       id: 4,
       title: "Guest Lecture: Future of Electric Vehicles",
-      date: "April 5, 2023",
+      date: new Date(2023, 3, 5), // April 5, 2023
       time: "15:00 - 17:00",
       location: "ME Seminar Hall",
       attendees: 120,
@@ -58,7 +60,7 @@ const eventsData = {
     {
       id: 5,
       title: "Technical Paper Competition",
-      date: "March 25, 2023",
+      date: new Date(2023, 2, 25), // March 25, 2023
       time: "10:00 - 16:00",
       location: "ME Conference Room",
       attendees: 45,
@@ -69,7 +71,7 @@ const eventsData = {
     {
       id: 6,
       title: "Alumni Interaction Session",
-      date: "February 15, 2023",
+      date: new Date(2023, 1, 15), // February 15, 2023
       time: "18:00 - 20:00",
       location: "Online (Zoom)",
       attendees: 180,
@@ -96,8 +98,8 @@ const EventCard = ({ event, isUpcoming = false }: { event: any, isUpcoming?: boo
         
         <div className="space-y-2 mb-4">
           <div className="flex items-center text-sm text-gray-500">
-            <Calendar size={16} className="mr-2" />
-            <span>{event.date}</span>
+            <CalendarIcon size={16} className="mr-2" />
+            <span>{format(event.date, "MMMM d, yyyy")}</span>
           </div>
           <div className="flex items-center text-sm text-gray-500">
             <Clock size={16} className="mr-2" />
@@ -133,6 +135,47 @@ const EventCard = ({ event, isUpcoming = false }: { event: any, isUpcoming?: boo
 
 const Events = () => {
   const [activeTab, setActiveTab] = useState("upcoming");
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+
+  // Function to filter events based on selected date
+  const getFilteredEvents = (category: string) => {
+    const events = (eventsData as any)[category];
+    if (!selectedDate) return events;
+
+    return events.filter((event: any) => {
+      const eventDate = new Date(event.date);
+      return eventDate.getDate() === selectedDate.getDate() &&
+        eventDate.getMonth() === selectedDate.getMonth() &&
+        eventDate.getFullYear() === selectedDate.getFullYear();
+    });
+  };
+
+  // Get dates for the calendar highlighting
+  const getEventDates = () => {
+    const dates: Date[] = [];
+    [...eventsData.upcoming, ...eventsData.past].forEach(event => {
+      dates.push(new Date(event.date));
+    });
+    return dates;
+  };
+
+  const eventDates = getEventDates();
+
+  // Function to determine if a date has an event
+  const isDateWithEvent = (date: Date) => {
+    return eventDates.some(eventDate => 
+      eventDate.getDate() === date.getDate() &&
+      eventDate.getMonth() === date.getMonth() &&
+      eventDate.getFullYear() === date.getFullYear()
+    );
+  };
+
+  const clearDateFilter = () => {
+    setSelectedDate(undefined);
+  };
+
+  const filteredUpcomingEvents = getFilteredEvents("upcoming");
+  const filteredPastEvents = getFilteredEvents("past");
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -148,21 +191,148 @@ const Events = () => {
             <TabsList className="mb-8">
               <TabsTrigger value="upcoming">Upcoming Events</TabsTrigger>
               <TabsTrigger value="past">Past Events</TabsTrigger>
+              <TabsTrigger value="calendar">Calendar View</TabsTrigger>
             </TabsList>
             
             <TabsContent value="upcoming">
+              {selectedDate && (
+                <div className="mb-4 flex items-center justify-between bg-mea-gold/10 p-3 rounded-lg">
+                  <p className="text-sm">
+                    Showing events for: <span className="font-semibold">{format(selectedDate, "MMMM d, yyyy")}</span>
+                  </p>
+                  <Button variant="outline" size="sm" onClick={clearDateFilter}>
+                    Clear Filter
+                  </Button>
+                </div>
+              )}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {eventsData.upcoming.map(event => (
-                  <EventCard key={event.id} event={event} isUpcoming={true} />
-                ))}
+                {filteredUpcomingEvents.length > 0 ? (
+                  filteredUpcomingEvents.map((event: any) => (
+                    <EventCard key={event.id} event={event} isUpcoming={true} />
+                  ))
+                ) : (
+                  <div className="col-span-3 text-center py-10">
+                    <p className="text-gray-500">No events found for the selected date.</p>
+                  </div>
+                )}
               </div>
             </TabsContent>
             
             <TabsContent value="past">
+              {selectedDate && (
+                <div className="mb-4 flex items-center justify-between bg-mea-gold/10 p-3 rounded-lg">
+                  <p className="text-sm">
+                    Showing events for: <span className="font-semibold">{format(selectedDate, "MMMM d, yyyy")}</span>
+                  </p>
+                  <Button variant="outline" size="sm" onClick={clearDateFilter}>
+                    Clear Filter
+                  </Button>
+                </div>
+              )}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {eventsData.past.map(event => (
-                  <EventCard key={event.id} event={event} />
-                ))}
+                {filteredPastEvents.length > 0 ? (
+                  filteredPastEvents.map((event: any) => (
+                    <EventCard key={event.id} event={event} />
+                  ))
+                ) : (
+                  <div className="col-span-3 text-center py-10">
+                    <p className="text-gray-500">No events found for the selected date.</p>
+                  </div>
+                )}
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="calendar">
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <div className="lg:col-span-1">
+                  <Card>
+                    <CardContent className="p-4">
+                      <Calendar
+                        mode="single"
+                        selected={selectedDate}
+                        onSelect={setSelectedDate}
+                        className="rounded-md border p-3 pointer-events-auto"
+                        modifiers={{
+                          event: (date) => isDateWithEvent(date),
+                        }}
+                        modifiersStyles={{
+                          event: { 
+                            fontWeight: 'bold',
+                            backgroundColor: 'rgba(245, 158, 11, 0.1)', 
+                            borderBottom: '2px solid #F5B200'
+                          }
+                        }}
+                      />
+                      <div className="mt-4 text-xs text-gray-500">
+                        <div className="flex items-center mb-1">
+                          <div className="w-3 h-3 bg-mea-gold/20 border-b-2 border-mea-gold rounded-sm mr-2"></div>
+                          <span>Events scheduled</span>
+                        </div>
+                        <p className="mt-2">Click on a date to view events for that day.</p>
+                      </div>
+                      {selectedDate && (
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="mt-4 w-full" 
+                          onClick={clearDateFilter}
+                        >
+                          Clear Selection
+                        </Button>
+                      )}
+                    </CardContent>
+                  </Card>
+                </div>
+                <div className="lg:col-span-3">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>
+                        {selectedDate ? `Events on ${format(selectedDate, "MMMM d, yyyy")}` : "All Events"}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {selectedDate ? (
+                        <div className="space-y-4">
+                          {[...filteredUpcomingEvents, ...filteredPastEvents].length > 0 ? (
+                            [...filteredUpcomingEvents, ...filteredPastEvents].map((event: any) => (
+                              <div key={event.id} className="flex flex-col md:flex-row gap-4 p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                                <div className="md:w-1/4">
+                                  <img src={event.image} alt={event.title} className="rounded-md w-full h-32 object-cover" />
+                                </div>
+                                <div className="md:w-3/4">
+                                  <h3 className="text-lg font-semibold">{event.title}</h3>
+                                  <p className="text-sm text-gray-600 mb-2">{event.description}</p>
+                                  <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-500">
+                                    <div className="flex items-center">
+                                      <Clock size={14} className="mr-1" />
+                                      <span>{event.time}</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                      <MapPin size={14} className="mr-1" />
+                                      <span>{event.location}</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                      <Users size={14} className="mr-1" />
+                                      <span>{event.attendees}/{event.capacity}</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            ))
+                          ) : (
+                            <div className="text-center py-10">
+                              <p className="text-gray-500">No events scheduled for this date.</p>
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="text-center py-10">
+                          <p className="text-gray-500">Select a date to view events for that day.</p>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
             </TabsContent>
           </Tabs>
