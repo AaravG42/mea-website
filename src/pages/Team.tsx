@@ -1,6 +1,8 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Linkedin, Mail } from "lucide-react";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Linkedin, Mail, UserRound } from "lucide-react";
 import ChatbotInterface from "@/components/ChatbotInterface";
 
 // Combined team data
@@ -65,6 +67,7 @@ const teamData = [
     year: "2nd Year",
     email: "ananya@iitb.ac.in",
     linkedin: "#",
+    bio: "Ananya is passionate about thermal sciences and helps organize technical workshops on CAD design.",
     image: "/public/lovable-uploads/5f363352-0705-487a-baed-4c046690236b.png"
   },
   {
@@ -74,6 +77,7 @@ const teamData = [
     year: "2nd Year",
     email: "raj@iitb.ac.in",
     linkedin: "#",
+    bio: "Raj assists in planning and executing various MEA events and competitions throughout the academic year.",
     image: "/public/lovable-uploads/6b115935-67fc-4138-8a82-cf42108c1d16.png"
   },
   {
@@ -83,6 +87,7 @@ const teamData = [
     year: "2nd Year",
     email: "neha@iitb.ac.in",
     linkedin: "#",
+    bio: "Neha contributes to MEA's newsletter and manages social media content to keep students informed.",
     image: "/public/lovable-uploads/e3fd6b91-d6bc-45ef-8ccf-7fd7292b928d.png"
   },
   {
@@ -92,55 +97,98 @@ const teamData = [
     year: "2nd Year",
     email: "arjun@iitb.ac.in",
     linkedin: "#",
+    bio: "Arjun maintains the MEA website and helps develop new features to improve user experience.",
     image: "/public/lovable-uploads/f4aa4742-2202-46f3-9eec-cefb01abd89b.png"
   }
 ];
 
 const TeamMemberCard = ({ member }: { member: any }) => {
-  const showBio = Boolean(member.bio);
-  
   return (
-    <Card className="hover:shadow-lg transition-shadow duration-300">
-      <CardContent className="p-6">
-        <div className="flex flex-col items-center text-center">
-          <div className="w-32 h-32 rounded-full overflow-hidden mb-4">
-            <img 
-              src={member.image} 
-              alt={member.name} 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <h3 className="text-lg font-semibold">{member.name}</h3>
-          <p className="text-mea-gold font-medium text-sm mb-1">{member.position}</p>
-          <p className="text-gray-500 dark:text-gray-400 text-sm mb-3">
-            {member.department || member.year}
-          </p>
-          
-          {showBio && (
-            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">{member.bio}</p>
-          )}
-          
-          <div className="flex space-x-3">
-            <a 
-              href={`mailto:${member.email}`} 
-              className="text-gray-500 dark:text-gray-400 hover:text-mea-gold transition-colors"
-              aria-label={`Email ${member.name}`}
-            >
-              <Mail size={18} />
-            </a>
-            <a 
-              href={member.linkedin} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-gray-500 dark:text-gray-400 hover:text-mea-gold transition-colors"
-              aria-label={`${member.name}'s LinkedIn profile`}
-            >
-              <Linkedin size={18} />
-            </a>
+    <HoverCard>
+      <HoverCardTrigger asChild>
+        <Card className="hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">
+          <CardContent className="p-6">
+            <div className="flex flex-col items-center text-center">
+              <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-2 border-transparent hover:border-mea-gold transition-colors duration-300">
+                <Avatar className="w-full h-full">
+                  <AvatarImage src={member.image} alt={member.name} className="object-cover" />
+                  <AvatarFallback>
+                    <UserRound className="w-12 h-12 text-muted-foreground" />
+                  </AvatarFallback>
+                </Avatar>
+              </div>
+              <h3 className="text-lg font-semibold">{member.name}</h3>
+              <p className="text-mea-gold font-medium text-sm mb-1">{member.position}</p>
+              <p className="text-gray-500 dark:text-gray-400 text-sm mb-3">
+                {member.department || member.year}
+              </p>
+              
+              <div className="flex space-x-3">
+                <a 
+                  href={`mailto:${member.email}`} 
+                  className="text-gray-500 dark:text-gray-400 hover:text-mea-gold transition-colors"
+                  aria-label={`Email ${member.name}`}
+                >
+                  <Mail size={18} />
+                </a>
+                <a 
+                  href={member.linkedin} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-500 dark:text-gray-400 hover:text-mea-gold transition-colors"
+                  aria-label={`${member.name}'s LinkedIn profile`}
+                >
+                  <Linkedin size={18} />
+                </a>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </HoverCardTrigger>
+      <HoverCardContent className="w-80 p-0 shadow-lg animate-in fade-in zoom-in-95 duration-200">
+        <div className="p-4 bg-gradient-to-b from-mea-gold/10 to-transparent rounded-t-md">
+          <div className="flex items-center gap-3">
+            <Avatar className="w-12 h-12 border-2 border-mea-gold">
+              <AvatarImage src={member.image} />
+              <AvatarFallback>
+                <UserRound className="w-6 h-6 text-muted-foreground" />
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <h4 className="font-bold text-foreground">{member.name}</h4>
+              <p className="text-mea-gold text-sm">{member.position}</p>
+            </div>
           </div>
         </div>
-      </CardContent>
-    </Card>
+        <div className="p-4">
+          <p className="text-muted-foreground text-sm leading-relaxed">{member.bio || "No bio available."}</p>
+          
+          <div className="mt-4 pt-3 border-t flex items-center justify-between">
+            <div className="text-sm text-muted-foreground">
+              {member.department || member.year}
+            </div>
+            <div className="flex space-x-2">
+              <a 
+                href={`mailto:${member.email}`} 
+                className="text-muted-foreground hover:text-mea-gold transition-colors"
+                aria-label={`Email ${member.name}`}
+              >
+                <Mail size={16} />
+              </a>
+              <a 
+                href={member.linkedin} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-muted-foreground hover:text-mea-gold transition-colors"
+                aria-label={`${member.name}'s LinkedIn profile`}
+              >
+                <Linkedin size={16} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
   );
 };
 
