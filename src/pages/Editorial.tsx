@@ -15,7 +15,7 @@ const blogPosts = [
     date: "April 15, 2023",
     category: "Technology",
     readTime: "8 min read",
-    image: "/public/lovable-uploads/f4aa4742-2202-46f3-9eec-cefb01abd89b.png"
+    image: "/lovable-uploads/f4aa4742-2202-46f3-9eec-cefb01abd89b.png"
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const blogPosts = [
     date: "March 22, 2023",
     category: "Projects",
     readTime: "6 min read",
-    image: "/public/lovable-uploads/5f363352-0705-487a-baed-4c046690236b.png"
+    image: "/lovable-uploads/5f363352-0705-487a-baed-4c046690236b.png"
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const blogPosts = [
     date: "February 10, 2023",
     category: "Partnerships",
     readTime: "5 min read",
-    image: "/public/lovable-uploads/e3fd6b91-d6bc-45ef-8ccf-7fd7292b928d.png"
+    image: "/lovable-uploads/e3fd6b91-d6bc-45ef-8ccf-7fd7292b928d.png"
   },
   {
     id: 4,
@@ -45,7 +45,7 @@ const blogPosts = [
     date: "January 28, 2023",
     category: "Alumni",
     readTime: "7 min read",
-    image: "/public/lovable-uploads/6b115935-67fc-4138-8a82-cf42108c1d16.png"
+    image: "/lovable-uploads/6b115935-67fc-4138-8a82-cf42108c1d16.png"
   }
 ];
 

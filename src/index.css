@@ -86,13 +86,13 @@
 @layer components {
   .hero-section {
     @apply dark:bg-blend-overlay;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/public/lovable-uploads/manufacturing1.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/lovable-uploads/manufacturing1.jpg');
     background-size: cover;
     background-position: center;
   }
   
   .gear-bg {
-    background-image: url('/public/lovable-uploads/f4aa4742-2202-46f3-9eec-cefb01abd89b.png');
+    background-image: url('/lovable-uploads/f4aa4742-2202-46f3-9eec-cefb01abd89b.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

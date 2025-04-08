@@ -1,73 +1,86 @@
-# Welcome to your Lovable project
+# Mechanical Engineering Association Website - IIT Bombay
 
-## Project info
+## Project Overview
 
-**URL**: https://lovable.dev/projects/648e8bb6-f8ab-4d93-8fa3-7ce9f67fcc65
+This project is a comprehensive website redesign for the Mechanical Engineering Association (MEA) of IIT Bombay. The website serves as a central hub for mechanical engineering students, faculty, and alumni to connect, share resources, and stay updated on department activities.
 
-## How can I edit this code?
+## Live Demo
 
-There are several ways of editing your application.
+The website is deployed and accessible at: [MEA Website](https://mea.netlify.app/)
 
-**Use Lovable**
+## Project Requirements
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/648e8bb6-f8ab-4d93-8fa3-7ce9f67fcc65) and start prompting.
+The project was developed to meet the following requirements:
 
-Changes made via Lovable will be committed automatically to this repo.
+1. Design a light-themed website for the MEA with multiple pages
+2. Include key sections such as homepage, gallery, events, resources, and more
+3. Maintain consistency through a unified navbar and footer
+4. Create a responsive design that works across all devices
+5. Implement modern web technologies for optimal performance
 
-**Use your preferred IDE**
+## Technology Stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+The website is built using a modern tech stack:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **React**: For building a component-based UI architecture
+- **TypeScript**: For type safety and improved developer experience
+- **Tailwind CSS**: For utility-first styling that ensures consistency and rapid development
+- **Shadcn UI**: For accessible, customizable UI components
+- **React Router**: For seamless client-side navigation
+- **Vite**: For fast development and optimized builds
 
-Follow these steps:
+### Why This Stack?
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- **Performance**: React's virtual DOM and Vite's build optimization ensure fast load times
+- **Maintainability**: TypeScript and component architecture make the codebase easy to maintain
+- **Responsive Design**: Tailwind CSS provides built-in responsive utilities
+- **Accessibility**: Shadcn UI components are built with accessibility in mind
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Website Structure
 
-# Step 3: Install the necessary dependencies.
-npm i
+The website consists of several key sections:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+1. **Home**: Introduction to the MEA with a hero section, mission statement, and quick links
+2. **Events**: Calendar of upcoming events and archives of past events
+3. **Resources**: Repository of academic resources, tools, and tutorials
+4. **Editorial**: Blog posts and newsletters section with embedded flipbook
+5. **Gallery**: Visual showcase of department activities and student projects
+6. **Team**: Profiles of the current MEA council members
+7. **Contact**: Contact form and information for reaching out to the MEA
 
-**Edit a file directly in GitHub**
+## Design Philosophy
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The website follows a clean, modern design approach with:
 
-**Use GitHub Codespaces**
+- Light theme with high contrast for readability
+- Consistent typography and color scheme across all pages
+- Strategic use of white space to create visual hierarchy
+- Responsive layout that adapts to various screen sizes
+- Interactive elements that enhance user engagement
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Deployment
 
-## What technologies are used for this project?
+The website is deployed on Vercel for several reasons:
 
-This project is built with:
+1. Seamless integration with GitHub for continuous deployment
+2. Fast global CDN for optimal loading speeds
+3. Built-in analytics and performance monitoring
+4. Automatic HTTPS for security
+5. Free tier that supports all required functionality
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Local Development
 
-## How can I deploy this project?
+To run this project locally:
 
-Simply open [Lovable](https://lovable.dev/projects/648e8bb6-f8ab-4d93-8fa3-7ce9f67fcc65) and click on Share -> Publish.
+```bash
+# Clone the repository
+git clone https://github.com/AaravG42/mea-website.git
 
-## Can I connect a custom domain to my Lovable project?
+# Navigate to the project directory
+cd mea-website
 
-Yes it is!
+# Install dependencies
+bun install
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+# Start the development server
+bun run dev

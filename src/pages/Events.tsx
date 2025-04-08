@@ -19,7 +19,7 @@ const eventsData = {
       location: "ME Building, Room 201",
       attendees: 0,
       capacity: 50,
-      image: "/public/lovable-uploads/f4aa4742-2202-46f3-9eec-cefb01abd89b.png",
+      image: "/lovable-uploads/f4aa4742-2202-46f3-9eec-cefb01abd89b.png",
       description: "Learn advanced CAD modeling techniques from industry experts to enhance your design skills. This hands-on workshop will cover parametric modeling, assembly design, and simulation techniques."
     },
     {
@@ -30,7 +30,7 @@ const eventsData = {
       location: "ME Department Lawn",
       attendees: 0,
       capacity: 200,
-      image: "/public/lovable-uploads/5f363352-0705-487a-baed-4c046690236b.png",
+      image: "/lovable-uploads/5f363352-0705-487a-baed-4c046690236b.png",
       description: "Join us for a day of celebration, competitions, and networking with alumni and faculty. The event will feature technical competitions, cultural performances, and an alumni panel discussion."
     },
     {
@@ -41,7 +41,7 @@ const eventsData = {
       location: "Tata Motors, Pune",
       attendees: 0,
       capacity: 60,
-      image: "/public/lovable-uploads/e3fd6b91-d6bc-45ef-8ccf-7fd7292b928d.png",
+      image: "/lovable-uploads/e3fd6b91-d6bc-45ef-8ccf-7fd7292b928d.png",
       description: "Explore manufacturing processes and automation systems at the Tata Motors facility in Pune. This visit will provide insights into automotive manufacturing, quality control, and supply chain management."
     }
   ],
@@ -54,7 +54,7 @@ const eventsData = {
       location: "ME Seminar Hall",
       attendees: 120,
       capacity: 150,
-      image: "/public/lovable-uploads/6b115935-67fc-4138-8a82-cf42108c1d16.png",
+      image: "/lovable-uploads/6b115935-67fc-4138-8a82-cf42108c1d16.png",
       description: "A comprehensive lecture on the future of electric vehicles and their impact on mechanical engineering design principles."
     },
     {
@@ -65,7 +65,7 @@ const eventsData = {
       location: "ME Conference Room",
       attendees: 45,
       capacity: 50,
-      image: "/public/lovable-uploads/f4aa4742-2202-46f3-9eec-cefb01abd89b.png",
+      image: "/lovable-uploads/f4aa4742-2202-46f3-9eec-cefb01abd89b.png",
       description: "Students presented their research papers on various mechanical engineering topics, with prizes for the best papers."
     },
     {
@@ -76,7 +76,7 @@ const eventsData = {
       location: "Online (Zoom)",
       attendees: 180,
       capacity: 200,
-      image: "/public/lovable-uploads/5f363352-0705-487a-baed-4c046690236b.png",
+      image: "/lovable-uploads/5f363352-0705-487a-baed-4c046690236b.png",
       description: "An interactive session with alumni working in various industries, sharing their experiences and career advice."
     }
   ]
