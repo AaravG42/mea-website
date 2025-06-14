@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+supabase
+httpx
+pydantic
+pydantic[email]
+pydantic-settings
+jsonschema
+sendgrid
+python-multipart
+
+# Testing dependencies
+pytest
+pytest-env
+pytest-cov
+requests 

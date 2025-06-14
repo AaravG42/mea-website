@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Instagram, Youtube, Linkedin, Mail, Phone } from 'lucide-react';
 import MEALogo from './MEALogo';
@@ -39,7 +38,6 @@ const Footer = () => {
               <li><Link to="/editorial" className="hover:text-mea-gold transition-colors">Editorial</Link></li>
               <li><Link to="/team" className="hover:text-mea-gold transition-colors">Team</Link></li>
               <li><Link to="/gallery" className="hover:text-mea-gold transition-colors">Gallery</Link></li>
-              <li><Link to="/damp" className="hover:text-mea-gold transition-colors">DAMP</Link></li>
             </ul>
           </div>
 
