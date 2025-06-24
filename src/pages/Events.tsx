@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import ChatbotInterface from "@/components/ChatbotInterface";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 // Sample events data with dates and categories
 const eventsData = {
@@ -171,12 +172,21 @@ const EventCard = ({ event, isUpcoming = false }: { event: any, isUpcoming?: boo
           <div className="flex gap-2 mt-auto pt-2">
             {isUpcoming ? (
               <>
+                {event.attendees >= event.capacity ? (
+                  <Button 
+                    className="flex-1 bg-amber-500 hover:bg-amber-600 text-white transition-colors duration-200"
+                    disabled
+                  >
+                    Full
+                  </Button>
+                ) : (
                 <Button 
                   className="flex-1 bg-amber-500 hover:bg-amber-600 text-white transition-colors duration-200"
-                  disabled={event.attendees >= event.capacity}
+                    asChild
                 >
-                  {event.attendees >= event.capacity ? "Full" : "Register Now"}
+                    <Link to={`/events/${event.id}/register`}>Register Now</Link>
                 </Button>
+                )}
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
@@ -327,8 +337,8 @@ const Events = () => {
           </div>
         </div>
         <div className="mt-auto flex gap-2 pt-1">
-          <Button size="sm" className="bg-amber-500 hover:bg-amber-600 text-white transition-colors duration-200">
-            Register Now
+          <Button size="sm" className="bg-amber-500 hover:bg-amber-600 text-white transition-colors duration-200" asChild>
+            <Link to={`/events/${event.id}/register`}>Register Now</Link>
           </Button>
           <TooltipProvider>
             <Tooltip>
