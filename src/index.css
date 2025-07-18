@@ -6,8 +6,7 @@
 
 @layer base {
   :root {
-    /* Enhanced colorful light mode */
-    --background: 35 30% 98%;
+    --background: 0 0% 100%;
     --foreground: 220 20% 15%;
 
     --card: 0 0% 100%;
@@ -22,7 +21,7 @@
     --secondary: 214 51% 23%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 35 20% 94%;
+    --muted: 0 0% 96%;
     --muted-foreground: 220 10% 50%;
 
     --accent: 204 70% 46%;
@@ -31,25 +30,9 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 35 15% 88%;
-    --input: 35 15% 92%;
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
     --ring: 45 100% 48%;
-
-    /* Enhanced color palette for vibrant design */
-    --coral: 16 100% 66%;
-    --coral-foreground: 0 0% 100%;
-    
-    --emerald: 142 76% 36%;
-    --emerald-foreground: 0 0% 100%;
-    
-    --purple: 262 83% 58%;
-    --purple-foreground: 0 0% 100%;
-    
-    --orange: 25 95% 53%;
-    --orange-foreground: 0 0% 100%;
-    
-    --sky: 199 89% 48%;
-    --sky-foreground: 0 0% 100%;
 
     --radius: 0.5rem;
   }
@@ -101,9 +84,7 @@
 @layer components {
   .hero-section {
     @apply dark:bg-blend-overlay;
-    background: linear-gradient(135deg, rgba(245, 178, 0, 0.1), rgba(35, 132, 198, 0.1)), 
-                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                url('/lovable-uploads/manufacturing1.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/lovable-uploads/manufacturing1.jpg');
     background-size: cover;
     background-position: center;
   }
@@ -116,31 +97,23 @@
   }
   
   .floating-card {
-    @apply bg-gradient-to-br from-white via-white to-mea-cream/30 dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-mea-gold/10;
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl;
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-mea-gold to-orange-400 text-white px-4 py-2 rounded-md hover:from-orange-400 hover:to-mea-gold transition-all duration-200 shadow-md hover:shadow-lg;
+    @apply bg-mea-gold text-white px-4 py-2 rounded-md hover:bg-amber-500 transition-colors duration-200;
   }
   
   .btn-secondary {
-    @apply bg-gradient-to-r from-mea-darkblue to-mea-lightblue text-white px-4 py-2 rounded-md hover:from-mea-lightblue hover:to-mea-darkblue transition-all duration-200 shadow-md hover:shadow-lg;
+    @apply bg-mea-darkblue text-white px-4 py-2 rounded-md hover:bg-mea-lightblue transition-colors duration-200;
   }
   
   .nav-link {
-    @apply px-2 py-1 rounded-md text-foreground hover:bg-gradient-to-r hover:from-mea-gold/10 hover:to-orange-400/10 hover:text-mea-gold transition-all duration-200;
+    @apply px-2 py-1 rounded-md text-foreground hover:bg-mea-gold/10 hover:text-mea-gold transition-colors;
   }
   
   .nav-link.active {
-    @apply bg-gradient-to-r from-mea-gold/10 to-orange-400/10 text-mea-gold;
-  }
-  
-  .colorful-gradient {
-    @apply bg-gradient-to-br from-purple-50 via-blue-50 to-emerald-50;
-  }
-  
-  .vibrant-card {
-    @apply bg-gradient-to-br from-white via-purple-50/30 to-blue-50/30 border border-purple-200/50 shadow-lg hover:shadow-xl transition-all duration-300;
+    @apply bg-mea-gold/10 text-mea-gold;
   }
 }
 

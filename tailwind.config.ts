@@ -56,26 +56,6 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				coral: {
-					DEFAULT: 'hsl(var(--coral))',
-					foreground: 'hsl(var(--coral-foreground))'
-				},
-				emerald: {
-					DEFAULT: 'hsl(var(--emerald))',
-					foreground: 'hsl(var(--emerald-foreground))'
-				},
-				purple: {
-					DEFAULT: 'hsl(var(--purple))',
-					foreground: 'hsl(var(--purple-foreground))'
-				},
-				orange: {
-					DEFAULT: 'hsl(var(--orange))',
-					foreground: 'hsl(var(--orange-foreground))'
-				},
-				sky: {
-					DEFAULT: 'hsl(var(--sky))',
-					foreground: 'hsl(var(--sky-foreground))'
-				},
 				mea: {
 					gold: '#F5B200',
 					lightyellow: '#FEF7CD',

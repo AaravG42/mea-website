@@ -37,7 +37,7 @@ const events = [
 
 const LatestEvents = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-white via-emerald-50/30 to-purple-50/30 dark:bg-gray-900 transition-colors duration-300">
+    <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -51,7 +51,7 @@ const LatestEvents = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {events.map((event) => (
-            <Card key={event.id} className="vibrant-card overflow-hidden hover:shadow-xl transition-all duration-300 dark:bg-gray-800 dark:border-gray-700 hover:border-mea-gold/30">
+            <Card key={event.id} className="overflow-hidden hover:shadow-xl transition-shadow duration-300 dark:bg-gray-800 dark:border-gray-700">
               <div className="h-48 overflow-hidden">
                 <img 
                   src={event.image} 
@@ -78,7 +78,7 @@ const LatestEvents = () => {
                   </div>
                 </div>
                 
-                <Button variant="outline" className="w-full border-mea-gold/30 text-mea-darkblue hover:bg-mea-gold/10 hover:border-mea-gold dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                <Button variant="outline" className="w-full dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
                   Learn More
                 </Button>
               </CardContent>
