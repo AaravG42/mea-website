@@ -48,8 +48,6 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-        <PWAInstallPrompt />
-        <PWAUpdatePrompt />
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
