@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Button } from './ui/button';
-import { X } from 'lucide-react';
+import { X, Download } from 'lucide-react';
 
+// Define the BeforeInstallPromptEvent interface according to the spec
+// https://w3c.github.io/manifest/#beforeinstallpromptevent-interface
 interface BeforeInstallPromptEvent extends Event {
-  readonly platforms: string[];
+  readonly platforms: Array<string>;
   readonly userChoice: Promise<{
     outcome: 'accepted' | 'dismissed';
     platform: string;
@@ -11,6 +13,7 @@ interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>;
 }
 
+// Declare the event for TypeScript
 declare global {
   interface WindowEventMap {
     beforeinstallprompt: BeforeInstallPromptEvent;
@@ -20,33 +23,59 @@ declare global {
 export function PWAInstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
-    const handler = (e: Event) => {
+    // Check if the device is iOS
+    const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+    setIsIOS(isIOSDevice);
+
+    // Listen for the beforeinstallprompt event
+    const handleBeforeInstallPrompt = (e: BeforeInstallPromptEvent) => {
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
       e.preventDefault();
-      setDeferredPrompt(e as BeforeInstallPromptEvent);
+      // Stash the event so it can be triggered later
+      setDeferredPrompt(e);
       setShowInstallPrompt(true);
     };
 
-    window.addEventListener('beforeinstallprompt', handler);
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
+  // Handle the appinstalled event
+  useEffect(() => {
+    const handleAppInstalled = () => {
+      // Clear the deferredPrompt variable as it's no longer needed
+      setDeferredPrompt(null);
+      setShowInstallPrompt(false);
+      console.log('PWA was installed');
+    };
+
+    window.addEventListener('appinstalled', handleAppInstalled);
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', handler);
+      window.removeEventListener('appinstalled', handleAppInstalled);
     };
   }, []);
 
   const handleInstallClick = async () => {
     if (!deferredPrompt) return;
 
+    // Show the install prompt
     deferredPrompt.prompt();
+    
+    // Wait for the user to respond to the prompt
     const { outcome } = await deferredPrompt.userChoice;
     
-    if (outcome === 'accepted') {
-      console.log('User accepted the install prompt');
-    } else {
-      console.log('User dismissed the install prompt');
-    }
+    // Log the outcome
+    console.log(`User ${outcome} the installation`);
     
+    // Clear the deferredPrompt as it can't be used again
     setDeferredPrompt(null);
     setShowInstallPrompt(false);
   };
@@ -55,7 +84,8 @@ export function PWAInstallPrompt() {
     setShowInstallPrompt(false);
   };
 
-  if (!showInstallPrompt) return null;
+  // Don't show anything if there's no install prompt or if we're in standalone mode
+  if (!showInstallPrompt || window.matchMedia('(display-mode: standalone)').matches) return null;
 
   return (
     <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-80 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-4 z-50">
@@ -65,7 +95,9 @@ export function PWAInstallPrompt() {
             Install MEA App
           </h3>
           <p className="text-xs text-gray-600 dark:text-gray-300">
-            Add this app to your home screen for quick access
+            {isIOS 
+              ? 'Tap the share icon and select "Add to Home Screen"'
+              : 'Add this app to your home screen for quick access'}
           </p>
         </div>
         <Button
@@ -77,23 +109,26 @@ export function PWAInstallPrompt() {
           <X className="h-4 w-4" />
         </Button>
       </div>
-      <div className="mt-3 flex gap-2">
-        <Button
-          onClick={handleInstallClick}
-          size="sm"
-          className="flex-1 bg-orange-500 hover:bg-orange-600 text-white"
-        >
-          Install
-        </Button>
-        <Button
-          onClick={handleDismiss}
-          variant="outline"
-          size="sm"
-          className="flex-1"
-        >
-          Not now
-        </Button>
-      </div>
+      {!isIOS && (
+        <div className="mt-3 flex gap-2">
+          <Button
+            onClick={handleInstallClick}
+            size="sm"
+            className="flex-1 bg-orange-500 hover:bg-orange-600 text-white"
+          >
+            <Download className="h-4 w-4 mr-2" />
+            Install
+          </Button>
+          <Button
+            onClick={handleDismiss}
+            variant="outline"
+            size="sm"
+            className="flex-1"
+          >
+            Not now
+          </Button>
+        </div>
+      )}
     </div>
   );
 } 

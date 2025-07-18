@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import MainLayout from "@/layouts/MainLayout";
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
-import { PWAUpdatePrompt } from "@/components/PWAUpdatePrompt";
 import Index from "@/pages/Index";
 import Gallery from "@/pages/Gallery";
 import Events from "@/pages/Events";
@@ -48,6 +47,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
+        <PWAInstallPrompt />
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
