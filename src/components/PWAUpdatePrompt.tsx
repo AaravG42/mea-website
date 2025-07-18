@@ -7,9 +7,11 @@ export function PWAUpdatePrompt() {
 
   useEffect(() => {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
+      const handleControllerChange = () => {
         setShowUpdatePrompt(true);
-      });
+      };
+
+      navigator.serviceWorker.addEventListener('controllerchange', handleControllerChange);
 
       navigator.serviceWorker.ready.then((registration) => {
         registration.addEventListener('updatefound', () => {
@@ -22,7 +24,13 @@ export function PWAUpdatePrompt() {
             });
           }
         });
+      }).catch((error) => {
+        console.log('Service worker registration failed:', error);
       });
+
+      return () => {
+        navigator.serviceWorker.removeEventListener('controllerchange', handleControllerChange);
+      };
     }
   }, []);
 
