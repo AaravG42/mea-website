@@ -1,21 +1,17 @@
 # Events & Forms API
 
-A FastAPI backend for managing events, forms, registrations, and form responses. This backend integrates with Supabase for data storage and SendGrid for email notifications.
+A FastAPI backend for managing events, forms, registrations, and form responses. This backend integrates with Supabase for data storage.
 
 ## Features
 
 - Event management (create, read, update, delete)
 - Dynamic form creation and management
-- Event registrations with email confirmation
-- Generic form submissions with email confirmation
 - File uploads via Supabase Storage
-- Scheduled email reminders for upcoming events
 
 ## Prerequisites
 
 - Python 3.10+
 - Supabase account
-- SendGrid account
 - Render.com account (for deployment)
 
 ## Setup
@@ -87,13 +83,7 @@ create index on public.form_responses (email);
    - Go to Project Settings > API
    - Copy the URL and service_role key (NOT the anon key)
 
-### 2. SendGrid Setup
-
-1. Create a SendGrid account at [sendgrid.com](https://sendgrid.com)
-2. Create an API key with Mail Send permissions
-3. Verify your sender email address or domain
-
-### 3. Local Development Setup
+### 2. Local Development Setup
 
 1. Clone this repository
 2. Create a virtual environment:
@@ -116,7 +106,6 @@ create index on public.form_responses (email);
    - Supabase URL and service role key
    - CORS origins (frontend URLs)
    - Admin API key (create a strong secret)
-   - SendGrid API key and sender email
    - Storage bucket name
 
 6. Run the development server:
@@ -348,7 +337,6 @@ To integrate with your React frontend:
 
 - **CORS issues**: Ensure your frontend domain is included in the `BACKEND_CORS_ORIGINS` environment variable
 - **Upload errors**: Check that your Supabase bucket exists and is properly configured
-- **Email sending failures**: Verify your SendGrid API key and sender email
 - **Database errors**: Check your Supabase URL and service role key
 
 ## License

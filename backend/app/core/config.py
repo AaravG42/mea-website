@@ -11,9 +11,6 @@ class Settings(BaseSettings):
     SUPABASE_SERVICE_ROLE_KEY: str
     BACKEND_CORS_ORIGINS: List[str] = []  # e.g. ["https://your-netlify-app.netlify.app"]
     ADMIN_API_KEY: str  # secret for admin endpoints and reminder trigger
-    SENDGRID_API_KEY: str
-    EMAIL_FROM: str  # e.g. "noreply@yourdomain.com"
-    REMINDER_LEAD_HOURS: int = 24  # how many hours before event to send reminder
     # For file uploads:
     STORAGE_BUCKET: str  # Supabase Storage bucket name for file uploads
 

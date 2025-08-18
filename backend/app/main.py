@@ -32,7 +32,6 @@ app.include_router(events.router)
 app.include_router(registrations.router)
 app.include_router(forms.router)
 app.include_router(upload.router)
-app.include_router(reminders.router)
 
 @app.get("/")
 async def root():

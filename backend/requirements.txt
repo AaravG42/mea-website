@@ -7,7 +7,6 @@ pydantic
 pydantic[email]
 pydantic-settings
 jsonschema
-sendgrid
 python-multipart
 
 # Testing dependencies

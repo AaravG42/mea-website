@@ -17,13 +17,13 @@ const Footer = () => {
               The Mechanical Engineering Association (MEA) is the bridge that brings the entire Mechanical family together—students, faculty, and alumni.
             </p>
             <div className="flex space-x-4">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-mea-gold transition-colors">
+              <a href="https://www.instagram.com/mea_iitb/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-mea-gold transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-mea-gold transition-colors">
+              <a href="https://youtube.com/@meaiitbombay?si=598O6mEUT0n6QOju" target="_blank" rel="noopener noreferrer" className="text-white hover:text-mea-gold transition-colors">
                 <Youtube size={20} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-mea-gold transition-colors">
+              <a href="https://www.linkedin.com/company/mea-iit-bombay-linked/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-mea-gold transition-colors">
                 <Linkedin size={20} />
               </a>
             </div>
@@ -47,7 +47,7 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-start">
                 <Mail size={18} className="mr-2 mt-1" />
-                <p>mea@iitb.ac.in</p>
+                <p>gsec@me.iitb.ac.in</p>
               </div>
               <div className="flex items-start">
                 <Phone size={18} className="mr-2 mt-1" />
@@ -63,7 +63,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-300 text-sm">
-          <p>&copy; {new Date().getFullYear()} Mechanical Engineering Association, IIT Bombay. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Mechanical Engineering Association, IIT Bombay.  </p>
         </div>
       </div>
     </footer>

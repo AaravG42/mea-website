@@ -7,8 +7,6 @@ This project integrates a React frontend with a FastAPI + Supabase backend to cr
 - **Event Registration**: Allow users to register for events with customizable forms
 - **Standalone Forms**: Create and submit generic forms not tied to events
 - **File Uploads**: Support file uploads via Supabase Storage
-- **Email Notifications**: Send confirmation emails on form submission
-- **Reminder Emails**: Schedule reminder emails before events
 - **Theming**: Support dark/light mode and custom color accents
 - **Form Pre-filling**: Save and pre-fill form data from localStorage
 
@@ -35,7 +33,6 @@ This project integrates a React frontend with a FastAPI + Supabase backend to cr
 - Node.js 16+ and npm
 - Python 3.10+
 - Supabase account
-- SendGrid account (for emails)
 - Render account (for backend deployment)
 - Netlify account (for frontend deployment)
 
@@ -83,9 +80,7 @@ cp env.template .env
 
 4. Edit the `.env` file with your:
    - Supabase URL and service role key
-   - SendGrid API key
    - Admin API key (create a strong random string)
-   - Email sender address
    - Storage bucket name
    - CORS origins
 
@@ -188,9 +183,6 @@ For more details on testing, see [testing-setup.md](./testing-setup.md).
 4. Set the build command to `pip install -r requirements.txt`
 5. Set the start command to `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 6. Add all required environment variables from your `.env` file
-7. Create a Cron Job on Render to trigger reminder emails:
-   - Schedule: `0 * * * *` (hourly)
-   - Command: `curl -X POST https://your-backend.onrender.com/reminders/send -H "X-ADMIN-API-KEY: ${ADMIN_API_KEY}"`
 
 ## API Endpoints
 
@@ -220,7 +212,6 @@ For more details on testing, see [testing-setup.md](./testing-setup.md).
 ### Other
 
 - `POST /upload`: Upload a file to Supabase Storage
-- `POST /reminders/send`: Trigger sending reminder emails (protected)
 
 ## Troubleshooting
 

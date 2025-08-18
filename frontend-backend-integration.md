@@ -9,8 +9,6 @@ The integration enables:
 - Registering for events with customizable forms
 - Submitting standalone forms
 - File uploads via Supabase Storage
-- Email notifications on submission
-- Scheduled reminder emails before events
 
 ## Setup Instructions
 
@@ -53,7 +51,7 @@ Follow these steps to set up the backend:
    cp env.template .env
    ```
    
-4. Edit the `.env` file with your Supabase credentials, SendGrid API key, and other required variables.
+4. Edit the `.env` file with your Supabase credentials.
 
 5. Run the development server:
    ```bash
@@ -93,7 +91,7 @@ The `DynamicForm` component renders forms based on a schema from the backend. It
 1. User clicks "Register Now" on an event card
 2. User is directed to `/events/:eventId/register`
 3. The form is pre-filled with saved data from localStorage if available
-4. On submission, data is sent to the backend and confirmation email is triggered
+4. On submission, data is sent to the backend.
 
 ### Forms System
 
@@ -130,7 +128,6 @@ The `DynamicForm` component renders forms based on a schema from the backend. It
 - [ ] Form validation works for required fields
 - [ ] File uploads work correctly
 - [ ] Form submissions are saved to the backend
-- [ ] Confirmation emails are sent
 - [ ] Form data is pre-filled from localStorage on return visits
 
 ### Automated Testing
@@ -150,9 +147,7 @@ cd backend
 
 2. **File Upload Issues**: Check Supabase Storage bucket permissions and ensure the backend has the correct service role key.
 
-3. **Email Not Sending**: Verify your SendGrid API key and sender email are correctly set up.
-
-4. **Form Validation Errors**: Check that your form schema matches the validation rules in the backend.
+3. **Form Validation Errors**: Check that your form schema matches the validation rules in the backend.
 
 ## Future Enhancements
 

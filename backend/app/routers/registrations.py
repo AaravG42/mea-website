@@ -3,7 +3,6 @@ from typing import List, Optional
 from app.db.models import RegistrationCreate, RegistrationOut
 from app.db.supabase_client import supabase
 from app.core.security import verify_admin_key
-from app.services.email_service import send_email
 from app.core.config import settings
 from datetime import datetime
 import logging
@@ -116,7 +115,7 @@ async def create_registration(reg: RegistrationCreate):
         
         # Send email asynchronously (fire-and-forget)
         try:
-            send_email(email, subject, html)
+            pass # Removed send_email call
         except Exception as e:
             logger.error(f"Failed to send confirmation email: {str(e)}")
             # Continue even if email fails
