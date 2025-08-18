@@ -124,13 +124,13 @@ const teamData = [
   },
   {
     id: 3,
-    name: "Rihan Ashraf",
-    position: "Chief Secretary - Industrial Outreach",
-    email: "rihanashraf@iitb.ac.in",
-    phone: "9326287348",
-    linkedin: "https://www.linkedin.com/in/rihan-ashraf/",
-    instagram: "https://www.instagram.com/rihan_ash/",
-    bio: "Chief Secretary for Industrial Outreach, dedicated to building strong industry connections and creating opportunities for students through corporate partnerships.",
+    name: "Aditya Udeniya",
+    position: "MEA Chief Secretary",
+    email: "23b2109@iitb.ac.in",
+    phone: "9462222225",
+    linkedin: "https://www.linkedin.com/in/aditya-udeniya-428714290/",
+    instagram: "https://www.instagram.com/only.adii8?igsh=MWY3dTVibHNjY3p5NQ==",
+    bio: "MEA Chief Secretary, leading the Mechanical Engineering Association with strategic vision and ensuring excellence in all departmental activities.",
     image: "/static/media/placeholder.49403b70.jpg"
   },
   {
@@ -179,13 +179,13 @@ const teamData = [
   },
   {
     id: 8,
-    name: "Aditya Udeniya",
-    position: "MEA Chief Secretary",
-    email: "23b2109@iitb.ac.in",
-    phone: "9462222225",
-    linkedin: "https://www.linkedin.com/in/aditya-udeniya-428714290/",
-    instagram: "https://www.instagram.com/only.adii8?igsh=MWY3dTVibHNjY3p5NQ==",
-    bio: "MEA Chief Secretary, leading the Mechanical Engineering Association with strategic vision and ensuring excellence in all departmental activities.",
+    name: "Rihan Ashraf",
+    position: "Chief Secretary - Industrial Outreach",
+    email: "rihanashraf@iitb.ac.in",
+    phone: "9326287348",
+    linkedin: "https://www.linkedin.com/in/rihan-ashraf/",
+    instagram: "https://www.instagram.com/rihan_ash/",
+    bio: "Chief Secretary for Industrial Outreach, dedicated to building strong industry connections and creating opportunities for students through corporate partnerships.",
     image: "/static/media/placeholder.49403b70.jpg"
   },
   {
