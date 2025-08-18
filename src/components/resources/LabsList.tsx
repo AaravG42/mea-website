@@ -9,74 +9,173 @@ import { Search, ExternalLink, MapPin, User, Phone, Wrench } from "lucide-react"
 const labsData = [
   {
     id: 1,
-    name: "Heat Transfer Laboratory",
-    location: "ME Building, Ground Floor",
-    inCharge: "Prof. Amit Kumar",
-    equipment: "Heat Exchangers, Thermal Conductivity Apparatus",
-    contact: "amit@me.iitb.ac.in",
+    name: "Acoustics and Hearing Laboratory",
+    location: "ME Building",
+    inCharge: "Prof Sripriya Ramamoorthy",
+    equipment: "Multi-functional materials, noise cancellation, hearing research",
+    contact: "ramamoor@iitb.ac.in",
     website: "#"
   },
   {
     id: 2,
-    name: "Fluid Mechanics Laboratory",
-    location: "ME Building, First Floor",
-    inCharge: "Prof. Rajesh Sharma",
-    equipment: "Wind Tunnel, Flow Visualization Setup",
-    contact: "rajesh@me.iitb.ac.in",
+    name: "Advanced Mechanical Testing Facility",
+    location: "ME Building",
+    inCharge: "Amber Srivastava",
+    equipment: "Solid state joining, additive manufacturing, thermo-mechanical processing, microscopy",
+    contact: "ashrivastava.me@iitb.ac.in",
     website: "#"
   },
   {
     id: 3,
-    name: "Manufacturing Processes Laboratory",
-    location: "ME Building, Ground Floor",
-    inCharge: "Prof. Sneha Patel",
-    equipment: "CNC Machines, 3D Printers",
-    contact: "sneha@me.iitb.ac.in",
+    name: "Computational Fluid Dynamics Lab",
+    location: "ME Building",
+    inCharge: "Atul Sharma",
+    equipment: "Computational fluid dynamics, multi-phase flows, fluid-structure interaction, energy harvesting",
+    contact: "atulsharma@iitb.ac.in, head.me@iitb.ac.in, (+91)-22-25767505",
     website: "#"
   },
   {
     id: 4,
-    name: "Dynamics and Control Laboratory",
-    location: "ME Building, Second Floor",
-    inCharge: "Prof. Vikram Singh",
-    equipment: "Vibration Test Rigs, Control Systems",
-    contact: "vikram@me.iitb.ac.in",
+    name: "Computational Solid Mechanics Laboratory",
+    location: "ME Building",
+    inCharge: "Parag Tandaiya",
+    equipment: "Mechanical response of materials, finite element method, molecular dynamics, DFT",
+    contact: "parag.ut@iitb.ac.in",
     website: "#"
   },
   {
     id: 5,
-    name: "Materials Testing Laboratory",
-    location: "ME Building, First Floor",
-    inCharge: "Prof. Ananya Desai",
-    equipment: "Universal Testing Machine, Hardness Testers",
-    contact: "ananya@me.iitb.ac.in",
+    name: "Hybrid Additive Manufacturing Laboratory",
+    location: "ME Building",
+    inCharge: "Asim Tiwari",
+    equipment: "Smart manufacturing, additive manufacturing algorithms, 3D microscopy, image analysis",
+    contact: "asim.tewari@iitb.ac.in",
     website: "#"
   },
   {
     id: 6,
-    name: "Computational Mechanics Laboratory",
-    location: "ME Building, Third Floor",
-    inCharge: "Prof. Sanjay Mehta",
-    equipment: "High-Performance Computers, FEA Software",
-    contact: "sanjay@me.iitb.ac.in",
+    name: "Laser Advanced Materials Laboratory",
+    location: "ME Building",
+    inCharge: "Deepak Marla",
+    equipment: "Laser materials processing, micro-manufacturing, numerical process modeling, simulation",
+    contact: "dmarla@iitb.ac.in",
     website: "#"
   },
   {
     id: 7,
-    name: "Robotics and Automation Laboratory",
-    location: "ME Building, Second Floor",
-    inCharge: "Prof. Neha Kapoor",
-    equipment: "Robotic Arms, Automation Systems",
-    contact: "neha@me.iitb.ac.in",
+    name: "Mechanics of Materials Laboratory",
+    location: "ME Building",
+    inCharge: "Krishna Jonnalagadda",
+    equipment: "Mechanical behavior of materials, fracture mechanics, dynamic deformation, thin film mechanics",
+    contact: "krishnajn@iitb.ac.in",
     website: "#"
   },
   {
     id: 8,
-    name: "Thermodynamics Laboratory",
-    location: "ME Building, Ground Floor",
-    inCharge: "Prof. Rahul Gupta",
-    equipment: "IC Engines, Refrigeration Units",
-    contact: "rahul@me.iitb.ac.in",
+    name: "Microstructural Mechanics and Micro-forming Laboratory",
+    location: "ME Building",
+    inCharge: "Asim Tewari, Sushil Mishra",
+    equipment: "Metal-forming, microstructure, materials modeling, additive manufacturing, 4D X-ray microscopy",
+    contact: "asim.tewari@iitb.ac.in, sushil.mishra@iitb.ac.in",
+    website: "#"
+  },
+  {
+    id: 9,
+    name: "Machine Tools Laboratory",
+    location: "ME Building",
+    inCharge: "RK Singh",
+    equipment: "Micromachining, CNC machining, laser micromachining, sustainable microscale manufacturing",
+    contact: "rsingh@iitb.ac.in",
+    website: "#"
+  },
+  {
+    id: 10,
+    name: "National Centre For Aerospace Innovation and Research",
+    location: "ME Building",
+    inCharge: "Asim Tewari",
+    equipment: "Smart manufacturing, additive manufacturing, image analysis, AI in manufacturing",
+    contact: "asim.tewari@iitb.ac.in",
+    website: "#"
+  },
+  {
+    id: 11,
+    name: "Refrigenation, air conditioning and cryogenics lab",
+    location: "ME Building",
+    inCharge: "Milind Atrey",
+    equipment: "Cryocoolers, vapor compression, absorption systems, cooling towers, heat transfer",
+    contact: "matrey@iitb.ac.in, +91-22-2576-7522, +91-22-2572-6875",
+    website: "#"
+  },
+  {
+    id: 12,
+    name: "RAPID MANUFACTURING LABORATORY",
+    location: "ME Building",
+    inCharge: "K P Karunakaran",
+    equipment: "Rapid manufacturing, CNC automation, 3D printing, hybrid layered manufacturing",
+    contact: "karuna@iitb.ac.in",
+    website: "#"
+  },
+  {
+    id: 13,
+    name: "Robotics Laboratory",
+    location: "ME Building",
+    inCharge: "Anirban Guha, Abhishek G, V. Kartik",
+    equipment: "Robotics, human-robot interaction, assistive devices, machine learning in robotics",
+    contact: "anirbanguha1@gmail.com, abhi.gupta@iitb.ac.in, vkartik@iitb.ac.in",
+    website: "#"
+  },
+  {
+    id: 14,
+    name: "Scalable Algorithms and Numerical Methods in Computing Laboratory",
+    location: "ME Building",
+    inCharge: "Shivasubramanian Gopalakrishnan",
+    equipment: "Computational fluid dynamics, multiphase flows, numerical methods, geophysical fluid dynamics",
+    contact: "sgopalak@iitb.ac.in, +91-22-2576-7524",
+    website: "#"
+  },
+  {
+    id: 15,
+    name: "Solid Mechanics Laboratory",
+    location: "ME Building",
+    inCharge: "Nitesh Yelve",
+    equipment: "Vibration analysis, machinery diagnostics, structural health monitoring, composites",
+    contact: "nitesh.yelve@iitb.ac.in",
+    website: "#"
+  },
+  {
+    id: 16,
+    name: "Thermal hydraulics Test facility",
+    location: "ME Building",
+    inCharge: "Janani Sree Murallidharan",
+    equipment: "Multiphase heat transfer, computational fluid dynamics, interface tracking, rod bundle heat transfer",
+    contact: "js.murallidharan@iitb.ac.in",
+    website: "#"
+  },
+  {
+    id: 17,
+    name: "Thermal Science Lab",
+    location: "ME Building",
+    inCharge: "Sandip Kumar Saha",
+    equipment: "SS-PCM for electronics, thermochemical energy storage, Leidenfrost phenomenon simulation",
+    contact: "",
+    website: "#"
+  },
+  {
+    id: 18,
+    name: "Vibrational Spectroscopy Lab",
+    location: "ME Building",
+    inCharge: "Dipanshu Bansal",
+    equipment: "Ultrafast vibrational spectroscopy, DSC/TGA, spectrometer, monochromator",
+    contact: "",
+    website: "#"
+  },
+  {
+    id: 19,
+    name: "Wave and Vibration Engineering (WaVE) Lab",
+    location: "ME Building",
+    inCharge: "Prof. Nitesh Prakash Yelve",
+    equipment: "Vibration analysis, machinery fault diagnosis, product design, vibration reduction",
+    contact: "nitesh.yelve@iitb.ac.in",
     website: "#"
   }
 ];
