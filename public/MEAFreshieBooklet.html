@@ -117,16 +117,39 @@
 </script>
 
 <style>
-/* Hide Heyzine logo elements */
+/* Hide Heyzine logo elements only (do not hide flipbook page images) */
 .logo-backs2,
-img[src*="powered-by-heyzine"],
-img[src*="heyzine"],
-a[href*="heyzine.com"] img {
+img[alt*="PDF to Flipbook"],
+img[src*="powered-by-heyzine"] {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
 }
 </style>
+
+<script type="text/javascript">
+(function(){
+  function hideHeyzineBranding(){
+    var nodes = document.querySelectorAll(
+      'a[href*="heyzine.com"] img.logo-backs2, img.logo-backs2, img[alt*="PDF to Flipbook"], img[src*="powered-by-heyzine"]'
+    );
+    nodes.forEach(function(el){
+      el.style.setProperty('display','none','important');
+      el.style.setProperty('visibility','hidden','important');
+      el.style.setProperty('opacity','0','important');
+      if(el.parentElement && el.parentElement.tagName === 'A' && /heyzine\.com/.test(el.parentElement.getAttribute('href')||'')){
+        el.parentElement.style.setProperty('display','none','important');
+        el.parentElement.style.setProperty('visibility','hidden','important');
+        el.parentElement.style.setProperty('opacity','0','important');
+      }
+    });
+  }
+  var mo = new MutationObserver(hideHeyzineBranding);
+  mo.observe(document.documentElement,{childList:true,subtree:true});
+  if(document.readyState !== 'loading'){ hideHeyzineBranding(); }
+  else { document.addEventListener('DOMContentLoaded', hideHeyzineBranding); }
+})();
+</script>
 
 </head>
 <body style="width: 100vw; height: 100vh" class="vsc-initialized" data-new-gr-c-s-check-loaded="8.933.0" data-gr-ext-installed="">
