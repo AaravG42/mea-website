@@ -4,6 +4,7 @@ import { MenuIcon, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import MEALogo from '@/components/MEALogo';
 import { DarkModeToggle } from './DarkModeToggle';
+import { AppDownloadButton } from './AppDownloadButton';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,13 +42,15 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <div className="ml-2 border-l border-gray-200 dark:border-gray-700 pl-2">
+            <div className="ml-2 border-l border-gray-200 dark:border-gray-700 pl-2 flex items-center gap-2">
+              <AppDownloadButton />
               <DarkModeToggle />
             </div>
           </div>
 
           {/* Mobile Navigation Button */}
           <div className="md:hidden flex items-center space-x-2">
+            <AppDownloadButton />
             <DarkModeToggle />
             <button
               type="button"
