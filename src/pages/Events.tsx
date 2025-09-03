@@ -10,6 +10,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import ChatbotInterface from "@/components/ChatbotInterface";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 // Sample events data with dates and categories
 const eventsData = {
@@ -224,6 +225,8 @@ const Events = () => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedEvent, setSelectedEvent] = useState<any | null>(null);
+  const [expandedEvents, setExpandedEvents] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     const checkMobile = () => {
@@ -264,6 +267,13 @@ const Events = () => {
     return dates;
   };
 
+  const getEventsForDate = (date: Date) => {
+    return [...eventsData.upcoming, ...eventsData.past].filter((event: any) => {
+      const d = new Date(event.date);
+      return d.getDate() === date.getDate() && d.getMonth() === date.getMonth() && d.getFullYear() === date.getFullYear();
+    });
+  };
+
   const eventDates = getEventDates();
 
   const isDateWithEvent = (date: Date) => {
@@ -276,6 +286,18 @@ const Events = () => {
 
   const clearDateFilter = () => {
     setSelectedDate(undefined);
+  };
+
+  const toggleEventExpansion = (eventId: number) => {
+    setExpandedEvents(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(eventId)) {
+        newSet.delete(eventId);
+      } else {
+        newSet.add(eventId);
+      }
+      return newSet;
+    });
   };
 
   const filteredUpcomingEvents = getFilteredEvents("upcoming");
@@ -363,6 +385,127 @@ const Events = () => {
       </div>
     </div>
   );
+
+  const EventCardExpandable = ({ event, isExpanded, onToggle }: { event: any, isExpanded: boolean, onToggle: () => void }) => (
+    <motion.div
+      layout
+      initial={false}
+      animate={{ height: isExpanded ? "auto" : "auto" }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden backdrop-blur-sm shadow-sm"
+    >
+      <div 
+        className="flex flex-col md:flex-row gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-800/80 transition-colors cursor-pointer"
+        onClick={onToggle}
+      >
+        <div className="md:w-1/4 aspect-video md:aspect-auto md:h-32 relative rounded-md overflow-hidden">
+          <img src={event.image} alt={event.title} className="w-full h-full object-cover" loading="lazy" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+          <Badge className={`absolute top-2 left-2 ${getCategoryColor(event.category)}`}>
+            {event.category}
+          </Badge>
+        </div>
+        <div className="md:w-3/4 flex flex-col">
+          <div className="flex items-start justify-between">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100">{event.title}</h3>
+            <motion.div
+              animate={{ rotate: isExpanded ? 180 : 0 }}
+              transition={{ duration: 0.2 }}
+              className="text-amber-500 dark:text-amber-400"
+            >
+              ▼
+            </motion.div>
+          </div>
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-2 line-clamp-2">{event.description}</p>
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">
+            <div className="flex items-center">
+              <CalendarIcon className="h-3 w-3 mr-1 text-amber-500 dark:text-amber-400" />
+              <span>{format(event.date, "MMM d, yyyy")}</span>
+            </div>
+            <div className="flex items-center">
+              <Clock className="h-3 w-3 mr-1 text-amber-500 dark:text-amber-400" />
+              <span>{event.time}</span>
+            </div>
+            <div className="flex items-center">
+              <MapPin className="h-3 w-3 mr-1 text-amber-500 dark:text-amber-400" />
+              <span className="truncate">{event.location}</span>
+            </div>
+            <div className="flex items-center">
+              <Users className="h-3 w-3 mr-1 text-amber-500 dark:text-amber-400" />
+              <span>{event.attendees}/{event.capacity}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <motion.div
+        initial={false}
+        animate={{ 
+          height: isExpanded ? "auto" : 0,
+          opacity: isExpanded ? 1 : 0
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="overflow-hidden"
+      >
+        <div className="px-4 pb-4 border-t border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-800/30">
+          <div className="pt-4">
+            <p className="text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+              {event.description}
+            </p>
+            <div className="flex gap-2">
+              <Button size="sm" className="bg-amber-500 hover:bg-amber-600 text-white transition-colors duration-200" asChild>
+                <Link to={`/events/${event.id}/register`}>Register Now</Link>
+              </Button>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button 
+                      variant="outline" 
+                      size="icon" 
+                      className="shrink-0 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700" 
+                      asChild
+                    >
+                      <a href={event.googleCalendarLink} target="_blank" rel="noopener noreferrer" aria-label="Add to calendar">
+                        <ExternalLink className="h-4 w-4 text-amber-500 dark:text-amber-400" />
+                      </a>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Add to Google Calendar</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+
+  const DayCellContent = (props: any) => {
+    const date: Date = props?.date ?? props?.day ?? props;
+    const eventsForDate = getEventsForDate(date);
+    return (
+      <div className="flex flex-col items-start gap-1 w-full">
+        <div className="text-xs font-medium leading-none">{date.getDate()}</div>
+        {eventsForDate.slice(0, 2).map((ev: any) => (
+          <button
+            key={ev.id}
+            className="text-[10px] leading-snug text-amber-600 dark:text-amber-400 truncate w-full text-left hover:underline"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedEvent(ev);
+            }}
+          >
+            {ev.title}
+          </button>
+        ))}
+        {eventsForDate.length > 2 && (
+          <div className="text-[10px] leading-none text-gray-500 dark:text-gray-400">+{eventsForDate.length - 2} more</div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className="container mx-auto px-4 py-8 sm:py-12">
@@ -495,145 +638,58 @@ const Events = () => {
                 </TabsContent>
                 
                 <TabsContent value="calendar" className="w-full">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div className="lg:col-span-1">
-                      <Card className="border border-gray-200 dark:border-gray-700 shadow-sm">
-                        <CardHeader className="pb-2 border-b border-gray-100 dark:border-gray-800">
-                          <CardTitle className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            {isMobile ? "Select Date" : "Calendar"}
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-4">
-                          {isLoading ? (
-                            <div className="animate-pulse">
-                              <div className="grid grid-cols-7 gap-2 mb-4">
-                                {Array(7).fill(0).map((_, i) => (
-                                  <div key={i} className="h-4 bg-gray-200 dark:bg-gray-700 rounded-md" />
-                                ))}
-                              </div>
-                              <div className="grid grid-cols-7 gap-2">
-                                {Array(35).fill(0).map((_, i) => (
-                                  <div key={i} className="h-8 w-8 bg-gray-200 dark:bg-gray-700 rounded-md" />
-                                ))}
-                              </div>
-                            </div>
-                          ) : (
-                            <Calendar
-                              mode="single"
-                              selected={selectedDate}
-                              onSelect={setSelectedDate}
-                              className="rounded-md border border-gray-200 dark:border-gray-700 p-3 w-full"
-                              modifiers={{
-                                event: (date) => isDateWithEvent(date),
-                              }}
-                              modifiersStyles={{
-                                event: { 
-                                  backgroundColor: 'rgba(245, 158, 11, 0.1)', 
-                                  borderBottom: '2px solid #F59E0B',
-                                  color: 'var(--foreground)',
-                                  fontWeight: 'bold'
-                                }
-                              }}
-                            />
-                          )}
-                          <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
-                            <div className="flex items-center mb-1">
-                              <div className="w-3 h-3 bg-amber-500/20 border-b-2 border-amber-500 rounded-sm mr-2"></div>
-                              <span>Events scheduled</span>
-                            </div>
-                            <p className="mt-2">Click on a date to view events for that day.</p>
+                  <Card className="border border-gray-200 dark:border-gray-700 shadow-sm w-full">
+                    <CardHeader className="pb-2 border-b border-gray-100 dark:border-gray-800">
+                      <CardTitle className="text-lg font-medium text-gray-900 dark:text-gray-100">
+                        Calendar
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-2 sm:p-4 w-full">
+                      {isLoading ? (
+                        <div className="animate-pulse w-full">
+                          <div className="grid grid-cols-7 gap-2 mb-4">
+                            {Array(7).fill(0).map((_, i) => (
+                              <div key={i} className="h-4 bg-gray-200 dark:bg-gray-700 rounded-md" />
+                            ))}
                           </div>
-                          {selectedDate && (
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              className="mt-4 w-full border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800" 
-                              onClick={clearDateFilter}
-                            >
-                              Clear Selection
-                            </Button>
-                          )}
-                        </CardContent>
-                      </Card>
-                    </div>
-                    <div className="lg:col-span-2">
-                      <Card className="border border-gray-200 dark:border-gray-700 shadow-sm h-full">
-                        <CardHeader className="pb-3 border-b border-gray-100 dark:border-gray-800">
-                          <CardTitle className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            {selectedDate ? `Events on ${format(selectedDate, "MMMM d, yyyy")}` : "All Events"}
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-4">
-                          {isLoading ? (
-                            <div className="space-y-4 animate-pulse">
-                              {Array(3).fill(0).map((_, i) => (
-                                <div key={i} className="flex flex-col md:flex-row gap-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
-                                  <div className="md:w-1/4 h-24 bg-gray-200 dark:bg-gray-700 rounded-md" />
-                                  <div className="md:w-3/4">
-                                    <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded-md w-3/4 mb-2" />
-                                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-md w-full mb-3" />
-                                    <div className="flex flex-wrap gap-2">
-                                      {Array(3).fill(0).map((_, j) => (
-                                        <div key={j} className="h-4 bg-gray-200 dark:bg-gray-700 rounded-md w-20" />
-                                      ))}
-                                    </div>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          ) : selectedDate ? (
-                            <div className="space-y-4">
-                              {[...filteredUpcomingEvents, ...filteredPastEvents].length > 0 ? (
-                                [...filteredUpcomingEvents, ...filteredPastEvents].map((event: any) => (
-                                  <EventCardCompact key={event.id} event={event} />
-                                ))
-                              ) : (
-                                <div className="text-center py-10 sm:py-12 bg-gray-50 dark:bg-gray-800/30 rounded-lg border border-gray-200 dark:border-gray-700">
-                                  <CalendarIcon className="h-12 w-12 mx-auto mb-4 text-gray-400 dark:text-gray-600" />
-                                  <p className="text-gray-600 dark:text-gray-400 text-base">No events scheduled for this date.</p>
-                                  <Button 
-                                    variant="outline" 
-                                    size="sm" 
-                                    onClick={clearDateFilter} 
-                                    className="mt-4"
-                                  >
-                                    View All Events
-                                  </Button>
-                                </div>
-                              )}
-                            </div>
-                          ) : (
-                            <div className="space-y-4">
-                              {isLoading ? (
-                                Array(3).fill(0).map((_, i) => (
-                                  <div key={i} className="flex flex-col md:flex-row gap-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
-                                    <div className="md:w-1/4 h-24 bg-gray-200 dark:bg-gray-700 rounded-md" />
-                                    <div className="md:w-3/4">
-                                      <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded-md w-3/4 mb-2" />
-                                      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-md w-full mb-3" />
-                                      <div className="flex flex-wrap gap-2">
-                                        {Array(3).fill(0).map((_, j) => (
-                                          <div key={j} className="h-4 bg-gray-200 dark:bg-gray-700 rounded-md w-20" />
-                                        ))}
-                                      </div>
-                                    </div>
-                                  </div>
-                                ))
-                              ) : [...eventsData.upcoming].length > 0 ? (
-                                [...eventsData.upcoming].slice(0, 3).map((event: any) => (
-                                  <EventCardCompact key={event.id} event={event} />
-                                ))
-                              ) : (
-                                <div className="text-center py-8 sm:py-10 bg-gray-50 dark:bg-gray-800/30 rounded-lg">
-                                  <p className="text-gray-600 dark:text-gray-400 text-base">Select a date to view events for that day.</p>
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </CardContent>
-                      </Card>
-                    </div>
-                  </div>
+                          <div className="grid grid-cols-7 gap-2">
+                            {Array(35).fill(0).map((_, i) => (
+                              <div key={i} className="h-16 bg-gray-200 dark:bg-gray-700 rounded-md" />
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="w-full">
+                          <Calendar
+                            mode="single"
+                            selected={selectedDate}
+                            onSelect={setSelectedDate}
+                            className="rounded-md border border-gray-200 dark:border-gray-700 p-2 sm:p-3 w-full"
+                            classNames={{
+                              months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 w-full",
+                              month: "space-y-4 w-full",
+                              caption: "flex justify-center pt-1 relative items-center",
+                              caption_label: "text-sm font-medium",
+                              nav: "space-x-1 flex items-center",
+                              nav_button: "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100",
+                              nav_button_previous: "absolute left-1",
+                              nav_button_next: "absolute right-1",
+                              table: "w-full border-collapse space-y-1",
+                              head_row: "flex w-full",
+                              head_cell: "text-muted-foreground rounded-md w-full font-normal text-[0.8rem]",
+                              row: "flex w-full mt-2",
+                              cell: "w-full p-1 align-top",
+                              day: "w-full h-20 sm:h-24 md:h-28 lg:h-32 text-left items-start justify-start p-2",
+                              day_selected: "bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-100",
+                            }}
+                            components={{
+                              DayContent: DayCellContent as any,
+                            }}
+                          />
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
                 </TabsContent>
               </motion.div>
             </Tabs>
@@ -641,6 +697,40 @@ const Events = () => {
         </Card>
       </motion.div>
       <ChatbotInterface />
+      <Dialog open={!!selectedEvent} onOpenChange={(open) => !open && setSelectedEvent(null)}>
+        <DialogContent>
+          {selectedEvent && (
+            <div className="space-y-4">
+              <DialogHeader>
+                <DialogTitle>{selectedEvent.title}</DialogTitle>
+                <DialogDescription>
+                  {format(selectedEvent.date, "MMMM d, yyyy")} • {selectedEvent.time}
+                </DialogDescription>
+              </DialogHeader>
+              <img src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-48 object-cover rounded-md" />
+              <p className="text-sm text-gray-700 dark:text-gray-300">{selectedEvent.description}</p>
+              <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-300">
+                <div className="flex items-center">
+                  <MapPin className="h-4 w-4 mr-1 text-amber-500" />
+                  {selectedEvent.location}
+                </div>
+                <div className="flex items-center">
+                  <Users className="h-4 w-4 mr-1 text-amber-500" />
+                  {selectedEvent.attendees}/{selectedEvent.capacity}
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <Button className="bg-amber-500 hover:bg-amber-600 text-white" asChild>
+                  <Link to={`/events/${selectedEvent.id}/register`}>Register Now</Link>
+                </Button>
+                <Button variant="outline" asChild>
+                  <a href={selectedEvent.googleCalendarLink} target="_blank" rel="noopener noreferrer">Add to Calendar</a>
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

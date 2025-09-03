@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { mclImages } from "./mclImages";
 import { badmintonImages } from "./badmintonImages";
@@ -73,6 +73,144 @@ const damanImagesWithAdjustedIds = damanImages.map((img, index) => ({
 
 const galleryImages = [...baseImages, ...mclImagesWithAdjustedIds, ...badmintonImagesWithAdjustedIds, ...damanImagesWithAdjustedIds];
 
+// LazyImage component for optimized image loading
+interface LazyImageProps {
+  src: string;
+  alt: string;
+  description?: string;
+  year?: string;
+  className?: string;
+  onClick?: () => void;
+}
+
+const LazyImage = ({ src, alt, description, year, className, onClick }: LazyImageProps) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const maxRetries = 2;
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '100px', // Increased for better UX
+      }
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+      observerRef.current = observer;
+    }
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
+
+  const handleLoad = () => {
+    setIsLoaded(true);
+  };
+
+  const handleError = () => {
+    if (retryCount < maxRetries) {
+      // Retry loading after a short delay
+      setTimeout(() => {
+        setRetryCount(prev => prev + 1);
+        setHasError(false);
+      }, 1000 * (retryCount + 1));
+    } else {
+      setHasError(true);
+      setIsLoaded(true);
+    }
+  };
+
+  // Generate optimized image URLs
+  const getOptimizedSrc = (originalSrc: string) => {
+    // Check if it's a gallery image that might have an optimized version
+    if (originalSrc.includes('/images/')) {
+      const pathParts = originalSrc.split('/');
+      const filename = pathParts[pathParts.length - 1];
+      const dirname = pathParts[pathParts.length - 2];
+
+      // Return optimized version if available
+      return `/images/optimized/${dirname}/${filename.replace(/\.(jpg|jpeg|png)$/i, '_optimized.jpg')}`;
+    }
+    return originalSrc;
+  };
+
+  const optimizedSrc = getOptimizedSrc(src);
+
+  return (
+    <div
+      ref={imgRef}
+      className={`relative overflow-hidden aspect-square cursor-pointer group ${className}`}
+      onClick={onClick}
+    >
+      {/* Skeleton placeholder */}
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
+          <div className="w-12 h-12 border-4 border-gray-300 border-t-mea-gold rounded-full animate-spin"></div>
+        </div>
+      )}
+
+      {/* Error state */}
+      {hasError && (
+        <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+          <div className="text-center text-gray-500">
+            <svg className="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+            <p className="text-sm">Failed to load image</p>
+          </div>
+        </div>
+      )}
+
+      {/* Actual image */}
+      {isInView && (
+        <img
+          src={optimizedSrc}
+          alt={alt}
+          className={`w-full h-full object-cover transition-all duration-500 ${
+            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+          } group-hover:scale-110`}
+          onLoad={handleLoad}
+          onError={handleError}
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+
+      {/* Retry indicator */}
+      {retryCount > 0 && retryCount < maxRetries && (
+        <div className="absolute top-2 right-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full">
+          Retrying... ({retryCount}/{maxRetries})
+        </div>
+      )}
+
+      {/* Overlay content */}
+      {isLoaded && !hasError && (
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+          <h4 className="text-white font-medium text-sm leading-tight">{alt}</h4>
+          {description && <p className="text-gray-200 text-xs mt-1 line-clamp-2">{description}</p>}
+          {year && <p className="text-gray-300 text-xs mt-1">{year}</p>}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const GalleryGrid = () => {
   const [selectedYear, setSelectedYear] = useState("all");
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -80,6 +218,8 @@ const GalleryGrid = () => {
   const [clickedYear, setClickedYear] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
   const [open, setOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const imagesPerPage = 24; // Show 24 images per page for better performance
 
   const years = ["all", "2023-24", "2024-25", "2025-26"];
   const categories = [
@@ -98,9 +238,26 @@ const GalleryGrid = () => {
     return yearMatch && categoryMatch;
   });
 
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedYear, selectedCategory]);
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredImages.length / imagesPerPage);
+  const startIndex = (currentPage - 1) * imagesPerPage;
+  const endIndex = startIndex + imagesPerPage;
+  const currentImages = filteredImages.slice(startIndex, endIndex);
+
   const handleImageClick = (image: typeof galleryImages[0]) => {
     setSelectedImage(image);
     setOpen(true);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Smooth scroll to top of gallery
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleYearClick = (year: string) => {
@@ -211,26 +368,80 @@ const GalleryGrid = () => {
         </div>
       )}
 
+      {/* Image count display */}
+      <div className="flex justify-center mb-4">
+        <span className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+          Showing {startIndex + 1}-{Math.min(endIndex, filteredImages.length)} of {filteredImages.length} images
+        </span>
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {filteredImages.map(image => (
-          <div 
-            key={image.id} 
-            className="relative overflow-hidden rounded-lg aspect-square cursor-pointer group"
+        {currentImages.map(image => (
+          <LazyImage
+            key={image.id}
+            src={image.src}
+            alt={image.alt}
+            description={image.description}
+            year={image.year}
             onClick={() => handleImageClick(image)}
-          >
-            <img 
-              src={image.src} 
-              alt={image.alt} 
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-              <h4 className="text-white font-medium">{image.alt}</h4>
-              <p className="text-gray-200 text-sm">{image.description}</p>
-              <p className="text-gray-300 text-xs mt-1">{image.year}</p>
-            </div>
-          </div>
+          />
         ))}
       </div>
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="flex justify-center items-center gap-2 mt-8">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="px-3 py-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
+          >
+            Previous
+          </button>
+
+          <div className="flex gap-1">
+            {Array.from({ length: totalPages }, (_, i) => i + 1)
+              .filter(page => {
+                // Show first page, last page, current page, and pages around current
+                return page === 1 ||
+                       page === totalPages ||
+                       (page >= currentPage - 1 && page <= currentPage + 1);
+              })
+              .map((page, index, array) => {
+                // Add ellipsis if there's a gap
+                if (index > 0 && page - array[index - 1] > 1) {
+                  return (
+                    <span key={`ellipsis-${page}`} className="px-2 py-1">
+                      ...
+                    </span>
+                  );
+                }
+
+                return (
+                  <button
+                    key={page}
+                    onClick={() => handlePageChange(page)}
+                    className={`px-3 py-2 rounded-lg border transition-colors ${
+                      currentPage === page
+                        ? 'bg-mea-gold text-white border-mea-gold'
+                        : 'border-gray-300 hover:bg-gray-50'
+                    }`}
+                  >
+                    {page}
+                  </button>
+                );
+              })}
+          </div>
+
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="px-3 py-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
+          >
+            Next
+          </button>
+        </div>
+      )}
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-3xl p-0 overflow-hidden bg-black">

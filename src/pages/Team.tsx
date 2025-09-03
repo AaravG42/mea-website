@@ -190,6 +190,17 @@ const teamData = [
   },
   {
     id: 9,
+    name: "Bharat Gupta",
+    position: "Third Year Class Representative",
+    email: "23b2180@iitb.ac.in",
+    phone: "9888122008",
+    linkedin: null,
+    instagram: null,
+    bio: "Third Year Class Representative, serving as the bridge between third-year students and the department administration.",
+    image: "/static/media/placeholder.49403b70.jpg"
+  },
+  {
+    id: 10,
     name: "Aarav Gupta",
     position: "Web Secretary",
     email: "24b2235@iitb.ac.in",
@@ -200,7 +211,7 @@ const teamData = [
     image: "/static/media/placeholder.49403b70.jpg"
   },
   {
-    id: 10,
+    id: 11,
     name: "Angel Singhvi",
     position: "Second Year Class Representative",
     email: "24b2134@iitb.ac.in",
@@ -208,17 +219,6 @@ const teamData = [
     linkedin: null,
     instagram: null,
     bio: "Second Year Class Representative, working to address the concerns and needs of second-year students while promoting their active participation.",
-    image: "/static/media/placeholder.49403b70.jpg"
-  },
-  {
-    id: 11,
-    name: "Bharat Gupta",
-    position: "Third Year Class Representative",
-    email: "23b2180@iitb.ac.in",
-    phone: "9888122008",
-    linkedin: null,
-    instagram: null,
-    bio: "Third Year Class Representative, serving as the bridge between third-year students and the department administration.",
     image: "/static/media/placeholder.49403b70.jpg"
   },
   {
