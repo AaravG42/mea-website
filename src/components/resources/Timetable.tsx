@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const timetableData = {
   "firstYear": [
@@ -68,10 +70,41 @@ const timetableData = {
   ],
 };
 
+// Helper functions for time calculations
+const timeToMinutes = (time: string): number => {
+  const [hours, minutes] = time.split(':').map(Number);
+  return hours * 60 + minutes;
+};
+
+const minutesToTime = (minutes: number): string => {
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+};
+
+const formatTime = (time: string): string => {
+  const [hours, minutes] = time.split(':').map(Number);
+  const period = hours >= 12 ? 'PM' : 'AM';
+  const displayHours = hours % 12 || 12;
+  return `${displayHours}:${minutes.toString().padStart(2, '0')} ${period}`;
+};
+
 const WeeklyTimetable = () => {
   const [year, setYear] = useState("firstYear");
+  const [isMobile, setIsMobile] = useState(false);
+  const [currentMobileDay, setCurrentMobileDay] = useState(0); // 0 = today, -1 = yesterday, +1 = tomorrow, etc.
 
-  // Get current week Monday date for static week display
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Get current week Monday date for desktop
   const getCurrentWeekMonday = () => {
     const today = new Date();
     const monday = new Date(today);
@@ -79,6 +112,36 @@ const WeeklyTimetable = () => {
     return monday;
   };
 
+  // Get date for mobile view based on currentMobileDay offset
+  const getMobileDate = () => {
+    const today = new Date();
+    const targetDate = new Date(today);
+    targetDate.setDate(today.getDate() + currentMobileDay);
+    return targetDate;
+  };
+
+  // Get day name for mobile view
+  const getMobileDayName = () => {
+    const date = getMobileDate();
+    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return dayNames[date.getDay()];
+  };
+
+  // Generate time slots from 8 AM to 6 PM (30-minute intervals)
+  const generateTimeSlots = () => {
+    const slots = [];
+    for (let minutes = 8 * 60; minutes < 18 * 60; minutes += 30) {
+      slots.push(minutesToTime(minutes));
+    }
+    return slots;
+  };
+
+  // Get events for a specific day
+  const getEventsForDay = (dayName: string) => {
+    return (timetableData as any)[year]?.filter((cls: any) => cls.day === dayName) || [];
+  };
+
+  // Transform events for FullCalendar
   const transformToEvents = () => {
     const mondayDate = getCurrentWeekMonday();
     const dayMap = {
@@ -88,11 +151,11 @@ const WeeklyTimetable = () => {
     return (timetableData as any)[year]?.map((cls: any, index: number) => {
       const eventDate = new Date(mondayDate);
       eventDate.setDate(mondayDate.getDate() + dayMap[cls.day as keyof typeof dayMap]);
-      
+
       const startDateTime = new Date(eventDate);
       const [startHour, startMin] = cls.start.split(':').map(Number);
       startDateTime.setHours(startHour, startMin, 0, 0);
-      
+
       const endDateTime = new Date(eventDate);
       const [endHour, endMin] = cls.end.split(':').map(Number);
       endDateTime.setHours(endHour, endMin, 0, 0);
@@ -107,6 +170,106 @@ const WeeklyTimetable = () => {
         }
       };
     }) || [];
+  };
+
+  // Desktop Week View Component - FullCalendar
+  const DesktopWeekView = () => {
+    return (
+      <div className="weekly-timetable desktop-calendar">
+        <FullCalendar
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+          initialView="timeGridWeek"
+          initialDate={getCurrentWeekMonday()}
+          headerToolbar={false} // Hide all header toolbar
+          dayHeaderFormat={{ weekday: 'long' }} // Show only weekday names (Monday, Tuesday, etc.)
+          events={transformToEvents()}
+          weekends={false}
+          slotMinTime="08:00:00"
+          slotMaxTime="18:00:00"
+          height="auto"
+          expandRows={true}
+          allDaySlot={false}
+          eventContent={(eventInfo) => (
+            <div className="p-1 text-xs">
+              <div className="font-semibold">{eventInfo.event.title}</div>
+              <div className="text-xs opacity-80">{eventInfo.event.extendedProps.room}</div>
+            </div>
+          )}
+        />
+      </div>
+    );
+  };
+
+  // Mobile Day View Component
+  const MobileDayView = () => {
+    const dayName = getMobileDayName();
+    const dayEvents = getEventsForDay(dayName);
+    const date = getMobileDate();
+
+    // Sort events by start time
+    const sortedEvents = dayEvents.sort((a, b) => timeToMinutes(a.start) - timeToMinutes(b.start));
+
+    const isToday = date.toDateString() === new Date().toDateString();
+
+    return (
+      <div className="weekly-timetable mobile-calendar">
+        {/* Mobile navigation header */}
+        <div className="flex items-center justify-between mb-4 p-4 bg-muted rounded-lg">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentMobileDay(prev => prev - 1)}
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+
+          <div className="text-center">
+            <div className={`font-semibold text-lg ${isToday ? 'text-blue-600' : ''}`}>
+              {dayName}
+            </div>
+            <div className={`text-sm ${isToday ? 'text-blue-500' : 'text-muted-foreground'}`}>
+              {date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+            </div>
+          </div>
+
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentMobileDay(prev => prev + 1)}
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+
+        {/* Events list */}
+        <div className="space-y-3">
+          {sortedEvents.length === 0 ? (
+            <div className="text-center py-8 text-muted-foreground">
+              No classes scheduled for {dayName}
+            </div>
+          ) : (
+            sortedEvents.map((event, index) => (
+              <div
+                key={index}
+                className="bg-yellow-500 text-black p-4 rounded-lg shadow-sm"
+              >
+                <div className="flex justify-between items-start mb-2">
+                  <div className="font-semibold text-lg">{event.course}</div>
+                  <div className="text-sm opacity-90">
+                    {formatTime(event.start)} - {formatTime(event.end)}
+                  </div>
+                </div>
+                {event.room && (
+                  <div className="text-sm opacity-90">
+                    📍 {event.room}
+                  </div>
+                )}
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -128,28 +291,7 @@ const WeeklyTimetable = () => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="weekly-timetable">
-          <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView="timeGridWeek"
-            initialDate={getCurrentWeekMonday()}
-            headerToolbar={false} // Hide all header toolbar
-            dayHeaderFormat={{ weekday: 'long' }} // Show only weekday names (Monday, Tuesday, etc.)
-            events={transformToEvents()}
-            weekends={false}
-            slotMinTime="08:00:00"
-            slotMaxTime="18:00:00"
-            height="auto"
-            expandRows={true}
-            allDaySlot={false}
-            eventContent={(eventInfo) => (
-              <div className="p-1 text-xs">
-                <div className="font-semibold">{eventInfo.event.title}</div>
-                <div className="text-xs opacity-80">{eventInfo.event.extendedProps.room}</div>
-              </div>
-            )}
-          />
-        </div>
+        {isMobile ? <MobileDayView /> : <DesktopWeekView />}
       </CardContent>
     </Card>
   );

@@ -11,36 +11,12 @@ export const damanImages = [
     id: 2,
     category: "trip",
     year: "2024-25",
-    src: "/images/daman jpeg/IMG_8828.jpg",
-    alt: "Daman Trip - IMG_8828",
-    description: "Daman Trip"
-  },
-  {
-    id: 3,
-    category: "trip",
-    year: "2024-25",
-    src: "/images/daman jpeg/IMG_8829.jpg",
-    alt: "Daman Trip - IMG_8829",
-    description: "Daman Trip"
-  },
-  {
-    id: 4,
-    category: "trip",
-    year: "2024-25",
-    src: "/images/daman jpeg/IMG_8837.jpg",
-    alt: "Daman Trip - IMG_8837",
-    description: "Daman Trip"
-  },
-  {
-    id: 5,
-    category: "trip",
-    year: "2024-25",
     src: "/images/daman jpeg/IMG_8856.jpg",
     alt: "Daman Trip - IMG_8856",
     description: "Daman Trip"
   },
   {
-    id: 6,
+    id: 3,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_8874.jpg",
@@ -48,7 +24,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 7,
+    id: 4,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_8876.jpg",
@@ -56,7 +32,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 8,
+    id: 5,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_8877.jpg",
@@ -64,15 +40,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 9,
-    category: "trip",
-    year: "2024-25",
-    src: "/images/daman jpeg/IMG_8878.jpg",
-    alt: "Daman Trip - IMG_8878",
-    description: "Daman Trip"
-  },
-  {
-    id: 10,
+    id: 6,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_8891.jpg",
@@ -80,7 +48,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 11,
+    id: 7,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_8892.jpg",
@@ -88,7 +56,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 12,
+    id: 8,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_8893.jpg",
@@ -96,47 +64,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 13,
-    category: "trip",
-    year: "2024-25",
-    src: "/images/daman jpeg/IMG_8896.jpg",
-    alt: "Daman Trip - IMG_8896",
-    description: "Daman Trip"
-  },
-  {
-    id: 14,
-    category: "trip",
-    year: "2024-25",
-    src: "/images/daman jpeg/IMG_8902.jpg",
-    alt: "Daman Trip - IMG_8902",
-    description: "Daman Trip"
-  },
-  {
-    id: 15,
-    category: "trip",
-    year: "2024-25",
-    src: "/images/daman jpeg/IMG_8909.jpg",
-    alt: "Daman Trip - IMG_8909",
-    description: "Daman Trip"
-  },
-  {
-    id: 16,
-    category: "trip",
-    year: "2024-25",
-    src: "/images/daman jpeg/IMG_8915.jpg",
-    alt: "Daman Trip - IMG_8915",
-    description: "Daman Trip"
-  },
-  {
-    id: 17,
-    category: "trip",
-    year: "2024-25",
-    src: "/images/daman jpeg/IMG_8940.jpg",
-    alt: "Daman Trip - IMG_8940",
-    description: "Daman Trip"
-  },
-  {
-    id: 18,
+    id: 9,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_8966.jpg",
@@ -144,7 +72,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 19,
+    id: 10,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_8973.jpg",
@@ -152,7 +80,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 20,
+    id: 11,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_8974.jpg",
@@ -160,7 +88,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 21,
+    id: 12,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_8975.jpg",
@@ -168,7 +96,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 22,
+    id: 13,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_8998.jpg",
@@ -176,7 +104,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 23,
+    id: 14,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9036.jpg",
@@ -184,7 +112,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 24,
+    id: 15,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9041.jpg",
@@ -192,7 +120,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 25,
+    id: 16,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9057.jpg",
@@ -200,7 +128,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 26,
+    id: 17,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9062.jpg",
@@ -208,7 +136,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 27,
+    id: 18,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9077.jpg",
@@ -216,7 +144,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 28,
+    id: 19,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9078.jpg",
@@ -224,7 +152,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 29,
+    id: 20,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9080.jpg",
@@ -232,7 +160,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 30,
+    id: 21,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9081.jpg",
@@ -240,7 +168,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 31,
+    id: 22,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9083.jpg",
@@ -248,7 +176,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 32,
+    id: 23,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9084.jpg",
@@ -256,7 +184,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 33,
+    id: 24,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9085.jpg",
@@ -264,7 +192,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 34,
+    id: 25,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9090.jpg",
@@ -272,7 +200,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 35,
+    id: 26,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9093.jpg",
@@ -280,7 +208,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 36,
+    id: 27,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9094.jpg",
@@ -288,7 +216,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 37,
+    id: 28,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9097.jpg",
@@ -296,7 +224,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 38,
+    id: 29,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9098.jpg",
@@ -304,7 +232,7 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 39,
+    id: 30,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9099.jpg",
@@ -312,27 +240,11 @@ export const damanImages = [
     description: "Daman Trip"
   },
   {
-    id: 40,
+    id: 31,
     category: "trip",
     year: "2024-25",
     src: "/images/daman jpeg/IMG_9103.jpg",
     alt: "Daman Trip - IMG_9103",
-    description: "Daman Trip"
-  },
-  {
-    id: 41,
-    category: "trip",
-    year: "2024-25",
-    src: "/images/daman jpeg/IMG_9104.jpg",
-    alt: "Daman Trip - IMG_9104",
-    description: "Daman Trip"
-  },
-  {
-    id: 42,
-    category: "trip",
-    year: "2024-25",
-    src: "/images/daman jpeg/IMG_9106.jpg",
-    alt: "Daman Trip - IMG_9106",
     description: "Daman Trip"
   },
 ];
