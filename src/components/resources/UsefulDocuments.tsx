@@ -40,7 +40,7 @@ const documents = {
       url: "#"
     }
   ],
-  "research": [
+  /*"research": [
     {
       id: 5,
       title: "Research Labs Overview",
@@ -65,8 +65,8 @@ const documents = {
       updated: "May 30, 2023",
       url: "#"
     }
-  ],
-  "technical": [
+  ],*/
+  /*"technical": [
     {
       id: 8,
       title: "CAD Software Installation Guide",
@@ -91,7 +91,7 @@ const documents = {
       updated: "Jun 5, 2023",
       url: "#"
     }
-  ],
+  ],*/
   "forms": [
     {
       id: 11,
@@ -140,7 +140,7 @@ const renderIcon = (docType: string) => {
 };
 
 const UsefulDocuments = () => {
-  const [activeTab, setActiveTab] = useState("academic");
+  const [activeTab, setActiveTab] = useState("academic"); // Default to academic since research and technical are commented out
 
   return (
     <Card className="w-full">
@@ -152,19 +152,23 @@ const UsefulDocuments = () => {
       </CardHeader>
       <CardContent className="px-3 sm:px-6">
         <Tabs defaultValue="academic" onValueChange={setActiveTab}>
-          <TabsList className="grid grid-cols-4 mb-4 sm:mb-6 text-[11px] sm:text-xs">
+          <TabsList className="grid grid-cols-2 mb-4 sm:mb-6 text-[11px] sm:text-xs">
             <TabsTrigger value="academic" className="flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5">
               <BookOpen className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               <span className="inline text-[10px] sm:text-xs">Academic</span>
             </TabsTrigger>
+            {/* Research tab commented out
             <TabsTrigger value="research" className="flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5">
               <GraduationCap className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               <span className="inline text-[10px] sm:text-xs">Research</span>
             </TabsTrigger>
+            */}
+            {/* Technical tab commented out
             <TabsTrigger value="technical" className="flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5">
               <Wrench className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               <span className="inline text-[10px] sm:text-xs">Technical</span>
             </TabsTrigger>
+            */}
             <TabsTrigger value="forms" className="flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5">
               <FileEdit className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               <span className="inline text-[10px] sm:text-xs">Forms</span>

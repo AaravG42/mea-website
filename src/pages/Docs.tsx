@@ -35,7 +35,7 @@ const docsData = {
     }
   ],
   guidelines: [
-    {
+    /*{
       id: 5,
       title: "Project-based Course Guidelines",
       content: "These guidelines provide information on how project-based courses are structured and evaluated in the Mechanical Engineering Department.",
@@ -46,7 +46,7 @@ const docsData = {
       title: "UGAC Booklets",
       content: "UGAC (Undergraduate Academic Committee) booklets containing information on undergraduate academic matters.",
       pdfUrl: "https://lnk.bio/CareerCell"
-    },
+    },*/
     {
       id: 7,
       title: "Univ Intern Booklet",
@@ -71,7 +71,7 @@ const docsData = {
       id: 10,
       title: "DCAMP Previous Year Resume Repos",
       content: "Repository of resumes from previous years' DCAMP (Department Campus Placement) activities.",
-      pdfUrl: "#"
+      pdfUrl: "https://drive.google.com/drive/u/2/folders/1pVUY2o7LxqjIvjODknqTudbHCw6YNJ7O"
     },
     {
       id: 11,
@@ -97,7 +97,7 @@ const docsData = {
 const Docs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeDoc, setActiveDoc] = useState<any>(null);
-  const [activeCategory, setActiveCategory] = useState("rulebooks");
+  const [activeCategory, setActiveCategory] = useState("rulebooks"); // Default to rulebooks since misc is commented out
   const [showSidebar, setShowSidebar] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -164,15 +164,15 @@ const Docs = () => {
         <CardHeader>
           <CardTitle className="text-2xl sm:text-3xl">Documentation</CardTitle>
           <CardDescription>
-            Access rulebooks, guidelines, and miscellaneous documents
+            Access rulebooks and guidelines
           </CardDescription>
         </CardHeader>
         <CardContent className="px-3 sm:px-6">
           <Tabs value={activeCategory} onValueChange={handleCategoryChange}>
-            <TabsList className="grid w-full grid-cols-3 mb-6 sm:mb-8 text-xs sm:text-sm">
+            <TabsList className="grid w-full grid-cols-2 mb-6 sm:mb-8 text-xs sm:text-sm">
               <TabsTrigger value="rulebooks">Rulebooks</TabsTrigger>
               <TabsTrigger value="guidelines">Guidelines</TabsTrigger>
-              <TabsTrigger value="miscellaneous">Misc</TabsTrigger>
+              {/* <TabsTrigger value="miscellaneous">Misc</TabsTrigger> */}
             </TabsList>
             
             <div className="mb-6">

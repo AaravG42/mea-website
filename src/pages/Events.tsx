@@ -17,16 +17,16 @@ const eventsData = {
   upcoming: [
     {
       id: 1,
-      title: "Technical Workshop: Advanced CAD Modeling",
-      date: new Date(2024, 4, 20),
-      time: "14:00 - 17:00",
-      location: "ME Building, Room 201",
+      title: "Mechanza – An Old Money Extravaganza",
+      date: new Date(2025, 8, 29), // September 29, 2025
+      time: "18:00 - 22:00",
+      location: "LT-PCSA",
       attendees: 0,
-      capacity: 50,
-      image: "/lovable-uploads/f4aa4742-2202-46f3-9eec-cefb01abd89b.png",
-      description: "Learn advanced CAD modeling techniques from industry experts to enhance your design skills. This hands-on workshop will cover parametric modeling, assembly design, and simulation techniques.",
-      category: "Workshop",
-      googleCalendarLink: "https://calendar.google.com/calendar/u/0/r/eventedit?text=MEA+Workshop&dates=20250520T140000Z/20250520T170000Z&location=ME+Building,+Room+201&pli=1"
+      capacity: 150,
+      image: "/lovable-uploads/mechanza25.jpg",
+      description: "The most anticipated soirée of your freshie year ✨, where sophistication meets celebration and first encounters turn into lasting connections. Dress in your finest 👗🕴️ and step into an evening of elegance, conversation, and unforgettable memories. Dress code: Old Money 🥂💨",
+      category: "Social",
+      googleCalendarLink: "https://calendar.google.com/calendar/u/0/r/eventedit?text=Mechanza+–+An+Old+Money+Extravaganza&dates=20250929T180000Z/20250929T220000Z&location=LT-PCSA&pli=1"
     },
     {
       id: 2,
@@ -43,16 +43,16 @@ const eventsData = {
     },
     {
       id: 3,
-      title: "Industrial Visit: Tata Motors",
-      date: new Date(2024, 6, 15),
-      time: "08:00 - 18:00",
-      location: "Tata Motors, Pune",
+      title: "MECHANICAL CRICKET LEAGUE",
+      date: new Date(2025, 2, 15), // March 15, 2025
+      time: "09:00 - 17:00",
+      location: "H14 GROUNDS",
       attendees: 0,
-      capacity: 60,
-      image: "/lovable-uploads/e3fd6b91-d6bc-45ef-8ccf-7fd7292b928d.png",
-      description: "Explore manufacturing processes and automation systems at the Tata Motors facility in Pune. This visit will provide insights into automotive manufacturing, quality control, and supply chain management.",
-      category: "Visit",
-      googleCalendarLink: "#"
+      capacity: 100,
+      image: "/lovable-uploads/mcl.jpeg",
+      description: "Expect brutal sixes, heartbreaking run-outs, and at least one guy dramatically diving for a ball he had zero chance of catching. Will there be glory? Yes. Will there be bruised egos? Absolutely. Will you regret missing this? 100%. So show up, scream your lungs out, and witness history.",
+      category: "Competition",
+      googleCalendarLink: "https://calendar.google.com/calendar/u/0/r/eventedit?text=MECHANICAL+CRICKET+LEAGUE&dates=20250315T090000Z/20250315T170000Z&location=H14+GROUNDS&pli=1"
     }
   ],
   past: [
