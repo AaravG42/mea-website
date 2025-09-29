@@ -10,11 +10,28 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const timetableData = {
   "firstYear": [
-    { course: "ME 101", room: "LH 101", day: "Monday", start: "08:30", end: "09:30" },
-    { course: "ME 103", room: "LH 102", day: "Monday", start: "09:30", end: "10:30" },
-    { course: "ME 105", room: "LH 103", day: "Monday", start: "10:30", end: "11:30" },
-    { course: "ME Lab", room: "Lab 1", day: "Monday", start: "14:00", end: "16:00" },
-    // ... rest of your data
+  // Monday
+  { course: "MA105", room: "LA201", day: "Monday", start: "08:30", end: "09:25" },
+  { course: "MS101 Lecture", room: "LA201", day: "Monday", start: "10:35", end: "11:30" },
+  { course: "ME103", room: "LA201", day: "Monday", start: "11:35", end: "12:30" },
+  { course: "CH117 (P3)", room: "", day: "Monday", start: "14:00", end: "16:55" },
+
+  // Tuesday
+  { course: "ME103", room: "LA201", day: "Tuesday", start: "08:30", end: "09:25" },
+  { course: "MA105", room: "LA201", day: "Tuesday", start: "09:30", end: "10:25" },
+  { course: "MS101 Lab (P3)", room: "", day: "Tuesday", start: "14:00", end: "16:55" },
+
+  // Wednesday
+  { course: "BB101", room: "LH302", day: "Wednesday", start: "11:05", end: "12:30" },
+
+  // Thursday
+  { course: "BB101 (Tutorial)", room: "", day: "Thursday", start: "08:30", end: "09:25" },
+  { course: "ME103", room: "LA201", day: "Thursday", start: "09:30", end: "10:25" },
+  { course: "MA105", room: "LA201", day: "Thursday", start: "10:35", end: "11:30" },
+
+  // Friday
+  { course: "BB101", room: "LH302", day: "Friday", start: "11:05", end: "12:30" },
+  { course: "MS101 Lab (P3)", room: "", day: "Friday", start: "14:00", end: "16:55" }
   ],
   "secondYear": [
     // Monday

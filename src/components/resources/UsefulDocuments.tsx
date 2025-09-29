@@ -9,11 +9,11 @@ const documents = {
   "academic": [
     {
       id: 1,
-      title: "Curriculum Handbook 2023-24",
+      title: "UG curriculum 2024 onwards",
       type: "PDF",
       size: "2.4 MB",
       updated: "Aug 15, 2023",
-      url: "#"
+      url: "https://www.me.iitb.ac.in/sites/default/files/UG-Curriculum-Mechanical-2024Batch-Onwards-Aug-2025.pdf"
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ const documents = {
       type: "PDF",
       size: "1.1 MB",
       updated: "Jul 20, 2023",
-      url: "#"
+      url: "https://acad.iitb.ac.in/files/Academic%20Calendar%202025-26_FINAL.pdf"
     },
     {
       id: 3,

@@ -166,7 +166,7 @@ const labsData = [
     location: "ME Building",
     inCharge: "Dipanshu Bansal",
     equipment: "Ultrafast vibrational spectroscopy, DSC/TGA, spectrometer, monochromator",
-    contact: "",
+    contact: "dipanshu@iitb.ac.in",
     website: "#"
   },
   {
