@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { FileText, Download, BookOpen, GraduationCap, Wrench, FileEdit } from "lucide-react";
+import { FileText, Download, BookOpen, GraduationCap, Wrench, FileEdit, Folder, ExternalLink } from "lucide-react";
 import { useState } from "react";
 
 // Sample document data
@@ -23,21 +23,29 @@ const documents = {
       updated: "Jul 20, 2023",
       url: "https://acad.iitb.ac.in/files/Academic%20Calendar%202025-26_FINAL.pdf"
     },
+    // {
+    //   id: 3,
+    //   title: "Course Registration Guide",
+    //   type: "PDF",
+    //   size: "3.7 MB",
+    //   updated: "Jul 25, 2023",
+    //   url: "#"
+    // },
     {
       id: 3,
-      title: "Course Registration Guide",
-      type: "PDF",
-      size: "3.7 MB",
-      updated: "Jul 25, 2023",
-      url: "#"
+      title: "Mech Sophomore Resume Repository",
+      type: "FOLDER",
+      size: "Google Drive",
+      updated: "May 2024",
+      url: "https://drive.google.com/drive/folders/1pVUY2o7LxqjIvjODknqTudbHCw6YNJ7O?usp=drive_link"
     },
     {
       id: 4,
-      title: "Examination Rules",
-      type: "PDF",
-      size: "1.8 MB",
+      title: "Previous Exam Papers",
+      type: "FOLDER",
+      size: "Google Drive",
       updated: "Aug 5, 2023",
-      url: "#"
+      url: "https://drive.google.com/drive/u/2/folders/1RHMC_CEmf-EYcWtf2b6Uij2wdHKd3NHL"
     }
   ],
   /*"research": [
@@ -95,35 +103,11 @@ const documents = {
   "forms": [
     {
       id: 11,
-      title: "Lab Access Request Form",
-      type: "DOCX",
-      size: "0.8 MB",
-      updated: "Aug 1, 2023",
-      url: "#"
-    },
-    {
-      id: 12,
-      title: "Equipment Requisition Form",
-      type: "DOCX",
-      size: "0.7 MB",
-      updated: "Jul 15, 2023",
-      url: "#"
-    },
-    {
-      id: 13,
-      title: "Internship Application Form",
-      type: "DOCX",
-      size: "1.2 MB",
-      updated: "Jun 20, 2023",
-      url: "#"
-    },
-    {
-      id: 14,
-      title: "Leave Application",
-      type: "DOCX",
-      size: "0.5 MB",
-      updated: "May 10, 2023",
-      url: "#"
+      title: "Student Application Form",
+      type: "PDF",
+      size: "0.2 MB",
+      updated: "Dec 2024",
+      url: "https://acad.iitb.ac.in/files/Studentsapplicationnewform_0.pdf"
     }
   ]
 };
@@ -134,6 +118,8 @@ const renderIcon = (docType: string) => {
       return <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-red-500" />;
     case "DOCX":
       return <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-blue-500" />;
+    case "FOLDER":
+      return <Folder className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-500" />;
     default:
       return <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500" />;
   }
@@ -194,9 +180,13 @@ const UsefulDocuments = () => {
                         </div>
                       </div>
                       <Button size="sm" variant="ghost" className="flex-shrink-0 text-xs sm:text-sm h-8 sm:h-9" asChild>
-                        <a href={doc.url} download>
-                          <Download className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
-                          <span className="whitespace-nowrap">Download</span>
+                        <a href={doc.url} target={doc.type === "FOLDER" ? "_blank" : undefined} rel={doc.type === "FOLDER" ? "noopener noreferrer" : undefined} download={doc.type !== "FOLDER"}>
+                          {doc.type === "FOLDER" ? (
+                            <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
+                          ) : (
+                            <Download className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
+                          )}
+                          <span className="whitespace-nowrap">{doc.type === "FOLDER" ? "Open" : "Download"}</span>
                         </a>
                       </Button>
                     </div>

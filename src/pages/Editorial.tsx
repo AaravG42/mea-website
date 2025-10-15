@@ -56,10 +56,11 @@ const blogPosts = [
 const newslettersData = [
   {
     id: 1,
-    title: "Mechanical Department Newsletter",
-    content: "Recap of events, research highlights, and department news from 2024-25.",
-    date: "January 30, 2025",
-    pdfUrl: "https://drive.google.com/file/d/1Zx7aC9RrW5fsqRwObe40cp3YY7f-_b0b/preview"
+    title: "Freshie Booklet 25-26",
+    content: "Everything a UG freshman needs to get started in the Institute - comprehensive guide for new students.",
+    date: "August 2025",
+    pdfUrl: "https://heyzine.com/flip-book/28c00a021d.html",
+    isFlipbook: true
   },
   {
     id: 2,
@@ -271,15 +272,28 @@ const Editorial = () => {
                         
                         {activeNewsletter.pdfUrl !== "#" ? (
                           <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] border rounded overflow-hidden">
-                            <iframe 
-                              src={getEmbedUrl(activeNewsletter.pdfUrl)} 
-                              width="100%" 
-                              height="100%" 
-                              allow="autoplay"
-                              className="border-0"
-                              loading="lazy"
-                              title={activeNewsletter.title}
-                            ></iframe>
+                            {activeNewsletter.isFlipbook ? (
+                              <iframe 
+                                src={activeNewsletter.pdfUrl} 
+                                width="100%" 
+                                height="100%" 
+                                allow="autoplay"
+                                className="border-0"
+                                loading="lazy"
+                                title={activeNewsletter.title}
+                                style={{ border: 'none' }}
+                              ></iframe>
+                            ) : (
+                              <iframe 
+                                src={getEmbedUrl(activeNewsletter.pdfUrl)} 
+                                width="100%" 
+                                height="100%" 
+                                allow="autoplay"
+                                className="border-0"
+                                loading="lazy"
+                                title={activeNewsletter.title}
+                              ></iframe>
+                            )}
                           </div>
                         ) : (
                           <div className="w-full h-[250px] sm:h-[350px] md:h-[450px] border rounded bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
