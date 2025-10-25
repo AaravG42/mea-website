@@ -109,7 +109,7 @@ const teamData = [
     linkedin: null,
     instagram: null,
     bio: "Department General Secretary of MEA, responsible for overseeing all departmental activities and ensuring smooth coordination between various committees.",
-    image: "/static/media/placeholder.49403b70.jpg"
+    image: "/members/Tanmay_photo.jpg"
   },
   {
     id: 2,
@@ -131,7 +131,7 @@ const teamData = [
     linkedin: "https://www.linkedin.com/in/aditya-udeniya-428714290/",
     instagram: "https://www.instagram.com/only.adii8?igsh=MWY3dTVibHNjY3p5NQ==",
     bio: "MEA Chief Secretary, leading the Mechanical Engineering Association with strategic vision and ensuring excellence in all departmental activities.",
-    image: "/static/media/placeholder.49403b70.jpg"
+    image: "/members/Aditya.jpg"
   },
   {
     id: 4,
@@ -175,7 +175,7 @@ const teamData = [
     linkedin: "https://www.linkedin.com/in/avinash-chauhan-1426b71b3",
     instagram: "https://www.instagram.com/avirsingh7801?igsh=MTlpcXFuODAzdjhzNA==",
     bio: "PG Sports Secretary, organizing sports activities specifically for postgraduate students and promoting physical fitness among the PG community.",
-    image: "/static/media/placeholder.49403b70.jpg"
+    image: "/members/Avi.JPG"
   },
   {
     id: 8,
@@ -241,7 +241,7 @@ const teamData = [
     linkedin: "www.linkedin.com/in/mitesh-ruhela-0126592b5",
     instagram: null,
     bio: "Sports Secretary, promoting sports activities and organizing athletic events to encourage physical fitness and team spirit among students.",
-    image: "/static/media/placeholder.49403b70.jpg"
+    image: "/members/Mitesh. jpg.jpg"
   },
   {
     id: 14,
@@ -307,7 +307,7 @@ const teamData = [
     linkedin: "https://www.linkedin.com/in/srikrishnamourya-karunakaram-467b04314/",
     instagram: null,
     bio: "Associate Secretary, working closely with the core team to ensure smooth operations and effective coordination of all MEA activities.",
-    image: "/static/media/placeholder.49403b70.jpg"
+    image: "/members/Srikrishna.jpg"
   },
   {
     id: 20,
@@ -318,7 +318,7 @@ const teamData = [
     linkedin: "https://www.linkedin.com/in/varad-padhye-60743a329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "https://www.instagram.com/varad_padhye_21?igsh=ajlpcDVrZWRha2xk",
     bio: "Media Secretary, managing all media-related activities including photography, videography, and social media presence for MEA events.",
-    image: "/static/media/placeholder.49403b70.jpg"
+    image: "/members/varad.jpg"
   },
   {
     id: 21,
@@ -355,7 +355,14 @@ const TeamMemberCard = ({ member }: { member: any }) => {
           <CardContent className="p-6 flex flex-col items-center justify-center h-full">
             <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-2 border-transparent hover:border-mea-gold transition-all duration-300">
               <Avatar className="w-full h-full">
-                <AvatarImage src={member.image} alt={member.name} className="object-cover" />
+                <AvatarImage 
+                  src={member.image} 
+                  alt={member.name} 
+                  className={`object-cover ${
+                    member.name === "Varad Vinay Padhye" ? "object-top" :
+                    member.name === "Avinash Chauhan" ? "object-top" : ""
+                  }`}
+                />
                 <AvatarFallback>
                   <UserRound className="w-12 h-12 text-muted-foreground" />
                 </AvatarFallback>
