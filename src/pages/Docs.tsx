@@ -81,15 +81,17 @@ const docsData = {
     },
     {
       id: 12,
-      title: "Student Application Form",
-      content: "Application forms for various student programs, scholarships, and activities in the department.",
-      pdfUrl: "#"
-    },
-    {
-      id: 13,
       title: "Retagging norms",
       content: "Guidelines for the retagging process for courses and academic records.",
       pdfUrl: "#"
+    }
+  ],
+  forms: [
+    {
+      id: 14,
+      title: "Student Application Form",
+      // content: "Application forms for various student programs, scholarships, and activities in the department.",
+      pdfUrl: "https://acad.iitb.ac.in/files/Studentsapplicationnewform_0.pdf"
     }
   ]
 };
@@ -169,9 +171,10 @@ const Docs = () => {
         </CardHeader>
         <CardContent className="px-3 sm:px-6">
           <Tabs value={activeCategory} onValueChange={handleCategoryChange}>
-            <TabsList className="grid w-full grid-cols-2 mb-6 sm:mb-8 text-xs sm:text-sm">
+            <TabsList className="grid w-full grid-cols-3 mb-6 sm:mb-8 text-xs sm:text-sm">
               <TabsTrigger value="rulebooks">Rulebooks</TabsTrigger>
               <TabsTrigger value="guidelines">Guidelines</TabsTrigger>
+              <TabsTrigger value="forms">Forms</TabsTrigger>
               {/* <TabsTrigger value="miscellaneous">Misc</TabsTrigger> */}
             </TabsList>
             
@@ -245,17 +248,32 @@ const Docs = () => {
                       <p className="text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">{activeDoc.content}</p>
                       
                       {activeDoc.pdfUrl !== "#" ? (
-                        <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] border rounded overflow-hidden">
-                          <iframe 
-                            src={getEmbedUrl(activeDoc.pdfUrl)} 
-                            width="100%" 
-                            height="100%" 
-                            allow="autoplay"
-                            className="border-0"
-                            loading="lazy"
-                            title={activeDoc.title}
-                          ></iframe>
-                        </div>
+                        activeCategory === "forms" ? (
+                          <div className="flex items-center justify-center p-6 border rounded-lg bg-gray-50 dark:bg-gray-800">
+                            <div className="text-center">
+                              <FileText className="h-12 w-12 mx-auto mb-4 text-mea-gold" />
+                              <h3 className="text-lg font-semibold mb-2">Download Form</h3>
+                              <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm">Click the button below to download or open the form</p>
+                              <Button asChild className="bg-mea-gold hover:bg-mea-gold/90 text-black">
+                                <a href={activeDoc.pdfUrl} target="_blank" rel="noopener noreferrer">
+                                  Download Form
+                                </a>
+                              </Button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] border rounded overflow-hidden">
+                            <iframe
+                              src={getEmbedUrl(activeDoc.pdfUrl)}
+                              width="100%"
+                              height="100%"
+                              allow="autoplay"
+                              className="border-0"
+                              loading="lazy"
+                              title={activeDoc.title}
+                            ></iframe>
+                          </div>
+                        )
                       ) : (
                         <div className="w-full h-[250px] sm:h-[350px] md:h-[450px] border rounded bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
                           <div className="text-center p-4">

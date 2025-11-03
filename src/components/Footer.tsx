@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Youtube, Linkedin, Mail, Phone } from 'lucide-react';
+import { Instagram, Youtube, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 import MEALogo from './MEALogo';
 
 const Footer = () => {
@@ -47,17 +47,20 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-start">
                 <Mail size={18} className="mr-2 mt-1" />
-                <p>gsec@me.iitb.ac.in</p>
+                <a href="mailto:gsec@me.iitb.ac.in" className="hover:text-mea-gold transition-colors">gsec@me.iitb.ac.in</a>
               </div>
               <div className="flex items-start">
                 <Phone size={18} className="mr-2 mt-1" />
-                <p>+91 9876543210</p>
+                <div>
+                  <p className="font-medium">Tanmay Kulkarni</p>
+                  <p className="text-sm text-gray-300">Department General Secretary</p>
+                  <a href="tel:+918380983079" className="hover:text-mea-gold transition-colors">+91 83809 83079</a>
+                </div>
               </div>
-              <address className="not-italic">
-                Mechanical Engineering Building,<br />
-                IIT Bombay, Powai,<br />
-                Mumbai - 400076
-              </address>
+              <a href="https://www.google.com/maps/place/Department+of+Mechanical+Engineering/data=!4m2!3m1!1s0x0:0x900c3067fb8a0e4d?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" className="flex items-start hover:text-mea-gold transition-colors">
+                <MapPin size={18} className="mr-2 mt-1 flex-shrink-0" />
+                <span>Department of Mechanical Engineering, IIT Bombay, Powai, Mumbai - 400076</span>
+              </a>
             </div>
           </div>
         </div>

@@ -16,7 +16,7 @@ const AboutSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card className="floating-card dark:bg-gray-800 dark:border-gray-700">
             <CardContent className="pt-6">
               <h3 className="text-2xl font-semibold text-mea-gold mb-4 text-center">Values</h3>
@@ -43,7 +43,7 @@ const AboutSection = () => {
               </p>
             </CardContent>
           </Card>
-        </div>
+        </div> */}
       </div>
     </section>
   );

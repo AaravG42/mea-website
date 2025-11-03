@@ -17,82 +17,108 @@ const eventsData = {
   upcoming: [
     {
       id: 1,
-      title: "Mechanza – An Old Money Extravaganza",
-      date: new Date(2025, 8, 29), // September 29, 2025
-      time: "18:00 - 22:00",
-      location: "LT-PCSA",
+      title: "Badminton League",
+      date: new Date(2025, 11, 15), // December 15, 2025
+      time: "14:00 - 18:00",
+      location: "ME Sports Complex",
       attendees: 0,
-      capacity: 150,
-      image: "/lovable-uploads/mechanza25.jpg",
-      description: "The most anticipated soirée of your freshie year ✨, where sophistication meets celebration and first encounters turn into lasting connections. Dress in your finest 👗🕴️ and step into an evening of elegance, conversation, and unforgettable memories. Dress code: Old Money 🥂💨",
-      category: "Social",
-      googleCalendarLink: "https://calendar.google.com/calendar/u/0/r/eventedit?text=Mechanza+–+An+Old+Money+Extravaganza&dates=20250929T180000Z/20250929T220000Z&location=LT-PCSA&pli=1"
+      capacity: 64,
+      image: "/lovable-uploads/badmintonleague.jpeg",
+      description: "Join our exciting badminton league where mechanical engineers showcase their athletic prowess alongside their technical skills. Compete in thrilling matches and experience the perfect blend of sports and engineering spirit!",
+      category: "Competition",
+      googleCalendarLink: "https://calendar.google.com/calendar/u/0/r/eventedit?text=Badminton+League&dates=20251215T140000Z/20251215T180000Z&location=ME+Sports+Complex&pli=1"
     },
     {
       id: 2,
-      title: "Annual Mechanical Day Celebration",
-      date: new Date(2024, 5, 10),
-      time: "10:00 - 18:00",
-      location: "ME Department Lawn",
+      title: "Merch Launch",
+      date: new Date(2025, 11, 20), // December 20, 2025
+      time: "16:00 - 20:00",
+      location: "ME Department Plaza",
       attendees: 0,
-      capacity: 200,
+      capacity: 150,
       image: "/lovable-uploads/5f363352-0705-487a-baed-4c046690236b.png",
-      description: "Join us for a day of celebration, competitions, and networking with alumni and faculty. The event will feature technical competitions, cultural performances, and an alumni panel discussion.",
+      description: "Be the first to get your hands on the latest MEA merchandise! From stylish t-shirts to exclusive accessories, celebrate your mechanical engineering pride with our brand new collection.",
       category: "Social",
-      googleCalendarLink: "#"
+      googleCalendarLink: "https://calendar.google.com/calendar/u/0/r/eventedit?text=Merch+Launch&dates=20251220T160000Z/20251220T200000Z&location=ME+Department+Plaza&pli=1"
     },
     {
       id: 3,
-      title: "MECHANICAL CRICKET LEAGUE",
-      date: new Date(2025, 2, 15), // March 15, 2025
-      time: "09:00 - 17:00",
-      location: "H14 GROUNDS",
+      title: "Trad Day",
+      date: new Date(2025, 11, 25), // December 25, 2025
+      time: "10:00 - 17:00",
+      location: "ME Workshop Area",
       attendees: 0,
-      capacity: 100,
-      image: "/lovable-uploads/mcl.jpeg",
-      description: "Expect brutal sixes, heartbreaking run-outs, and at least one guy dramatically diving for a ball he had zero chance of catching. Will there be glory? Yes. Will there be bruised egos? Absolutely. Will you regret missing this? 100%. So show up, scream your lungs out, and witness history.",
-      category: "Competition",
-      googleCalendarLink: "https://calendar.google.com/calendar/u/0/r/eventedit?text=MECHANICAL+CRICKET+LEAGUE&dates=20250315T090000Z/20250315T170000Z&location=H14+GROUNDS&pli=1"
+      capacity: 80,
+      image: "/lovable-uploads/manufacturing1.jpg",
+      description: "Experience the traditional side of mechanical engineering! Learn about conventional machining techniques, hand tools, and the craftsmanship that laid the foundation for modern manufacturing.",
+      category: "Workshop",
+      googleCalendarLink: "https://calendar.google.com/calendar/u/0/r/eventedit?text=Trad+Day&dates=20251225T100000Z/20251225T170000Z&location=ME+Workshop+Area&pli=1"
     }
   ],
-  past: [
+  conducted: [
     {
       id: 4,
-      title: "Guest Lecture: Future of Electric Vehicles",
-      date: new Date(2024, 3, 5),
-      time: "15:00 - 17:00",
-      location: "ME Seminar Hall",
-      attendees: 120,
-      capacity: 150,
-      image: "/lovable-uploads/6b115935-67fc-4138-8a82-cf42108c1d16.png",
-      description: "A comprehensive lecture on the future of electric vehicles and their impact on mechanical engineering design principles.",
-      category: "Lecture",
+      title: "CAD Clash",
+      date: new Date(2024, 9, 15), // October 15, 2024
+      time: "14:00 - 18:00",
+      location: "ME CAD Lab",
+      attendees: 85,
+      capacity: 100,
+      image: "/lovable-uploads/cadclash.png",
+      description: "An intense competition where mechanical engineering students battled it out in CAD design challenges. From conceptual sketches to detailed 3D models, participants showcased their design skills and creativity.",
+      category: "Competition",
       googleCalendarLink: "#"
     },
     {
       id: 5,
-      title: "Technical Paper Competition",
-      date: new Date(2024, 2, 25),
+      title: "Convocation",
+      date: new Date(2024, 7, 20), // August 20, 2024
       time: "10:00 - 16:00",
-      location: "ME Conference Room",
-      attendees: 45,
-      capacity: 50,
-      image: "/lovable-uploads/f4aa4742-2202-46f3-9eec-cefb01abd89b.png",
-      description: "Students presented their research papers on various mechanical engineering topics, with prizes for the best papers.",
-      category: "Competition",
+      location: "IIT Bombay Main Auditorium",
+      attendees: 500,
+      capacity: 600,
+      image: "/lovable-uploads/grpphoto.jpg",
+      description: "A grand celebration marking the successful completion of the mechanical engineering program. Graduates received their degrees amidst inspiring speeches and memorable moments.",
+      category: "Social",
       googleCalendarLink: "#"
     },
     {
       id: 6,
-      title: "Alumni Interaction Session",
-      date: new Date(2024, 1, 15),
-      time: "18:00 - 20:00",
-      location: "Online (Zoom)",
+      title: "Mechanza",
+      date: new Date(2024, 8, 29), // September 29, 2024
+      time: "18:00 - 22:00",
+      location: "LT-PCSA",
+      attendees: 142,
+      capacity: 150,
+      image: "/lovable-uploads/mechanza25.jpg",
+      description: "The most anticipated soirée of the year where sophistication meets celebration. Mechanical engineers dressed in their finest attire for an evening of elegance, conversation, and unforgettable memories.",
+      category: "Social",
+      googleCalendarLink: "#"
+    },
+    {
+      id: 7,
+      title: "Treasure Hunt",
+      date: new Date(2024, 10, 10), // November 10, 2024
+      time: "13:00 - 17:00",
+      location: "ME Department Campus",
+      attendees: 96,
+      capacity: 120,
+      image: "/lovable-uploads/treasurehunt.jpeg",
+      description: "A thrilling treasure hunt that tested both mental acuity and physical endurance. Teams navigated through challenging clues hidden across the department, combining problem-solving with exploration.",
+      category: "Competition",
+      googleCalendarLink: "#"
+    },
+    {
+      id: 8,
+      title: "Teacher's Day",
+      date: new Date(2024, 8, 5), // September 5, 2024
+      time: "15:00 - 18:00",
+      location: "ME Auditorium",
       attendees: 180,
       capacity: 200,
-      image: "/lovable-uploads/5f363352-0705-487a-baed-4c046690236b.png",
-      description: "An interactive session with alumni working in various industries, sharing their experiences and career advice.",
-      category: "Networking",
+      image: "/lovable-uploads/6b115935-67fc-4138-8a82-cf42108c1d16.png",
+      description: "A special celebration honoring our esteemed faculty members. Students expressed gratitude through performances, speeches, and thoughtful gifts, strengthening the bond between teachers and students.",
+      category: "Social",
       googleCalendarLink: "#"
     }
   ]
@@ -261,14 +287,14 @@ const Events = () => {
 
   const getEventDates = () => {
     const dates: Date[] = [];
-    [...eventsData.upcoming, ...eventsData.past].forEach(event => {
+    [...eventsData.upcoming, ...eventsData.conducted].forEach(event => {
       dates.push(new Date(event.date));
     });
     return dates;
   };
 
   const getEventsForDate = (date: Date) => {
-    return [...eventsData.upcoming, ...eventsData.past].filter((event: any) => {
+    return [...eventsData.upcoming, ...eventsData.conducted].filter((event: any) => {
       const d = new Date(event.date);
       return d.getDate() === date.getDate() && d.getMonth() === date.getMonth() && d.getFullYear() === date.getFullYear();
     });
@@ -301,7 +327,7 @@ const Events = () => {
   };
 
   const filteredUpcomingEvents = getFilteredEvents("upcoming");
-  const filteredPastEvents = getFilteredEvents("past");
+  const filteredConductedEvents = getFilteredEvents("conducted");
 
   // Event card skeleton for loading state
   const EventCardSkeleton = () => (
@@ -519,7 +545,7 @@ const Events = () => {
             <CardTitle className="text-2xl sm:text-3xl text-gray-900 dark:text-gray-100">Events</CardTitle>
             <div className="w-20 h-1 bg-amber-500 mt-2 mb-3" />
             <CardDescription className="text-gray-600 dark:text-gray-300 text-base">
-              Discover upcoming and past events organized by the Mechanical Engineering Association
+              Discover upcoming and conducted events organized by the Mechanical Engineering Association
             </CardDescription>
           </CardHeader>
           <CardContent className="px-3 sm:px-6 pt-6">
@@ -531,11 +557,11 @@ const Events = () => {
                 >
                   Upcoming
                 </TabsTrigger>
-                <TabsTrigger 
-                  value="past" 
+                <TabsTrigger
+                  value="conducted"
                   className="flex-1 sm:flex-none rounded-md data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700 data-[state=active]:text-amber-600 dark:data-[state=active]:text-amber-400 data-[state=active]:shadow-sm transition-all duration-200"
                 >
-                  Past
+                  Conducted
                 </TabsTrigger>
                 <TabsTrigger 
                   value="calendar" 
@@ -594,7 +620,7 @@ const Events = () => {
                   </div>
                 </TabsContent>
                 
-                <TabsContent value="past" className="w-full">
+                <TabsContent value="conducted" className="w-full">
                   {selectedDate && (
                     <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg gap-2 border border-amber-200 dark:border-amber-800">
                       <div className="flex items-center">
@@ -616,14 +642,14 @@ const Events = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {isLoading ? (
                       Array(3).fill(0).map((_, i) => <EventCardSkeleton key={i} />)
-                    ) : filteredPastEvents.length > 0 ? (
-                      filteredPastEvents.map((event: any) => (
+                    ) : filteredConductedEvents.length > 0 ? (
+                      filteredConductedEvents.map((event: any) => (
                         <EventCard key={event.id} event={event} />
                       ))
                     ) : (
                       <div className="col-span-1 sm:col-span-2 lg:col-span-3 text-center py-10 sm:py-12 bg-gray-50 dark:bg-gray-800/30 rounded-lg border border-gray-200 dark:border-gray-700">
                         <CalendarIcon className="h-12 w-12 mx-auto mb-4 text-gray-400 dark:text-gray-600" />
-                        <p className="text-gray-600 dark:text-gray-400 text-base">No past events found for the selected date.</p>
+                        <p className="text-gray-600 dark:text-gray-400 text-base">No conducted events found for the selected date.</p>
                         <Button 
                           variant="outline" 
                           size="sm" 

@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { mclImages } from "./mclImages";
 import { badmintonImages } from "./badmintonImages";
@@ -71,7 +71,30 @@ const damanImagesWithAdjustedIds = damanImages.map((img, index) => ({
   id: 9 + mclImages.length + badmintonImages.length + index
 }));
 
-const galleryImages = [...baseImages, ...mclImagesWithAdjustedIds, ...badmintonImagesWithAdjustedIds, ...damanImagesWithAdjustedIds];
+// Sort images with randomized order for variety in All Years view
+const sortImagesForDisplay = (images: typeof baseImages, selectedYear: string) => {
+  if (selectedYear === "all") {
+    // For All Years view: randomize order to create variety upfront
+    const shuffledImages = [...images];
+
+    // Fisher-Yates shuffle algorithm
+    for (let i = shuffledImages.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledImages[i], shuffledImages[j]] = [shuffledImages[j], shuffledImages[i]];
+    }
+
+    return shuffledImages;
+  } else {
+    // For specific year views: sort by year (latest first)
+    return images.sort((a, b) => {
+      const yearA = a.year ? parseInt(a.year.split('-')[0]) : 0;
+      const yearB = b.year ? parseInt(b.year.split('-')[0]) : 0;
+      return yearB - yearA; // Descending order (newest first)
+    });
+  }
+};
+
+const allImages = [...baseImages, ...mclImagesWithAdjustedIds, ...badmintonImagesWithAdjustedIds, ...damanImagesWithAdjustedIds];
 
 // LazyImage component for optimized image loading
 interface LazyImageProps {
@@ -216,7 +239,7 @@ const GalleryGrid = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [hoveredYear, setHoveredYear] = useState<string | null>(null);
   const [clickedYear, setClickedYear] = useState<string | null>(null);
-  const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
+  const [selectedImage, setSelectedImage] = useState<typeof allImages[0] | null>(null);
   const [open, setOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const imagesPerPage = 24; // Show 24 images per page for better performance
@@ -232,11 +255,14 @@ const GalleryGrid = () => {
     { id: "workshop", name: "Workshops" }
   ];
 
-  const filteredImages = galleryImages.filter(img => {
-    const yearMatch = selectedYear === "all" || img.year === selectedYear;
-    const categoryMatch = selectedCategory === "all" || img.category === selectedCategory;
-    return yearMatch && categoryMatch;
-  });
+  const filteredImages = useMemo(() => {
+    const filtered = allImages.filter(img => {
+      const yearMatch = selectedYear === "all" || img.year === selectedYear;
+      const categoryMatch = selectedCategory === "all" || img.category === selectedCategory;
+      return yearMatch && categoryMatch;
+    });
+    return sortImagesForDisplay(filtered, selectedYear);
+  }, [selectedYear, selectedCategory]); // Only recalculate when filters change
 
   // Reset to page 1 when filters change
   useEffect(() => {
@@ -249,7 +275,7 @@ const GalleryGrid = () => {
   const endIndex = startIndex + imagesPerPage;
   const currentImages = filteredImages.slice(startIndex, endIndex);
 
-  const handleImageClick = (image: typeof galleryImages[0]) => {
+  const handleImageClick = (image: typeof allImages[0]) => {
     setSelectedImage(image);
     setOpen(true);
   };

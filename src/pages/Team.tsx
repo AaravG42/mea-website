@@ -120,7 +120,7 @@ const teamData = [
     linkedin: null,
     instagram: null,
     bio: "PG Secretary, representing postgraduate students and coordinating activities specifically designed for the PG community within MEA.",
-    image: "/static/media/placeholder.49403b70.jpg"
+    image: "/members/ABHISHEK.jpg"
   },
   {
     id: 3,
@@ -197,7 +197,7 @@ const teamData = [
     linkedin: null,
     instagram: null,
     bio: "Third Year Class Representative, serving as the bridge between third-year students and the department administration.",
-    image: "/static/media/placeholder.49403b70.jpg"
+    image: "/members/Bharat.jpg"
   },
   {
     id: 10,
@@ -219,7 +219,7 @@ const teamData = [
     linkedin: null,
     instagram: null,
     bio: "Second Year Class Representative, working to address the concerns and needs of second-year students while promoting their active participation.",
-    image: "/static/media/placeholder.49403b70.jpg"
+    image: "/members/Angel.jpg"
   },
   {
     id: 12,
@@ -252,7 +252,7 @@ const teamData = [
     linkedin: "https://www.linkedin.com/in/nevedhya-jain-203822314?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     instagram: "https://www.instagram.com/nevedhya_jain?igsh=MXU4OWc1dnJwNHQ1Yg%3D%3D&utm_source=qr",
     bio: "Associate Secretary, supporting the core team in various administrative tasks and ensuring efficient communication across all departments.",
-    image: "/static/media/placeholder.49403b70.jpg"
+    image: "/members/Nevedhya.PNG"
   },
   {
     id: 15,
@@ -263,7 +263,7 @@ const teamData = [
     linkedin: null,
     instagram: null,
     bio: "Second Year Class Representative, serving as the voice of second-year students and facilitating communication between students and faculty.",
-    image: "/static/media/placeholder.49403b70.jpg"
+    image: "/members/prakhar.jpg"
   },
   {
     id: 16,
@@ -274,7 +274,7 @@ const teamData = [
     linkedin: "https://www.linkedin.com/in/ryansammydsouza/",
     instagram: "https://www.instagram.com/ryandsouza0221/",
     bio: "Second Year Class Representative, representing the interests of second-year students and ensuring their voices are heard in departmental matters.",
-    image: "/static/media/placeholder.49403b70.jpg"
+    image: "/members/RyanDSouza.jpg"
   },
   {
     id: 17,
@@ -285,7 +285,7 @@ const teamData = [
     linkedin: null,
     instagram: null,
     bio: "Senior Editor, responsible for content creation, editing, and maintaining the quality of all written materials and publications for MEA.",
-    image: "/static/media/placeholder.49403b70.jpg"
+    image: "/members/siddhant.jpg"
   },
   {
     id: 18,
@@ -296,7 +296,7 @@ const teamData = [
     linkedin: null,
     instagram: null,
     bio: "Design Secretary, creating visually appealing content and managing the aesthetic aspects of all MEA events and communications.",
-    image: "/static/media/placeholder.49403b70.jpg"
+    image: "/members/Sinchana.png"
   },
   {
     id: 19,
@@ -355,12 +355,15 @@ const TeamMemberCard = ({ member }: { member: any }) => {
           <CardContent className="p-6 flex flex-col items-center justify-center h-full">
             <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-2 border-transparent hover:border-mea-gold transition-all duration-300">
               <Avatar className="w-full h-full">
-                <AvatarImage 
-                  src={member.image} 
-                  alt={member.name} 
-                  className={`object-cover ${
-                    member.name === "Varad Vinay Padhye" ? "object-top" :
-                    member.name === "Avinash Chauhan" ? "object-top" : ""
+                <AvatarImage
+                  src={member.image}
+                  alt={member.name}
+                  className={`${
+                    member.name === "Varad Vinay Padhye" ? "object-cover object-top" :
+                    member.name === "Avinash Chauhan" ? "object-cover object-top" :
+                    member.name === "Nevedhya Jain" ? "object-cover object-top scale-150" :
+                    member.name === "Sinchana Patil" ? "object-cover object-top scale-180" :
+                    member.name === "Abhishek Sokhal" ? "object-contain" : "object-cover"
                   }`}
                 />
                 <AvatarFallback>

@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { FileText, Download, BookOpen, GraduationCap, Wrench, FileEdit, Folder, ExternalLink } from "lucide-react";
+import { FileText, Download, BookOpen, GraduationCap, Wrench, Folder, ExternalLink } from "lucide-react";
 import { useState } from "react";
 
 // Sample document data
@@ -100,16 +100,6 @@ const documents = {
       url: "#"
     }
   ],*/
-  "forms": [
-    {
-      id: 11,
-      title: "Student Application Form",
-      type: "PDF",
-      size: "0.2 MB",
-      updated: "Dec 2024",
-      url: "https://acad.iitb.ac.in/files/Studentsapplicationnewform_0.pdf"
-    }
-  ]
 };
 
 const renderIcon = (docType: string) => {
@@ -138,7 +128,7 @@ const UsefulDocuments = () => {
       </CardHeader>
       <CardContent className="px-3 sm:px-6">
         <Tabs defaultValue="academic" onValueChange={setActiveTab}>
-          <TabsList className="grid grid-cols-2 mb-4 sm:mb-6 text-[11px] sm:text-xs">
+          <TabsList className="grid grid-cols-1 mb-4 sm:mb-6 text-[11px] sm:text-xs">
             <TabsTrigger value="academic" className="flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5">
               <BookOpen className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               <span className="inline text-[10px] sm:text-xs">Academic</span>
@@ -155,10 +145,6 @@ const UsefulDocuments = () => {
               <span className="inline text-[10px] sm:text-xs">Technical</span>
             </TabsTrigger>
             */}
-            <TabsTrigger value="forms" className="flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5">
-              <FileEdit className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-              <span className="inline text-[10px] sm:text-xs">Forms</span>
-            </TabsTrigger>
           </TabsList>
           
           <div className="overflow-x-auto">
