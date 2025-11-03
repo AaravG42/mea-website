@@ -91,37 +91,45 @@ const newslettersData = [
     pdfUrl: "https://heyzine.com/flip-book/28c00a021d.html",
     isFlipbook: true
   },
-  /*
   {
     id: 2,
+    title: "MEA Newsletter 2024-25",
+    content: "Comprehensive newsletter covering department activities, achievements, and highlights from the 2024-25 academic year.",
+    date: "October 2025",
+    pdfUrl: "https://heyzine.com/flip-book/f29bd1d583.html",
+    isFlipbook: true
+  },
+  /*
+  {
+    id: 3,
     title: "Freshmen Introductory Booklet 24-25",
     content: "Anything and everything a UG freshmen needs to get started in the Insti.",
     date: "August 20, 2024",
     pdfUrl: "https://drive.google.com/file/d/1_5xQfWwkKnz_GDfCewDOCwlx-KdD8ixN/view?usp=drive_link"
   },
   {
-    id: 3,
+    id: 4,
     title: "Mechanical Department Handbook",
     content: "Recap of events, research highlights, and department news from February 2023.",
     date: "August 20, 2024",
     pdfUrl: "https://drive.google.com/file/d/1Ysv1q5w6SNGOHnm6z_J58zmAteAY72ca/view?usp=drive_link"
   },
   {
-    id: 4,
+    id: 5,
     title: "Department Annual Report 2024",
     content: "Comprehensive annual report covering all department activities, achievements, and future plans.",
     date: "December 15, 2024",
     pdfUrl: "https://drive.google.com/file/d/1rvmoje3AYXyh9E2qXI2k0h20p466OVNT/view?usp=drive_link"
   },
   {
-    id: 5,
+    id: 6,
     title: "Student Activities Newsletter",
     content: "Monthly newsletter highlighting student achievements, events, and upcoming activities.",
     date: "November 30, 2024",
     pdfUrl: "#"
   },
   {
-    id: 6,
+    id: 7,
     title: "Research Highlights Quarterly",
     content: "Quarterly publication showcasing the latest research projects and publications from faculty and students.",
     date: "October 15, 2024",

@@ -36,7 +36,7 @@ const eventsData = {
       location: "ME Department Plaza",
       attendees: 0,
       capacity: 150,
-      image: "/lovable-uploads/5f363352-0705-487a-baed-4c046690236b.png",
+      image: "/lovable-uploads/merchlaunch.jpg",
       description: "Be the first to get your hands on the latest MEA merchandise! From stylish t-shirts to exclusive accessories, celebrate your mechanical engineering pride with our brand new collection.",
       category: "Social",
       googleCalendarLink: "https://calendar.google.com/calendar/u/0/r/eventedit?text=Merch+Launch&dates=20251220T160000Z/20251220T200000Z&location=ME+Department+Plaza&pli=1"
@@ -49,7 +49,7 @@ const eventsData = {
       location: "ME Workshop Area",
       attendees: 0,
       capacity: 80,
-      image: "/lovable-uploads/manufacturing1.jpg",
+      image: "/lovable-uploads/trad.jpg",
       description: "Experience the traditional side of mechanical engineering! Learn about conventional machining techniques, hand tools, and the craftsmanship that laid the foundation for modern manufacturing.",
       category: "Workshop",
       googleCalendarLink: "https://calendar.google.com/calendar/u/0/r/eventedit?text=Trad+Day&dates=20251225T100000Z/20251225T170000Z&location=ME+Workshop+Area&pli=1"
@@ -77,7 +77,7 @@ const eventsData = {
       location: "IIT Bombay Main Auditorium",
       attendees: 500,
       capacity: 600,
-      image: "/lovable-uploads/grpphoto.jpg",
+      image: "/lovable-uploads/convo.jpg",
       description: "A grand celebration marking the successful completion of the mechanical engineering program. Graduates received their degrees amidst inspiring speeches and memorable moments.",
       category: "Social",
       googleCalendarLink: "#"
