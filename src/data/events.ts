@@ -20,6 +20,38 @@ export type EventsData = {
 export const eventsData: EventsData = {
   upcoming: [
     {
+      id: 3,
+      title: "Trad Day",
+      date: new Date(2026, 2, 15),
+      time: "18:00 - 22:00",
+      location: "ME Workshop Area",
+      attendees: 0,
+      capacity: 80,
+      image: "/lovable-uploads/trad.jpg",
+      description:
+        "Experience the traditional side of mechanical engineering! Learn about conventional machining techniques, hand tools, and the craftsmanship that laid the foundation for modern manufacturing.",
+      category: "Informal",
+      googleCalendarLink:
+        "https://calendar.google.com/calendar/u/0/r/eventedit?text=Trad+Day&dates=20251225T100000Z/20251225T170000Z&location=ME+Workshop+Area&pli=1",
+    },
+    {
+      id: 9,
+      title: "MechAdvance26 Symposium",
+      date: new Date(2026, 2, 14),
+      time: "10:00 - 18:00",
+      location: "ME Department, IIT Bombay",
+      attendees: 0,
+      capacity: 300,
+      image: "/lovable-uploads/MechAdvance26.jpeg",
+      description:
+        "Flagship IITB Mechanical Engineering symposium exploring advances in interdisciplinary research linking ME with AI, robotics, biomechanics, energy, materials, manufacturing, and mechanics.",
+      category: "Conference",
+      googleCalendarLink:
+        "https://calendar.google.com/calendar/u/0/r/eventedit?text=MechAdvance26+Symposium&dates=20260314T100000Z/20260314T180000Z&location=ME+Department,+IIT+Bombay&pli=1",
+    },
+  ],
+  conducted: [
+    {
       id: 1,
       title: "Badminton League",
       date: new Date(2025, 11, 15),
@@ -49,23 +81,6 @@ export const eventsData: EventsData = {
       googleCalendarLink:
         "https://calendar.google.com/calendar/u/0/r/eventedit?text=Merch+Launch&dates=20251220T160000Z/20251220T200000Z&location=ME+Department+Plaza&pli=1",
     },
-    {
-      id: 3,
-      title: "Trad Day",
-      date: new Date(2025, 11, 25),
-      time: "10:00 - 17:00",
-      location: "ME Workshop Area",
-      attendees: 0,
-      capacity: 80,
-      image: "/lovable-uploads/trad.jpg",
-      description:
-        "Experience the traditional side of mechanical engineering! Learn about conventional machining techniques, hand tools, and the craftsmanship that laid the foundation for modern manufacturing.",
-      category: "Workshop",
-      googleCalendarLink:
-        "https://calendar.google.com/calendar/u/0/r/eventedit?text=Trad+Day&dates=20251225T100000Z/20251225T170000Z&location=ME+Workshop+Area&pli=1",
-    },
-  ],
-  conducted: [
     {
       id: 4,
       title: "CAD Clash",
@@ -120,20 +135,6 @@ export const eventsData: EventsData = {
       description:
         "A thrilling treasure hunt that tested both mental acuity and physical endurance. Teams navigated through challenging clues hidden across the department, combining problem-solving with exploration.",
       category: "Competition",
-      googleCalendarLink: "#",
-    },
-    {
-      id: 8,
-      title: "Teacher's Day",
-      date: new Date(2024, 8, 5),
-      time: "15:00 - 18:00",
-      location: "ME Auditorium",
-      attendees: 180,
-      capacity: 200,
-      image: "/lovable-uploads/6b115935-67fc-4138-8a82-cf42108c1d16.png",
-      description:
-        "A special celebration honoring our esteemed faculty members. Students expressed gratitude through performances, speeches, and thoughtful gifts, strengthening the bond between teachers and students.",
-      category: "Social",
       googleCalendarLink: "#",
     },
   ],

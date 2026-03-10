@@ -1,7 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, Users, MapPin } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { eventsData } from "@/data/events";
@@ -24,21 +24,24 @@ const LatestEvents = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto justify-items-center">
           {events.map((event) => (
-            <Card key={event.id} className="overflow-hidden hover:shadow-xl transition-shadow duration-300 dark:bg-gray-800 dark:border-gray-700">
-              <div className="h-48 overflow-hidden">
+            <Card
+              key={event.id}
+              className="w-full max-w-md overflow-hidden hover:shadow-xl transition-shadow duration-300 dark:bg-gray-800 dark:border-gray-700"
+            >
+              <div className="h-64 overflow-hidden bg-slate-900">
                 <img 
                   src={event.image} 
                   alt={event.title} 
-                  className="w-full h-full object-cover object-center"
+                  className={event.title === "MechAdvance26 Symposium" ? "w-full h-full object-contain" : "w-full h-full object-cover object-center"}
                 />
               </div>
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-2 dark:text-white">{event.title}</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">{event.description}</p>
                 
-                <div className="space-y-2 mb-4">
+                <div className="space-y-2 mb-2">
                   <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                     <Calendar size={16} className="mr-2" />
                     <span>{format(event.date, "MMMM d, yyyy")}</span>
@@ -47,15 +50,8 @@ const LatestEvents = () => {
                     <MapPin size={16} className="mr-2" />
                     <span>{event.location}</span>
                   </div>
-                  <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                    <Users size={16} className="mr-2" />
-                    <span>{event.attendees} Attendees</span>
-                  </div>
                 </div>
-                
-                <Button variant="outline" className="w-full dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
-                  Learn More
-                </Button>
+
               </CardContent>
             </Card>
           ))}

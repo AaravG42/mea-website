@@ -30,13 +30,14 @@ const EventCard = ({ event, isUpcoming = false }: { event: any, isUpcoming?: boo
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
+      className="max-w-md w-full mx-auto"
     >
       <Card className="h-full overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-300 dark:bg-gray-800/50 backdrop-blur-sm focus-within:ring-2 focus-within:ring-amber-500 focus-within:ring-offset-2 dark:focus-within:ring-offset-gray-900">
         <div className="relative aspect-video overflow-hidden">
           <img 
             src={event.image} 
             alt={event.title} 
-            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+            className={`w-full h-full ${event.title === "MechAdvance26 Symposium" ? "object-contain bg-slate-900" : "object-cover object-center"} group-hover:scale-105 transition-transform duration-300`}
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
@@ -50,10 +51,10 @@ const EventCard = ({ event, isUpcoming = false }: { event: any, isUpcoming?: boo
           )}
         </div>
         <CardContent className="p-6">
-          <h3 className="text-xl font-semibold mb-2 line-clamp-2 text-gray-900 dark:text-gray-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+          <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
             {event.title}
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 text-sm">
+          <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
             {event.description}
           </p>
           
@@ -70,60 +71,16 @@ const EventCard = ({ event, isUpcoming = false }: { event: any, isUpcoming?: boo
               <MapPin className="h-4 w-4 mr-2 text-amber-500 dark:text-amber-400" />
               <span className="truncate">{event.location}</span>
             </div>
-            <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-              <Users className="h-4 w-4 mr-2 text-amber-500 dark:text-amber-400" />
-              {isUpcoming ? (
-                <span>
-                  {event.attendees}/{event.capacity} Registered
-                  {event.attendees < 5 && event.capacity > 10 && (
-                    <span className="ml-1 text-amber-600 dark:text-amber-400 font-medium">• Few spots left!</span>
-                  )}
-                </span>
-              ) : (
+            {!isUpcoming && (
+              <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                <Users className="h-4 w-4 mr-2 text-amber-500 dark:text-amber-400" />
                 <span>{event.attendees} Attended</span>
-              )}
-            </div>
+              </div>
+            )}
           </div>
           
           <div className="flex gap-2 mt-auto pt-2">
-            {isUpcoming ? (
-              <>
-                {event.attendees >= event.capacity ? (
-                  <Button 
-                    className="flex-1 bg-amber-500 hover:bg-amber-600 text-white transition-colors duration-200"
-                    disabled
-                  >
-                    Full
-                  </Button>
-                ) : (
-                <Button 
-                  className="flex-1 bg-amber-500 hover:bg-amber-600 text-white transition-colors duration-200"
-                    asChild
-                >
-                    <Link to={`/events/${event.id}/register`}>Register Now</Link>
-                </Button>
-                )}
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button 
-                        variant="outline" 
-                        size="icon" 
-                        className="shrink-0 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700" 
-                        asChild
-                      >
-                        <a href={event.googleCalendarLink} target="_blank" rel="noopener noreferrer" aria-label="Add to calendar">
-                          <ExternalLink className="h-4 w-4 text-amber-500 dark:text-amber-400" />
-                        </a>
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Add to Google Calendar</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </>
-            ) : (
+            {!isUpcoming && (
               <Button variant="outline" className="w-full border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
                 View Details
               </Button>
@@ -274,9 +231,6 @@ const Events = () => {
           </div>
         </div>
         <div className="mt-auto flex gap-2 pt-1">
-          <Button size="sm" className="bg-amber-500 hover:bg-amber-600 text-white transition-colors duration-200" asChild>
-            <Link to={`/events/${event.id}/register`}>Register Now</Link>
-          </Button>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -368,9 +322,6 @@ const Events = () => {
               {event.description}
             </p>
             <div className="flex gap-2">
-              <Button size="sm" className="bg-amber-500 hover:bg-amber-600 text-white transition-colors duration-200" asChild>
-                <Link to={`/events/${event.id}/register`}>Register Now</Link>
-              </Button>
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -485,7 +436,7 @@ const Events = () => {
                       </Button>
                     </div>
                   )}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto justify-items-center">
                     {isLoading ? (
                       Array(3).fill(0).map((_, i) => <EventCardSkeleton key={i} />)
                     ) : filteredUpcomingEvents.length > 0 ? (
@@ -635,9 +586,6 @@ const Events = () => {
                 </div>
               </div>
               <div className="flex gap-2">
-                <Button className="bg-amber-500 hover:bg-amber-600 text-white" asChild>
-                  <Link to={`/events/${selectedEvent.id}/register`}>Register Now</Link>
-                </Button>
                 <Button variant="outline" asChild>
                   <a href={selectedEvent.googleCalendarLink} target="_blank" rel="noopener noreferrer">Add to Calendar</a>
                 </Button>
