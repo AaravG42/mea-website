@@ -25,7 +25,7 @@ const getCategoryColor = (category: string) => {
   return colors[category] || "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200";
 };
 
-const EventCard = ({ event, isUpcoming = false }: { event: any, isUpcoming?: boolean }) => {
+const EventCard = ({ event, isUpcoming = false, onImageClick }: { event: any, isUpcoming?: boolean, onImageClick?: (event: any) => void }) => {
   return (
     <motion.div
       whileHover={{ y: -4 }}
@@ -33,7 +33,10 @@ const EventCard = ({ event, isUpcoming = false }: { event: any, isUpcoming?: boo
       className="max-w-md w-full mx-auto"
     >
       <Card className="h-full overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-300 dark:bg-gray-800/50 backdrop-blur-sm focus-within:ring-2 focus-within:ring-amber-500 focus-within:ring-offset-2 dark:focus-within:ring-offset-gray-900">
-        <div className="relative aspect-video overflow-hidden">
+        <div
+          className="relative aspect-video overflow-hidden cursor-pointer"
+          onClick={() => onImageClick && onImageClick(event)}
+        >
           <img 
             src={event.image} 
             alt={event.title} 
@@ -58,33 +61,23 @@ const EventCard = ({ event, isUpcoming = false }: { event: any, isUpcoming?: boo
             {event.description}
           </p>
           
-          <div className="space-y-2 mb-4">
-            <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-              <CalendarIcon className="h-4 w-4 mr-2 text-amber-500 dark:text-amber-400" />
-              <span>{format(event.date, "MMMM d, yyyy")}</span>
-            </div>
-            <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-              <Clock className="h-4 w-4 mr-2 text-amber-500 dark:text-amber-400" />
-              <span>{event.time}</span>
-            </div>
+          <div className="space-y-2">
+            {event.title !== "Convocation" && (
+              <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                <CalendarIcon className="h-4 w-4 mr-2 text-amber-500 dark:text-amber-400" />
+                <span>{format(event.date, "MMMM d, yyyy")}</span>
+              </div>
+            )}
+            {event.title !== "Convocation" && (
+              <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                <Clock className="h-4 w-4 mr-2 text-amber-500 dark:text-amber-400" />
+                <span>{event.time}</span>
+              </div>
+            )}
             <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
               <MapPin className="h-4 w-4 mr-2 text-amber-500 dark:text-amber-400" />
               <span className="truncate">{event.location}</span>
             </div>
-            {!isUpcoming && (
-              <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                <Users className="h-4 w-4 mr-2 text-amber-500 dark:text-amber-400" />
-                <span>{event.attendees} Attended</span>
-              </div>
-            )}
-          </div>
-          
-          <div className="flex gap-2 mt-auto pt-2">
-            {!isUpcoming && (
-              <Button variant="outline" className="w-full border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
-                View Details
-              </Button>
-            )}
           </div>
         </CardContent>
       </Card>
@@ -211,16 +204,20 @@ const Events = () => {
       </div>
       <div className="md:w-3/4 flex flex-col">
         <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100">{event.title}</h3>
-        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-2 line-clamp-2">{event.description}</p>
+        <p className={`text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-2 ${event.title === "Merch Launch" ? "" : "line-clamp-2"}`}>{event.description}</p>
         <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">
-          <div className="flex items-center">
-            <CalendarIcon className="h-3 w-3 mr-1 text-amber-500 dark:text-amber-400" />
-            <span>{format(event.date, "MMM d, yyyy")}</span>
-          </div>
-          <div className="flex items-center">
-            <Clock className="h-3 w-3 mr-1 text-amber-500 dark:text-amber-400" />
-            <span>{event.time}</span>
-          </div>
+          {event.title !== "Convocation" && (
+            <div className="flex items-center">
+              <CalendarIcon className="h-3 w-3 mr-1 text-amber-500 dark:text-amber-400" />
+              <span>{format(event.date, "MMM d, yyyy")}</span>
+            </div>
+          )}
+          {event.title !== "Convocation" && (
+            <div className="flex items-center">
+              <Clock className="h-3 w-3 mr-1 text-amber-500 dark:text-amber-400" />
+              <span>{event.time}</span>
+            </div>
+          )}
           <div className="flex items-center">
             <MapPin className="h-3 w-3 mr-1 text-amber-500 dark:text-amber-400" />
             <span className="truncate">{event.location}</span>
@@ -287,14 +284,18 @@ const Events = () => {
           </div>
           <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-2 line-clamp-2">{event.description}</p>
           <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">
-            <div className="flex items-center">
-              <CalendarIcon className="h-3 w-3 mr-1 text-amber-500 dark:text-amber-400" />
-              <span>{format(event.date, "MMM d, yyyy")}</span>
-            </div>
-            <div className="flex items-center">
-              <Clock className="h-3 w-3 mr-1 text-amber-500 dark:text-amber-400" />
-              <span>{event.time}</span>
-            </div>
+            {event.title !== "Convocation" && (
+              <div className="flex items-center">
+                <CalendarIcon className="h-3 w-3 mr-1 text-amber-500 dark:text-amber-400" />
+                <span>{format(event.date, "MMM d, yyyy")}</span>
+              </div>
+            )}
+            {event.title !== "Convocation" && (
+              <div className="flex items-center">
+                <Clock className="h-3 w-3 mr-1 text-amber-500 dark:text-amber-400" />
+                <span>{event.time}</span>
+              </div>
+            )}
             <div className="flex items-center">
               <MapPin className="h-3 w-3 mr-1 text-amber-500 dark:text-amber-400" />
               <span className="truncate">{event.location}</span>
@@ -441,7 +442,12 @@ const Events = () => {
                       Array(3).fill(0).map((_, i) => <EventCardSkeleton key={i} />)
                     ) : filteredUpcomingEvents.length > 0 ? (
                       filteredUpcomingEvents.map((event: any) => (
-                        <EventCard key={event.id} event={event} isUpcoming={true} />
+                        <EventCard
+                          key={event.id}
+                          event={event}
+                          isUpcoming={true}
+                          onImageClick={setSelectedEvent}
+                        />
                       ))
                     ) : (
                       <div className="col-span-1 sm:col-span-2 lg:col-span-3 text-center py-10 sm:py-12 bg-gray-50 dark:bg-gray-800/30 rounded-lg border border-gray-200 dark:border-gray-700">
@@ -484,7 +490,11 @@ const Events = () => {
                       Array(3).fill(0).map((_, i) => <EventCardSkeleton key={i} />)
                     ) : filteredConductedEvents.length > 0 ? (
                       filteredConductedEvents.map((event: any) => (
-                        <EventCard key={event.id} event={event} />
+                        <EventCard
+                          key={event.id}
+                          event={event}
+                          onImageClick={setSelectedEvent}
+                        />
                       ))
                     ) : (
                       <div className="col-span-1 sm:col-span-2 lg:col-span-3 text-center py-10 sm:py-12 bg-gray-50 dark:bg-gray-800/30 rounded-lg border border-gray-200 dark:border-gray-700">
@@ -573,7 +583,13 @@ const Events = () => {
                   {format(selectedEvent.date, "MMMM d, yyyy")} • {selectedEvent.time}
                 </DialogDescription>
               </DialogHeader>
-              <img src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-48 object-cover rounded-md" />
+              <div className="w-full max-h-[80vh] bg-black flex items-center justify-center rounded-md overflow-hidden">
+                <img
+                  src={selectedEvent.image}
+                  alt={selectedEvent.title}
+                  className="w-full h-full object-contain"
+                />
+              </div>
               <p className="text-sm text-gray-700 dark:text-gray-300">{selectedEvent.description}</p>
               <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-300">
                 <div className="flex items-center">

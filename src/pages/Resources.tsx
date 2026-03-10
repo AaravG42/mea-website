@@ -16,7 +16,7 @@ const Resources = () => {
           </CardDescription>
         </CardHeader>
         <CardContent className="px-3 sm:px-6">
-          <Tabs defaultValue="timetable">
+          <Tabs defaultValue="labs">
             <TabsList className="grid w-full grid-cols-3 mb-6 sm:mb-8 text-xs sm:text-sm">
               <TabsTrigger value="timetable">Timetable</TabsTrigger>
               <TabsTrigger value="labs">Labs Info</TabsTrigger>

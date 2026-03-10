@@ -83,10 +83,29 @@
 
 @layer components {
   .hero-section {
-    @apply dark:bg-blend-overlay;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/lovable-uploads/manufacturing1.jpg');
+    @apply relative overflow-hidden;
+    background-image: url('/lovable-uploads/manufacturing1.jpg');
     background-size: cover;
     background-position: center;
+  }
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20,59,99,0.5) 0%, rgba(10,15,26,0.75) 40%, rgba(0,0,0,0.8) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 80px 80px;
+    z-index: 1;
+    pointer-events: none;
   }
   
   .gear-bg {
