@@ -2,8 +2,8 @@
 const statsData = [
   { value: "1400+", label: "Students" },
   { value: "60", label: "Faculty" },
-  { value: "57", label: "Global Department Rank" },
-  { value: "1", label: "MEA" }
+  { value: "69", label: "Global Department Rank" },
+  { value: "40+", label: "Labs" }
 ];
 
 const StatsSection = () => {
