@@ -3,37 +3,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, Users, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
+import { eventsData } from "@/data/events";
 
-// Sample event data
-const events = [
-  {
-    id: 1,
-    title: "Technical Workshop: CAD Modeling",
-    date: "May 15, 2023",
-    location: "ME Building, Room 201",
-    attendees: 45,
-    image: "/lovable-uploads/6b115935-67fc-4138-8a82-cf42108c1d16.png",
-    description: "Learn advanced CAD modeling techniques from industry experts to enhance your design skills."
-  },
-  {
-    id: 2,
-    title: "Annual Mechanical Day Celebration",
-    date: "June 5, 2023",
-    location: "ME Department Lawn",
-    attendees: 120,
-    image: "/lovable-uploads/5f363352-0705-487a-baed-4c046690236b.png",
-    description: "Join us for a day of celebration, competitions, and networking with alumni and faculty."
-  },
-  {
-    id: 3,
-    title: "Industrial Visit: Tata Motors",
-    date: "July 10, 2023",
-    location: "Tata Motors, Pune",
-    attendees: 60,
-    image: "/lovable-uploads/e3fd6b91-d6bc-45ef-8ccf-7fd7292b928d.png",
-    description: "Explore manufacturing processes and automation systems at the Tata Motors facility in Pune."
-  }
-];
+const events = [...eventsData.upcoming]
+  .sort((a, b) => a.date.getTime() - b.date.getTime())
+  .slice(0, 3);
 
 const LatestEvents = () => {
   return (
@@ -66,7 +41,7 @@ const LatestEvents = () => {
                 <div className="space-y-2 mb-4">
                   <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                     <Calendar size={16} className="mr-2" />
-                    <span>{event.date}</span>
+                    <span>{format(event.date, "MMMM d, yyyy")}</span>
                   </div>
                   <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                     <MapPin size={16} className="mr-2" />
