@@ -29,7 +29,7 @@ export const eventsData: EventsData = {
       capacity: 80,
       image: "/lovable-uploads/trad.jpg",
       description:
-        "Experience the traditional side of mechanical engineering! Learn about conventional machining techniques, hand tools, and the craftsmanship that laid the foundation for modern manufacturing.",
+        "Trad Day is a fun cultural day where everyone from the Mechanical Department turns up in traditional outfits, takes photos, and chills together between all the academic chaos.",
       category: "Informal",
       googleCalendarLink:
         "https://calendar.google.com/calendar/u/0/r/eventedit?text=Trad+Day&dates=20251225T100000Z/20251225T170000Z&location=ME+Workshop+Area&pli=1",
