@@ -2,6 +2,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ChatbotInterface from "@/components/ChatbotInterface";
 import { Toaster } from "@/components/ui/toaster";
 
 const MainLayout = () => {
@@ -12,6 +13,7 @@ const MainLayout = () => {
         <Outlet />
       </main>
       <Footer />
+      <ChatbotInterface />
       <Toaster />
     </div>
   );

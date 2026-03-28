@@ -3,7 +3,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
-import ChatbotInterface from "@/components/ChatbotInterface";
 
 const DAMP = () => {
   return (
@@ -313,7 +312,6 @@ const DAMP = () => {
           </Tabs>
         </CardContent>
       </Card>
-      <ChatbotInterface />
     </div>
   );
 };

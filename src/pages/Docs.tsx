@@ -4,7 +4,6 @@ import { Search, FileText, ChevronLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import ChatbotInterface from "@/components/ChatbotInterface";
 
 // Updated documentation data based on the image
 const docsData = {
@@ -298,7 +297,6 @@ const Docs = () => {
           </Tabs>
         </CardContent>
       </Card>
-      <ChatbotInterface />
     </div>
   );
 };

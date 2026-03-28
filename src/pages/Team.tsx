@@ -1,7 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Linkedin, Mail, UserRound, Instagram } from "lucide-react";
-import ChatbotInterface from "@/components/ChatbotInterface";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -499,7 +498,6 @@ const Team = () => {
           </div>
         </CardContent>
       </Card>
-      <ChatbotInterface />
     </div>
   );
 };

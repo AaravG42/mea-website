@@ -7,7 +7,6 @@ import { Calendar, Search, FileText, ChevronLeft, X, ChevronRight, ChevronLeft a
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import ChatbotInterface from "@/components/ChatbotInterface";
 
 // Sample blog posts
 const blogPosts = [
@@ -528,8 +527,6 @@ const Editorial = () => {
         isOpen={!!selectedBlogPost}
         onClose={handleCloseImageViewer}
       />
-
-      <ChatbotInterface />
     </div>
   );
 };

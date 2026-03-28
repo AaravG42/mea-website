@@ -3,7 +3,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Timetable from "@/components/resources/Timetable";
 import LabsList from "@/components/resources/LabsList";
 import UsefulDocuments from "@/components/resources/UsefulDocuments";
-import ChatbotInterface from "@/components/ChatbotInterface";
 
 const Resources = () => {
   return (
@@ -37,7 +36,6 @@ const Resources = () => {
           </Tabs>
         </CardContent>
       </Card>
-      <ChatbotInterface />
     </div>
   );
 };

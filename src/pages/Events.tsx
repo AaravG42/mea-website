@@ -7,7 +7,6 @@ import { Calendar } from "@/components/ui/calendar";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import ChatbotInterface from "@/components/ChatbotInterface";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -572,7 +571,6 @@ const Events = () => {
           </CardContent>
         </Card>
       </motion.div>
-      <ChatbotInterface />
       <Dialog open={!!selectedEvent} onOpenChange={(open) => !open && setSelectedEvent(null)}>
         <DialogContent>
           {selectedEvent && (

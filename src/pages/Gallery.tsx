@@ -1,7 +1,6 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import GalleryGrid from "@/components/Gallery/GalleryGrid";
-import ChatbotInterface from "@/components/ChatbotInterface";
 
 const Gallery = () => {
   return (
@@ -17,7 +16,6 @@ const Gallery = () => {
           <GalleryGrid />
         </CardContent>
       </Card>
-      <ChatbotInterface />
     </div>
   );
 };
