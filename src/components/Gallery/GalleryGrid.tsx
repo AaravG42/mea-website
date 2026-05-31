@@ -4,6 +4,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { mclImages } from "./mclImages";
 import { badmintonImages } from "./badmintonImages";
 import { damanImages } from "./damanImages";
+import { valedictoryImages } from "./valedictoryImages";
 
 const baseImages = [
   {
@@ -71,6 +72,11 @@ const damanImagesWithAdjustedIds = damanImages.map((img, index) => ({
   id: 9 + mclImages.length + badmintonImages.length + index
 }));
 
+const valedictoryImagesWithAdjustedIds = valedictoryImages.map((img, index) => ({
+  ...img,
+  id: 9 + mclImages.length + badmintonImages.length + damanImages.length + index
+}));
+
 // Sort images with randomized order for variety in All Years view
 const sortImagesForDisplay = (images: typeof baseImages, selectedYear: string) => {
   if (selectedYear === "all") {
@@ -94,7 +100,7 @@ const sortImagesForDisplay = (images: typeof baseImages, selectedYear: string) =
   }
 };
 
-const allImages = [...baseImages, ...mclImagesWithAdjustedIds, ...badmintonImagesWithAdjustedIds, ...damanImagesWithAdjustedIds];
+const allImages = [...baseImages, ...mclImagesWithAdjustedIds, ...badmintonImagesWithAdjustedIds, ...damanImagesWithAdjustedIds, ...valedictoryImagesWithAdjustedIds];
 
 // LazyImage component for optimized image loading
 interface LazyImageProps {
@@ -252,7 +258,8 @@ const GalleryGrid = () => {
     // { id: "sports", name: "Sports" },
     {id: "badminton", name: "Badminton"},
     { id: "cricket", name: "Cricket" },
-    { id: "workshop", name: "Workshops" }
+    { id: "workshop", name: "Workshops" },
+    { id: "valfie", name: "Valfie"}
   ];
 
   const filteredImages = useMemo(() => {

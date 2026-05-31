@@ -15,6 +15,7 @@ def generate_images_from_directory(directory_path, category, year, description, 
             files.extend(glob.glob(os.path.join(directory_path, ext)))
             files.extend(glob.glob(os.path.join(directory_path, ext.upper())))
         
+        files = list(set(files))
         files = sorted(files)
         
         for i, filepath in enumerate(files):
@@ -84,6 +85,14 @@ def update_gallery_modules():
             "description": "Daman Trip",
             "export_name": "damanImages",
             "output_file": "src/components/Gallery/damanImages.ts"
+        },
+        {
+            "directory": "public/images/valedictory_2025-26",
+            "category": "valfie",
+            "year": "2025-26",
+            "description": "Valedictory Function 2025-26",
+            "export_name": "valedictoryImages",
+            "output_file": "src/components/Gallery/valedictoryImages.ts"
         }
     ]
     
