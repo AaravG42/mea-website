@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Users, MapPin, Clock, CalendarIcon, ExternalLink } from "lucide-react";
+import { Users, MapPin, Clock, CalendarIcon, ExternalLink, Image as ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Badge } from "@/components/ui/badge";
@@ -572,7 +572,9 @@ const Events = () => {
         </Card>
       </motion.div>
       <Dialog open={!!selectedEvent} onOpenChange={(open) => !open && setSelectedEvent(null)}>
-        <DialogContent>
+        {/*<DialogContent>*/}
+        {/* FIX: Add max-height, scrollbar and overflow-y-auto to DialogContent */}
+        <DialogContent className="max-h-[90vh] overflow-y-auto custom-scrollbar">
           {selectedEvent && (
             <div className="space-y-4">
               <DialogHeader>
@@ -581,11 +583,16 @@ const Events = () => {
                   {format(selectedEvent.date, "MMMM d, yyyy")} • {selectedEvent.time}
                 </DialogDescription>
               </DialogHeader>
-              <div className="w-full max-h-[80vh] bg-black flex items-center justify-center rounded-md overflow-hidden">
+              {/*<div className="w-full max-h-[80vh] bg-black flex items-center justify-center rounded-md overflow-hidden">*/}
+              {/* FIX: Change max-h-[80vh] to max-h-[50vh] so the image doesn't hog the whole screen */}
+              {/*<div className="w-full max-h-[50vh] bg-black flex items-center justify-center rounded-md overflow-hidden">*/}
+              {/* Removed the height limits and black background */}
+              <div className="w-full rounded-md overflow-hidden mb-4">
                 <img
                   src={selectedEvent.image}
                   alt={selectedEvent.title}
-                  className="w-full h-full object-contain"
+                  /*className="w-full h-full object-contain"*/
+                  className="w-full h-auto"
                 />
               </div>
               <p className="text-sm text-gray-700 dark:text-gray-300">{selectedEvent.description}</p>
@@ -599,10 +606,27 @@ const Events = () => {
                   {selectedEvent.attendees}/{selectedEvent.capacity}
                 </div>
               </div>
-              <div className="flex gap-2">
+              {/* <div className="flex gap-2">
                 <Button variant="outline" asChild>
                   <a href={selectedEvent.googleCalendarLink} target="_blank" rel="noopener noreferrer">Add to Calendar</a>
                 </Button>
+              </div> */}
+              <div className="flex gap-2 mt-4">
+                {selectedEvent.googleCalendarLink && selectedEvent.googleCalendarLink !== "#" && (
+                  <Button variant="outline" asChild>
+                    <a href={selectedEvent.googleCalendarLink} target="_blank" rel="noopener noreferrer">Add to Calendar</a>
+                  </Button>
+                )}
+                
+                {/* We are adding a strict check here to ignore "#" placeholders! */}
+                {selectedEvent.drivelink && selectedEvent.drivelink !== "#" && (
+                  <Button className="bg-amber-500 hover:bg-amber-600 text-white" asChild>
+                    <a href={selectedEvent.drivelink} target="_blank" rel="noopener noreferrer">
+                      <ImageIcon className="w-4 h-4 mr-2" />
+                      View Full Gallery
+                    </a>
+                  </Button>
+                )}
               </div>
             </div>
           )}
