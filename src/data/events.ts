@@ -10,6 +10,7 @@ export type EventItem = {
   description: string;
   category: string;
   googleCalendarLink: string;
+  drivelink?: string;
 };
 
 export type EventsData = {
@@ -18,7 +19,38 @@ export type EventsData = {
 };
 
 export const eventsData: EventsData = {
-  upcoming: [
+  upcoming: [],
+  conducted: [
+    {
+      id: 12,
+      title: "UG Valedictory Function 2025-26",
+      date: new Date(2026, 4, 5), // Note: Month is 0-indexed in JS (4 = May)
+      time: "12:00 - 16:30",
+      location: "LTPSCA (Photshoot at Jalvihar: 11 AM)",
+      attendees: 180,
+      capacity: 200,
+      image: "/lovable-uploads/UG_Valfie_2025-26.png",
+      description:
+        "A grand farewell to our graduating batch of 2026! A memorable evening filled with nostalgia, departmental awards, photos, and heartfelt goodbyes as we wish our seniors the best for their future endeavors.",
+      category: "Informal",
+      googleCalendarLink: "#",
+      drivelink: "https://drive.google.com/drive/folders/17dqvp1hyLRtP6p5rfqZq-7rciK8f34vX?usp=sharing",
+    },
+    {
+      id: 11,
+      title: "PG Valedictory Function 2025-26",
+      date: new Date(2026, 4, 4), // Note: Month is 0-indexed in JS (4 = May)
+      time: "12:00 - 16:30",
+      location: "SOM Auditorium (Photshoot at Jalvihar: 10:30 AM)",
+      attendees: 90,
+      capacity: 120,
+      image: "/lovable-uploads/PG_Valfie_2025-26.png",
+      description:
+        "A grand farewell to our graduating batch of 2026! A memorable evening filled with nostalgia, departmental awards, photos, and heartfelt goodbyes as we wish our seniors the best for their future endeavors.",
+      category: "Informal",
+      googleCalendarLink: "#",
+      drivelink: "https://drive.google.com/drive/folders/17dqvp1hyLRtP6p5rfqZq-7rciK8f34vX?usp=sharing",
+    },
     {
       id: 3,
       title: "Trad Day",
@@ -49,8 +81,6 @@ export const eventsData: EventsData = {
       googleCalendarLink:
         "https://calendar.google.com/calendar/u/0/r/eventedit?text=MechAdvance26+Symposium&dates=20260314T100000Z/20260314T180000Z&location=ME+Department,+IIT+Bombay&pli=1",
     },
-  ],
-  conducted: [
     {
       id: 10,
       title: "MEA Department Trip: Goa",
