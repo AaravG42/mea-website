@@ -19,7 +19,23 @@ export type EventsData = {
 };
 
 export const eventsData: EventsData = {
-  upcoming: [],
+  upcoming: [
+    {
+      id: 13,
+      title: "Esports Arena",
+      date: new Date(2026, 6, 8), // Note: Month is 0-indexed in JS (6 = July)
+      time: "20:00 - 23:00",
+      location: "Online",
+      attendees: NaN,
+      capacity: NaN,
+      image: "/lovable-uploads/Esports_2026.jpg",
+      description:
+        "Step into the Esports Arena for the ultimate gaming showdown, where players from all departments battle fiercely for massive rewards and exclusive Odyssey tickets. Whether you register as a solo contender or a full squad, this is your chance to conquer the competition and cement your legacy.",
+      category: "Competition",
+      googleCalendarLink: "#",
+      drivelink: "#",
+    },
+  ],
   conducted: [
     {
       id: 12,
