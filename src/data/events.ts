@@ -19,7 +19,8 @@ export type EventsData = {
 };
 
 export const eventsData: EventsData = {
-  upcoming: [
+  upcoming: [],
+  conducted: [
     {
       id: 13,
       title: "Esports Arena",
@@ -35,8 +36,6 @@ export const eventsData: EventsData = {
       googleCalendarLink: "#",
       drivelink: "#",
     },
-  ],
-  conducted: [
     {
       id: 12,
       title: "UG Valedictory Function 2025-26",

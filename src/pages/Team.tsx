@@ -335,6 +335,18 @@ import { Button } from "@/components/ui/button";
 const teamData = [
   {
     id: 1,
+    name: "Prof. Darshan S. Shah",
+    position: "Faculty Advisor, MEA",
+    department: "Mechanical Engineering",
+    email: "d.shah@iitb.ac.in",
+    phone: null,
+    linkedin: "https://www.linkedin.com/in/dssiitb/",
+    instagram: null,
+    bio: "Professor Shah specializes in biomechanics and is the faculty advisor for MEA.",
+    image: "/members/2026-27/Prof. Darshan S. Shah.jpg"
+  },
+  {
+    id: 2,
     name: "Keshav Goyal",
     position: "Department General Secretary",
     email: "23B2121@iitb.ac.in",
@@ -345,7 +357,7 @@ const teamData = [
     image: "/members/2026-27/Keshav Goyal.jpeg"
   },
   {
-    id: 2,
+    id: 3,
     name: "Lokesh Bhamare",
     position: "PG Secretary",
     email: "24m1716@iitb.ac.in",
@@ -356,7 +368,7 @@ const teamData = [
     image: "/members/2026-27/Lokesh Bhamare.jpeg"
   },
   {
-    id: 3,
+    id: 4,
     name: "Sparsh",
     position: "MEA Chief Secretary",
     email: "24b2103@iitb.ac.in",
@@ -367,7 +379,7 @@ const teamData = [
     image: "/members/2026-27/Sparsh.jpeg"
   },
   {
-    id: 4,
+    id: 5,
     name: "Srikrishna mourya Karunakaram",
     position: "Chief Secretary - Academic Affairs",
     email: "24b2198@iitb.ac.in",
@@ -377,17 +389,6 @@ const teamData = [
     bio: "Chief Secretary for Academic Affairs, overseeing academic initiatives and ensuring the highest standards of educational excellence.",
     image: "/members/2026-27/Srikrishna mourya Karunakaram.jpg"
   },
-  // {
-  //   id: 5,
-  //   name: "Manaswi Goyal",
-  //   position: "Department Research Coordinator",
-  //   email: "manaswi@iitb.ac.in",
-  //   phone: "9301457621",
-  //   linkedin: null,
-  //   instagram: null,
-  //   bio: "Department Research Coordinator, focused on promoting research activities and fostering academic excellence within the mechanical engineering department.",
-  //   image: "/static/media/placeholder.49403b70.jpg"
-  // },
   {
     id: 6,
     name: "Adwait Sanjay Dhavale",
@@ -421,6 +422,39 @@ const teamData = [
     bio: "Chief Secretary for Industrial Outreach, dedicated to building strong industry connections and creating opportunities for students through corporate partnerships.",
     image: "/members/2026-27/Khushi Aggarwal.jpg"
   },
+  {
+    id: 9,
+    name: "Anusha",
+    position: "Department Research Coordinator",
+    email: "24b2209@iitb.ac.in",
+    phone: "9156406827",
+    linkedin: "https://www.linkedin.com/public-profile/settings/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact_info%3BsWNL0f5cRw2ykD3Erk%2Bd7g%3D%3D",
+    instagram: "https://www.instagram.com/anusha_dhale?igsh=Mm1qZHUxMGZxNm9s&utm_source=qr",
+    bio: "Department Research Coordinator, focused on promoting research activities and fostering academic excellence within the mechanical engineering department.",
+    image: "/members/2026-27/Anusha.jpeg"
+  },
+  {
+    id: 10,
+    name: "Purvi Rathore",
+    position: "DAMP Coordinator",
+    email: "23b2163@iitb.ac.in",
+    phone: "8824997262",
+    linkedin: "https://www.linkedin.com/in/purvi-rathore-bb989a284?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+    instagram: "https://www.instagram.com/ivrup__?igsh=Nnozbm96bGFnbWx5&utm_source=qr",
+    bio: "Focused on mentorship guidance and awareness of opportunities through DAMP mentors, help session and support with a team of 50+ mentors.",
+    image: "/members/2026-27/Purvi Rathore.jpeg"
+  },
+  {
+    id: 11,
+    name: "Vraj Shah",
+    position: "DAMP Coordinator",
+    email: "23b2183@iitb.ac.in",
+    phone: "9426878548",
+    linkedin: "https://www.linkedin.com/in/vrajshah27?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    instagram: null,
+    bio: "Focused on mentorship guidance and awareness of opportunities through DAMP mentors, help session and support with a team of 50+ mentors.",
+    image: "/members/2026-27/Vraj Shah.jpg"
+  },
   // {
   //   id: 9,
   //   name: "Bharat Gupta",
@@ -433,7 +467,7 @@ const teamData = [
   //   image: "/members/Bharat.jpg"
   // },
   {
-    id: 10,
+    id: 12,
     name: "Yash Fulsundar",
     position: "Web Secretary",
     email: "25b2165@iitb.ac.in",
@@ -443,30 +477,19 @@ const teamData = [
     bio: "Web Secretary, managing the digital presence of MEA and ensuring effective online communication and information dissemination.",
     image: "/members/2026-27/Yash Fulsundar.jpg"
   },
-  // {
-  //   id: 11,
-  //   name: "Angel Singhvi",
-  //   position: "Second Year Class Representative",
-  //   email: "24b2134@iitb.ac.in",
-  //   phone: "7023389911",
-  //   linkedin: null,
-  //   instagram: null,
-  //   bio: "Second Year Class Representative, working to address the concerns and needs of second-year students while promoting their active participation.",
-  //   image: "/members/Angel.jpg"
-  // },
-  // {
-  //     id: 12,
-  //     name: "Bhavya Choudhury",
-  //     position: "Alumni Secretary",
-  //     email: "24b2107@iitb.ac.in",
-  //     phone: "6375939670",
-  //     linkedin: "https://www.linkedin.com/in/bhavya-choudhury-561142318/",
-  //     instagram: "https://www.instagram.com/_bhavya_1_3/",
-  //     bio: "Alumni Secretary, maintaining strong connections with department alumni and organizing events to foster networking opportunities.",
-  //     image: "/static/media/placeholder.49403b70.jpg"
-  //   },
   {
-    id: 13,
+      id: 13,
+      name: "Anshul Sevaiye",
+      position: "Alumni Secretary",
+      email: "25b2185@iitb.ac.in",
+      phone: "9131682160",
+      linkedin: null,
+      instagram: "https://www.instagram.com/anshul_sevaiye?igsh=bzdoY3B2eHJtZmo0",
+      bio: "Alumni Secretary, maintaining strong connections with department alumni and organizing events to foster networking opportunities.",
+      image: "/members/2026-27/Anshul Sevaiye.jpg"
+    },
+  {
+    id: 14,
     name: "Kunal Kundal",
     position: "Sports Secretary",
     email: "25b2209@iitb.ac.in",
@@ -477,7 +500,7 @@ const teamData = [
     image: "/members/2026-27/Kunal Kundal.jpg"
   },
   {
-    id: 14,
+    id: 15,
     name: "Rishabh Raghuvanshi",
     position: "Associate Secretary",
     email: "25b2117@iitb.ac.in",
@@ -487,30 +510,8 @@ const teamData = [
     bio: "Associate Secretary, supporting the core team in various administrative tasks and ensuring efficient communication across all departments.",
     image: "/members/2026-27/Rishabh Raghuvanshi.jpg"
   },
-  // {
-  //   id: 15,
-  //   name: "Prakhar Gupta",
-  //   position: "Second Year Class Representative",
-  //   email: "24b2173@iitb.ac.in",
-  //   phone: "9893280821",
-  //   linkedin: null,
-  //   instagram: null,
-  //   bio: "Second Year Class Representative, serving as the voice of second-year students and facilitating communication between students and faculty.",
-  //   image: "/members/prakhar.jpg"
-  // },
-  // {
-  //   id: 16,
-  //   name: "Ryan Sammy D'Souza",
-  //   position: "Second Year Class Representative",
-  //   email: "24b2267@iitb.ac.in",
-  //   phone: "9372040972",
-  //   linkedin: "https://www.linkedin.com/in/ryansammydsouza/",
-  //   instagram: "https://www.instagram.com/ryandsouza0221/",
-  //   bio: "Second Year Class Representative, representing the interests of second-year students and ensuring their voices are heard in departmental matters.",
-  //   image: "/members/RyanDSouza.jpg"
-  // },
   {
-    id: 17,
+    id: 16,
     name: "Vedika Madina",
     position: "Senior Editor",
     email: "25b2298@iitb.ac.in",
@@ -521,7 +522,7 @@ const teamData = [
     image: "/members/2026-27/Vedika Madina.jpeg"
   },
   {
-    id: 18,
+    id: 17,
     name: "Ojasweeta Sontakke",
     position: "Design Secretary",
     email: "25b2262@iitb.ac.in",
@@ -532,7 +533,7 @@ const teamData = [
     image: "/members/2026-27/Ojasweeta Sontakke.jpg"
   },
   {
-    id: 19,
+    id: 18,
     name: "Swetansh Agarwal",
     position: "Associate Secretary",
     email: "25b2293@iitb.ac.in",
@@ -543,7 +544,7 @@ const teamData = [
     image: "/members/2026-27/Swetansh Agarwal.jpeg"
   },
   {
-    id: 20,
+    id: 19,
     name: "Veer Vijay",
     position: "Media Secretary",
     email: "25b2193@iitb.ac.in",
@@ -565,7 +566,7 @@ const teamData = [
   //   image: "/static/media/placeholder.49403b70.jpg"
   // },
   {
-    id: 22,
+    id: 20,
     name: "Dhruvi Choudhary",
     position: "AI Secretary",
     email: "23b2203@iitb.ac.in",
@@ -574,22 +575,55 @@ const teamData = [
     instagram: "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.instagram.com/dhruvi___27/&ved=2ahUKEwikk93vwuKUAxX9TWwGHU5AL6kQFnoECCMQAQ&usg=AOvVaw31qE4a4LIafK3nlvGSqinN",
     bio: "AI Secretary, responsible for managing the artificial intelligence initiatives and ensuring the integration of AI technologies in MEA's projects.",
     image: "/members/2026-27/Dhruvi Choudhary.jpg"
-  }
+  },
+  {
+    id: 21,
+    name: "Venkat Ayyadevara",
+    position: "Second Year Class Representative",
+    email: "25b2116@iitb.ac.in",
+    phone: "9963098768",
+    linkedin: "https://www.linkedin.com/in/a--venkat/",
+    instagram: null,
+    bio: "Second Year Class Representative, representing the interests of second-year students and ensuring their voices are heard in departmental matters.",
+    image: "/members/2026-27/Venkat Ayyadevara.jpg"
+  },
+  {
+    id: 22,
+    name: "Hemish Singhvi",
+    position: "Second Year Class Representative",
+    email: "25B2250@iitb.ac.in",
+    phone: "9974955855",
+    linkedin: "https://www.linkedin.com/in/hemish-singhvi-27930a423/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B2E46GzKQTjCNlq7c0ohmsQ%3D%3D",
+    instagram: "https://www.instagram.com/hemish.singhvi?igsh=MTg2OWJmbzA2eGx3aw==",
+    bio: "Second Year Class Representative, representing the interests of second-year students and ensuring their voices are heard in departmental matters.",
+    image: "/members/2026-27/Hemish Singhvi.jpeg"
+  },
+  {
+    id: 23,
+    name: "Yojit Saini",
+    position: "Second Year Class Representative",
+    email: "25b2191@iitb.ac.in",
+    phone: "9024654223",
+    linkedin: null,
+    instagram: "https://www.instagram.com/yojit.o?igsh=NGcya2NyMHE4czBw",
+    bio: "Second Year Class Representative, representing the interests of second-year students and ensuring their voices are heard in departmental matters.",
+    image: "/members/2026-27/Yojit Saini.jpg"
+  },
 ]
 
 const TeamMemberCard = ({ member }: { member: any }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  
+
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
   };
-  
+
   return (
-    <div 
-      className="h-[400px] w-full perspective-1000" 
+    <div
+      className="h-[400px] w-full perspective-1000"
       onClick={handleFlip}
     >
-      <div 
+      <div
         className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${
           isFlipped ? 'rotate-y-180' : ''
         }`}
@@ -620,10 +654,10 @@ const TeamMemberCard = ({ member }: { member: any }) => {
             <p className="text-gray-500 dark:text-gray-400 text-sm mb-3">
               {member.department || member.year}
             </p>
-            
+
             <div className="flex space-x-3 mt-2">
               {member.email && (
-                <a 
+                <a
                   href={`mailto:${member.email}`}
                   className="text-gray-500 dark:text-gray-400 hover:text-mea-gold transition-colors"
                   aria-label={`Email ${member.name}`}
@@ -633,7 +667,7 @@ const TeamMemberCard = ({ member }: { member: any }) => {
                 </a>
               )}
               {member.linkedin && (
-                <a 
+                <a
                   href={member.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -645,7 +679,7 @@ const TeamMemberCard = ({ member }: { member: any }) => {
                 </a>
               )}
               {member.instagram && (
-                <a 
+                <a
                   href={member.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -657,7 +691,7 @@ const TeamMemberCard = ({ member }: { member: any }) => {
                 </a>
               )}
             </div>
-            
+
             <div className="absolute bottom-4 text-center w-full">
               <span className="text-xs font-medium text-mea-gold inline-flex items-center">
                 Click to view bio
@@ -665,7 +699,7 @@ const TeamMemberCard = ({ member }: { member: any }) => {
             </div>
           </CardContent>
         </Card>
-        
+
         {/* Back of Card */}
         <Card className="absolute w-full h-full backface-hidden rotate-y-180 cursor-pointer overflow-hidden">
           <CardContent className="p-6 h-full flex flex-col">
@@ -673,17 +707,17 @@ const TeamMemberCard = ({ member }: { member: any }) => {
               <h3 className="text-lg font-bold">{member.name}</h3>
               <p className="text-mea-gold font-medium text-sm">{member.position}</p>
             </div>
-            
+
             <div className="flex-grow overflow-auto custom-scrollbar my-4">
               <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap leading-relaxed">
                 {member.bio || "No bio available."}
               </p>
             </div>
-            
+
             <div className="mt-auto pt-2 border-t border-gray-200 dark:border-gray-700">
               <div className="flex justify-center gap-4">
                 {member.email && (
-                  <a 
+                  <a
                     href={`mailto:${member.email}`}
                     className="text-gray-500 hover:text-mea-gold transition-colors"
                     onClick={(e) => e.stopPropagation()}
@@ -692,7 +726,7 @@ const TeamMemberCard = ({ member }: { member: any }) => {
                   </a>
                 )}
                 {member.linkedin && (
-                  <a 
+                  <a
                     href={member.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -703,7 +737,7 @@ const TeamMemberCard = ({ member }: { member: any }) => {
                   </a>
                 )}
                 {member.instagram && (
-                  <a 
+                  <a
                     href={member.instagram}
                     target="_blank"
                     rel="noopener noreferrer"

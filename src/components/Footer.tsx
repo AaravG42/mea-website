@@ -52,9 +52,9 @@ const Footer = () => {
               <div className="flex items-start">
                 <Phone size={18} className="mr-2 mt-1" />
                 <div>
-                  <p className="font-medium">Tanmay Kulkarni</p>
+                  <p className="font-medium">Keshav Goyal</p>
                   <p className="text-sm text-gray-300">Department General Secretary</p>
-                  <a href="tel:+918380983079" className="hover:text-mea-gold transition-colors">+91 83809 83079</a>
+                  <a href="tel:+918380983079" className="hover:text-mea-gold transition-colors">+91 7876561677</a>
                 </div>
               </div>
               <a href="https://www.google.com/maps/place/Department+of+Mechanical+Engineering/data=!4m2!3m1!1s0x0:0x900c3067fb8a0e4d?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" className="flex items-start hover:text-mea-gold transition-colors">
