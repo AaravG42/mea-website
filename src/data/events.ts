@@ -19,7 +19,23 @@ export type EventsData = {
 };
 
 export const eventsData: EventsData = {
-  upcoming: [],
+  upcoming: [
+    {
+      id: 1,
+      title: "Naneghat Trek",
+      date: new Date(2026, 7, 30), // Note: Month is 0-indexed in JS (6 = July)
+      time: "All Day",
+      location: "Naneghat, Maharashtra",
+      attendees: NaN,
+      capacity: NaN,
+      image: "/lovable-uploads/2026-27/Trek_Poster_2026.jpg",
+      description:
+        "Set out of the campus, show your sporty spirit and hit the trails. Join the Mechanical Community for a one-day trek at Naneghat, Maharashtra. It will prove to be great opportunity to experience the serene landscapes, with goo company and a break from the IITB routine.",
+      category: "Social",
+      googleCalendarLink: "#",
+      drivelink: "#",
+    },
+  ],
   conducted: [
     {
       id: 13,

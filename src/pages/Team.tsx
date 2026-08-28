@@ -381,7 +381,7 @@ const teamData = [
   {
     id: 5,
     name: "Srikrishna mourya Karunakaram",
-    position: "Chief Secretary - Academic Affairs",
+    position: "Chief Secretary - Academic Affairs & Third Year CR",
     email: "24b2198@iitb.ac.in",
     phone: "9769362275",
     linkedin: "http://www.linkedin.com/in/srikrishnamourya-karunakaram-467b04314",
@@ -569,7 +569,7 @@ const teamData = [
     id: 20,
     name: "Dhruvi Choudhary",
     position: "AI Secretary",
-    email: "23b2203@iitb.ac.in",
+    email: "25B2112@iitb.ac.in",
     phone: "8302829458",
     linkedin: "https://www.linkedin.com/in/dhruvi-choudhary-25b89136b?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     instagram: "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.instagram.com/dhruvi___27/&ved=2ahUKEwikk93vwuKUAxX9TWwGHU5AL6kQFnoECCMQAQ&usg=AOvVaw31qE4a4LIafK3nlvGSqinN",
@@ -608,6 +608,28 @@ const teamData = [
     instagram: "https://www.instagram.com/yojit.o?igsh=NGcya2NyMHE4czBw",
     bio: "Second Year Class Representative, representing the interests of second-year students and ensuring their voices are heard in departmental matters.",
     image: "/members/2026-27/Yojit Saini.jpg"
+  },
+  {
+    id: 24,
+    name: "Gaurav Kothari",
+    position: "Third Year Class Representative",
+    email: "24b2204@iitb.ac.in",
+    phone: "9893480220",
+    linkedin: "http://www.linkedin.com/in/gaurav-kothari-318318325",
+    instagram: "http://www.instagram.com/kgaurav_37/",
+    bio: "Third Year Class Representative, representing the third-year student body and ensuring their academic and extracurricular needs are met.",
+    image: "/members/2026-27/Gaurav Kothari.jpeg"
+  },
+  {
+    id: 25,
+    name: "Jaideep Lokhande",
+    position: "Third Year Class Representative",
+    email: "jaideep.lokhande@iitb.ac.in",
+    phone: "9423556271",
+    linkedin: null,
+    instagram: null,
+    bio: "Third Year Class Representative, representing the third-year student body and ensuring their academic and extracurricular needs are met.",
+    image: "/members/2026-27/Jaideep Lokhande.jpeg"
   },
 ]
 
