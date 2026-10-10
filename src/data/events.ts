@@ -21,7 +21,24 @@ export type EventsData = {
 export const eventsData: EventsData = {
   upcoming: [
     {
-      id: 1,
+      id: 15,
+      title: "Mechanza 2026",
+      date: new Date(2026, 9, 11), // Note: Month is 0-indexed in JS (6 = July)
+      time: "18:00-21:00",
+      location: "LTPCSA",
+      attendees: NaN,
+      capacity: NaN,
+      image: "/lovable-uploads/2026-27/Mechanza.png",
+      description:
+        "Step into pure euphoria at Mechanza—the ultimate MEA freshers' bash promising an unforgettable night of music, glitter, and celebration!",
+      category: "Social",
+      googleCalendarLink: "#",
+      drivelink: "#",
+    },
+  ],
+  conducted: [
+    {
+      id: 14,
       title: "Naneghat Trek",
       date: new Date(2026, 7, 30), // Note: Month is 0-indexed in JS (6 = July)
       time: "All Day",
@@ -35,8 +52,6 @@ export const eventsData: EventsData = {
       googleCalendarLink: "#",
       drivelink: "#",
     },
-  ],
-  conducted: [
     {
       id: 13,
       title: "Esports Arena",
